@@ -10,13 +10,15 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxtjs/tailwindcss": "latest",
+    "@tailwindcss/vite": "^4.1.18",
     "nuxt": "^4.2.2",
+    "tailwindcss": "^4.1.18",
     "vue": "^3.5.27",
-    "vue-router": "^4.6.4",
-	"@nuxtjs/tailwindcss": "latest"
+    "vue-router": "^4.6.4"
   },
   "devDependencies": {
-	"@iconify/vue": "^5.0.0",
-	"@types/node": "latest"
+    "@iconify/vue": "^5.0.0",
+    "@types/node": "latest"
   }
 }
