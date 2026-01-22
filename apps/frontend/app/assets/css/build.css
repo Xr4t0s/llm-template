@@ -1,84 +1,185 @@
 /* =========================
-   BUILD FLOW SKIN
+   BUILD FLOW – DESIGN SYSTEM
    ========================= */
+
 @import "tailwindcss";
-
-
 @tailwind utilities;
 
+/* -------------------------
+   LAYOUT
+   ------------------------- */
 
-/* Container principal */
+/* Page container */
 .build-shell {
-  @apply min-h-screen w-full px-4 pt-18 md:px-8 py-6;
+  @apply
+    min-h-screen
+    w-full
+    px-4
+    pt-20
+    pb-6
+    md:px-8;
 }
 
-/* Carte centrale */
+/* Main panel */
 .build-panel {
-  @apply rounded-2xl p-6 md:p-8;
+  @apply
+    rounded-2xl
+    p-6
+    md:p-8
+    bg-white/5
+    border
+    border-white/10
+    backdrop-blur;
 }
 
-/* Sections */
+/* Central content wrapper */
+.build-content {
+  @apply
+    relative
+    w-full
+    max-w-5xl
+    mx-auto
+    flex
+    flex-col;
+}
+
+/* Generic section spacing */
 .build-section {
   @apply space-y-6;
 }
 
-/* Titres */
+/* -------------------------
+   TYPOGRAPHY
+   ------------------------- */
+
 .build-title {
-  @apply text-2xl font-semibold tracking-tight;
+  @apply
+    text-2xl
+    font-semibold
+    tracking-tight;
 }
 
 .build-subtitle {
-  @apply text-sm text-(--text-soft) max-w-xl;
+  @apply
+    text-sm
+    text-(--text-soft)
+    leading-relaxed
+    max-w-xl;
 }
 
-/* Cards génériques */
+/* Labels & helpers */
+.build-label {
+  @apply text-sm font-medium;
+}
+
+.build-helper {
+  @apply text-xs text-(--text-soft);
+}
+
+/* -------------------------
+   SURFACES / CARDS
+   ------------------------- */
+
 .build-card {
-  @apply rounded-2xl border border-white/10 bg-white/5 p-4 transition-all;
+  @apply
+    rounded-2xl
+    border
+    border-white/10
+    bg-white/5
+    p-4
+    transition-all
+    duration-200;
+}
+
+.build-card:hover {
+  @apply bg-white/10;
 }
 
 .build-card-active {
-  @apply border-white/30 bg-white/10;
+  @apply
+    border-white/30
+    bg-white/15;
 }
 
 /* Pills / tags */
 .build-pill {
-  @apply px-2 py-1 rounded-full text-xs bg-white/10;
+  @apply
+    px-2.5
+    py-1
+    rounded-full
+    text-xs
+    bg-white/10
+    text-white/80;
 }
 
-/* Boutons */
+/* -------------------------
+   BUTTONS
+   ------------------------- */
+
 .build-btn {
-  @apply px-6 py-3 rounded-xl text-sm font-semibold transition-all;
+  @apply
+    inline-flex
+    items-center
+    justify-center
+    gap-2
+    px-6
+    py-3
+    rounded-xl
+    text-sm
+    font-semibold
+    transition-all
+    duration-200
+    active:scale-95;
 }
 
 .build-btn-primary {
-  @apply bg-white/15 hover:bg-white/25;
+  @apply
+    bg-white/15
+    hover:bg-white/25;
 }
 
 .build-btn-secondary {
-  @apply bg-white/5 hover:bg-white/10;
+  @apply
+    bg-white/5
+    hover:bg-white/10;
 }
 
-/* Timeline / sidebar */
-.build-step {
-  @apply text-sm font-medium transition-colors;
+/* -------------------------
+   HEADER
+   ------------------------- */
+
+@layer components {
+  .build-header {
+    @apply space-y-4;
+  }
+
+  .build-header-top {
+    @apply flex items-center justify-between gap-4;
+  }
+
+  .build-header-steps {
+    @apply hidden md:flex items-center gap-2 text-xs text-(--text-soft);
+  }
+
+  .build-progress {
+    @apply h-1.5 w-full rounded-full bg-white/10 overflow-hidden;
+  }
+
+  .build-progress-bar {
+    @apply
+      h-full
+      rounded-full
+      bg-white/50
+      transition-all
+      duration-300
+      ease-out;
+  }
 }
 
-.build-step-active {
-  @apply text-white;
-}
+/* -------------------------
+   FOOTER
+   ------------------------- */
 
-.build-step-done {
-  @apply text-white/80;
-}
-
-.build-step-locked {
-  @apply text-white/40;
-}
-
-.build-content {
-	@apply relative w-full max-w-5xl mx-auto;
-}
-/* Footer container */
 .build-footer {
   @apply
     flex
@@ -90,134 +191,109 @@
     border-white/10;
 }
 
-/* Hint text */
 .build-footer-hint {
   @apply
     hidden
     sm:block
-    text-xs
-    text-(--text-soft)
+    flex-1
     text-center
-    flex-1;
+    text-xs
+    text-(--text-soft);
 }
 
-@layer components {
-  /* Header container */
-  .build-header {
-    @apply space-y-4;
-  }
+/* -------------------------
+   TEXTAREA / INPUTS
+   ------------------------- */
 
-  /* Top line */
-  .build-header-top {
-    @apply flex items-center justify-between gap-4;
-  }
-
-  /* Step counter (desktop only) */
-  .build-header-steps {
-    @apply hidden md:flex items-center gap-2 text-xs text-(--text-soft);
-  }
-
-  /* Progress bar */
-  .build-progress {
-    @apply h-1.5 w-full rounded-full bg-white/10 overflow-hidden;
-  }
-
-  .build-progress-bar {
-    @apply h-full rounded-full bg-white/50 transition-all duration-300;
-  }
+.build-lore {
+  @apply space-y-3;
 }
 
-@layer components {
-  /* Step header */
-  .build-step-header {
-    @apply space-y-2;
-  }
-
-  /* Labels & helpers */
-  .build-label {
-    @apply text-sm font-medium;
-  }
-
-  .build-helper {
-    @apply text-xs text-(--text-soft);
-  }
-
-  /* Lore textarea */
-  .build-lore {
-    @apply space-y-3;
-  }
-
-  .build-textarea-wrapper {
-    @apply
-      relative
-      rounded-2xl
-      border
-      border-white/10
-      bg-white/5
-      transition
-      focus-within:border-white/25;
-  }
-
-  .build-textarea {
-    @apply
-      w-full
-      resize-none
-      rounded-2xl
-      bg-transparent
-      p-4
-      outline-none
-      text-sm;
-  }
-
-  .build-counter {
-    @apply absolute bottom-3 right-4 text-xs text-(--text-soft);
-  }
-
-  /* Options grid */
-  .build-options-grid {
-    @apply grid grid-cols-1 md:grid-cols-2 gap-4;
-  }
-
-  /* Tone selection */
-  .build-tone {
-    @apply space-y-3;
-  }
-
-  .build-tone-list {
-    @apply flex flex-wrap gap-2;
-  }
-
-  .build-tone-pill {
-    @apply
-      px-3
-      py-1.5
-      rounded-full
-      text-xs
-      transition-all
-      bg-white/5
-      text-(--text-soft)
-      hover:bg-white/10;
-  }
-
-  .build-tone-pill-active {
-    @apply bg-white/20 text-white;
-  }
+.build-textarea-wrapper {
+  @apply
+    relative
+    rounded-2xl
+    border
+    border-white/10
+    bg-white/5
+    transition-all
+    focus-within:border-white/30
+    focus-within:bg-white/10;
 }
 
+.build-textarea {
+  @apply
+    w-full
+    resize-none
+    rounded-2xl
+    bg-transparent
+    p-4
+    outline-none
+    text-sm
+    leading-relaxed;
+}
+
+.build-counter {
+  @apply
+    absolute
+    bottom-3
+    right-4
+    text-xs
+    text-(--text-soft);
+}
+
+/* -------------------------
+   OPTIONS / TONES
+   ------------------------- */
+
+.build-options-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-4;
+}
+
+.build-tone {
+  @apply space-y-3;
+}
+
+.build-tone-list {
+  @apply flex flex-wrap gap-2;
+}
+
+.build-tone-pill {
+  @apply
+    px-3
+    py-1.5
+    rounded-full
+    text-xs
+    transition-all
+    bg-white/5
+    text-(--text-soft)
+    hover:bg-white/10
+    hover:text-white;
+}
+
+.build-tone-pill-active {
+  @apply bg-white/20 text-white;
+}
+
+/* -------------------------
+   SIDEBAR
+   ------------------------- */
+
 @layer components {
-  /* Sidebar container */
   .build-sidebar {
     @apply
-	
       rounded-2xl
       px-4
       pt-20
       pb-4
       space-y-8
-      h-full;
+      h-full
+      bg-white/5
+      border
+      border-white/10
+      backdrop-blur;
   }
 
-  /* Header */
   .build-sidebar-header {
     @apply space-y-1;
   }
@@ -230,12 +306,10 @@
     @apply text-xs text-(--text-soft);
   }
 
-  /* Steps list */
   .build-sidebar-steps {
     @apply flex flex-col gap-2;
   }
 
-  /* Step button */
   .build-sidebar-step {
     @apply
       flex
@@ -245,16 +319,12 @@
       py-2
       rounded-lg
       text-sm
-      transition-colors
-      text-left;
+      transition-all
+      duration-150;
   }
 
   .build-sidebar-step-index {
-    @apply
-      w-6
-      text-xs
-      text-(--text-soft)
-      text-right;
+    @apply w-6 text-xs text-(--text-soft) text-right;
   }
 
   .build-sidebar-step-label {
@@ -263,15 +333,14 @@
 
   /* States */
   .build-sidebar-step.is-active {
-    @apply bg-white/10 text-white;
+    @apply bg-white/15 text-white;
   }
 
   .build-sidebar-step.is-done {
-    @apply text-white/80 hover:bg-white/5;
+    @apply text-white/80 hover:bg-white/10;
   }
 
   .build-sidebar-step.is-locked {
     @apply text-white/40 cursor-not-allowed;
   }
 }
-

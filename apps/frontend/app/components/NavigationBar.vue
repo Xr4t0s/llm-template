@@ -55,7 +55,7 @@
 
         <!-- CTA -->
         <client-only>
-			<appkit-button />
+			<appkit-button/>
 		</client-only>
 
 

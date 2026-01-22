@@ -33,5 +33,11 @@ export default defineNuxtConfig({
   },
   modules: [
 	'@pinia/nuxt',
-  ]
+	'nuxt-icon',
+  ],
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag) => tag === 'appkit-button',
+    },
+  },
 })

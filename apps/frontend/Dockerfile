@@ -6,6 +6,7 @@ RUN corepack enable && corepack prepare pnpm@latest --activate
 
 COPY package.json pnpm-lock.yaml* ./
 RUN pnpm install
+RUN pnpm add @pinia/nuxt
 
 COPY . .
 
