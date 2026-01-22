@@ -1,0 +1,11 @@
+:root {
+  --bg-main: #0b0b0b;
+  --bg-soft: #141414;
+
+  --primary: #fbbf24;
+  --accent: #f59e0b;
+  --success: #22c55e;
+
+  --text-main: #fafafa;
+  --text-soft: #a3a3a3;
+}

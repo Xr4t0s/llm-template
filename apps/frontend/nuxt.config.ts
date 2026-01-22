@@ -9,6 +9,10 @@ export default defineNuxtConfig({
 	}
   },
   app: {
+	pageTransition: {
+      name: 'page',
+      mode: 'out-in'
+    },
     head: {
       title: 'Web3 Dashboard',
     },
@@ -27,4 +31,7 @@ export default defineNuxtConfig({
       },
     },
   },
+  modules: [
+	'@pinia/nuxt',
+  ]
 })

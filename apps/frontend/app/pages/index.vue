@@ -6,7 +6,7 @@
       <div class="max-w-6xl mx-auto px-6">
         <div class="max-w-4xl space-y-8">
 
-          <h1 class="text-6xl font-semibold leading-tight">
+          <h1 class="text-6xl font-semibold leading-tight animate-fade-up">
             Build products<br />
             <span class="gradient-text">
               with intention.

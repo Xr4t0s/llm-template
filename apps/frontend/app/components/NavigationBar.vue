@@ -24,23 +24,33 @@
 
         <!-- Links -->
         <div
-          class="hidden md:flex items-center gap-10
-                 text-sm font-medium
-                 text-(--text-soft)"
-        >
+			class="hidden md:flex items-center gap-10
+					space-x-20
+					text-sm font-medium
+					text-(--text-soft)
+					group"
+		>
           <NuxtLink
-		  	v-for="link in links"
-            :key="link.to"
-            :to="link.to"
-            class="
+			v-for="link in links"
+			:key="link.to"
+			:to="link.to"
+			class="
+				transition-all duration-300 ease-out
+
+				group-hover:opacity-60
+				group-hover:scale-[0.96]
+
+				hover:opacity-100!
+				hover:scale-105!
 				hover:text-white
-				hover:scale-105
+
 				active:scale-95
-				transition-all"
-            active-class="active-link"
-          >
-            {{ link.label }}
-          </NuxtLink>
+			"
+			active-class="active-link"
+			>
+			{{ link.label }}
+		</NuxtLink>
+
         </div>
 
         <!-- CTA -->
@@ -55,15 +65,16 @@
 </template>
 
 <script lang="ts" setup>
+	import "~/composables/useWallet"
 	interface NavLink {
-	to: string
-	label: string
+		to: string
+		label: string
 	}
 
 	const links: NavLink[] = [
-	{ to: '/', label: 'Home' },
-	{ to: '/build', label: 'Build' },
-	{ to: '/docs', label: 'Docs' },
-	{ to: '/about', label: 'About' },
+		{ to: '/', label: 'Home' },
+		{ to: '/build', label: 'Build' },
+		{ to: '/docs', label: 'Docs' },
+		{ to: '/about', label: 'About' },
 	]
 </script>
