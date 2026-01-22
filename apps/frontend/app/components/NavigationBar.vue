@@ -44,17 +44,10 @@
         </div>
 
         <!-- CTA -->
-        <NuxtLink
-          to="/build"
-          class="px-5 py-2.5 rounded-xl
-                 bg-(--primary)
-                 text-white text-sm font-semibold
-                 hover:opacity-90
-                 active:scale-95
-                 transition"
-        >
-          Connect wallet
-        </NuxtLink>
+        <client-only>
+			<appkit-button />
+		</client-only>
+
 
       </div>
     </div>

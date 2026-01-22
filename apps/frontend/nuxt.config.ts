@@ -2,6 +2,12 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  ssr: false,
+  runtimeConfig: {
+	public: {
+		projectId: process.env.NUXT_PROJECT_ID
+	}
+  },
   app: {
     head: {
       title: 'Web3 Dashboard',
