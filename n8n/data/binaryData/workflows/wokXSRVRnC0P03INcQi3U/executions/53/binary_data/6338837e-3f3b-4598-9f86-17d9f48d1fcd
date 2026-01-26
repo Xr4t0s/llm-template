@@ -1,0 +1,46 @@
+# Frequently Asked Questions (FAQ) ❓
+
+## What is LLM Studio?
+LLM Studio is an AI-powered platform that helps you design, generate, and deploy decentralized applications quickly and securely.
+
+## How does the AI code generation work?
+You provide natural language descriptions of the dApp you want, and our AI models generate optimized smart contract code and frontend components.
+
+## Which blockchains does LLM Studio support?
+Currently, Ethereum, Binance Smart Chain, and Polygon are supported, with plans to add more networks.
+
+## Do I need coding experience to use LLM Studio?
+No. The platform is designed to enable users of all skill levels to build dApps using natural language commands.
+
+## How does LLM Studio ensure security?
+We integrate static and dynamic analysis tools, run extensive simulations, and support formal verification to safeguard your dApps.
+
+## Is there a token associated with LLM Studio?
+Yes, the LST token fuels platform usage, governance, staking, and rewards.
+
+## How can I deploy my dApp?
+After reviewing and testing generated code, you can deploy directly through the platform’s interface to your chosen blockchain network.
+
+## What kind of support is available?
+We offer detailed documentation, tutorials, and a community forum to help you every step of the way.
+
+## Can I update my deployed dApps?
+Yes, LLM Studio supports upgradeable smart contracts and manages updates via secure mechanisms.
+
+## What is the roadmap for future development?
+Our roadmap includes expanding blockchain support, enhanced AI features, marketplace launch, and community governance tools—detailed in our roadmap document.
+
+## How do I get involved with the community?
+Join our developer forums, participate in governance, and contribute to ecosystem growth via partnerships and community programs.
+
+## Is LLM Studio open source?
+Core components are open for community review and contributions to foster transparency and innovation.
+
+## Are there fees to use the platform?
+Usage fees apply based on service consumption paid in LST tokens; details are available in the tokenomics document.
+
+## How do I start?
+Create an account on our platform, start a new project with natural language descriptions, and let LLM Studio guide you through the process.
+
+## Where can I learn more?
+Visit our website and documentation portals for the latest updates, tutorials, and support channels.

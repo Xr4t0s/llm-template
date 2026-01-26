@@ -1,0 +1,48 @@
+# ❓ Frequently Asked Questions (FAQ)
+
+## What is LLM Studio?
+LLM Studio is a platform that enables users to design, generate, and deploy decentralized applications powered by large language model orchestration.
+
+## Who can use LLM Studio?
+Developers, blockchain enthusiasts, and enterprises looking to create decentralized applications with AI integration can use LLM Studio.
+
+## Do I need programming experience?
+Basic understanding of programming is helpful, but our intuitive interface and templates significantly lower the barrier to entry.
+
+## Which blockchains does LLM Studio support?
+Initially, we support Ethereum and Binance Smart Chain, with plans to expand to other major chains like Polygon and Solana.
+
+## How secure is LLM Studio?
+Security is a top priority. We implement multiple security audits, best practices in smart contract design, and monitoring tools.
+
+## Is there a fee to use the platform?
+Certain features have transaction fees, paid using our native token, but the core design and testing tools are free.
+
+## What is the role of the native token?
+The token is used for transaction fees, governance voting, rewards, and unlocking premium features.
+
+## Can I contribute to LLM Studio?
+Yes, we encourage community contributions through open-source projects, feedback, and participation in governance.
+
+## How often is LLM Studio updated?
+We follow a quarterly update cycle with continuous patches and minor improvements as needed.
+
+## Where can I find documentation and support?
+Documentation is available on our official GitBook, and support is provided via our community forums and Discord.
+
+## Will LLM Studio support NFTs and DeFi?
+Yes, future updates will include specialized modules for NFT creation and DeFi protocols.
+
+## How does LLM orchestration work?
+LLM orchestration coordinates multiple language model agents to perform tasks within decentralized applications, enhancing decision-making and automation.
+
+## What are the system requirements?
+LLM Studio is cloud-based; users require a modern browser and internet connection for the best experience.
+
+## How is user data handled?
+We prioritize privacy and comply with data protection regulations, storing minimal user data with encryption.
+
+## What is the roadmap for new features?
+Refer to our roadmap document for detailed timelines and upcoming initiatives.
+
+For any further questions, please reach out to our support team or community channels.

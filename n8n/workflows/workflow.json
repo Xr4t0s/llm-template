@@ -1,0 +1,169 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -1152,
+        -160
+      ],
+      "id": "c33f62ad-32b8-4895-8a11-0caab63ffc6a",
+      "name": "When chat message received",
+      "webhookId": "36e7145c-5e5c-4e3d-94c8-7638b1b67f3a"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -832,
+        -384
+      ],
+      "id": "134c0eda-d4a2-4b04-af6b-d5b7ad0fc8f5",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -896,
+        -112
+      ],
+      "id": "92e388e0-e3bd-4935-9c45-faac9a9f598d",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "nAhbGIogVUx10cID",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -768,
+        -112
+      ],
+      "id": "727b6220-2a9f-4b67-b39f-698253243da2",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "endpointUrl": "https://f86dccbde507.ngrok-free.app/sse",
+        "serverTransport": "sse",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1.2,
+      "position": [
+        -416,
+        -112
+      ],
+      "id": "70b15863-0281-447d-bd82-a4c3df48e5dc",
+      "name": "MCP Client"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const fs = require('fs');\n\nconst BASE_DIR = '/data/outputs';\nconst r = $json;\n\nif (!r || !r.projectId) throw new Error('Missing projectId in AI output');\nif (!r.documentation?.files) throw new Error('Missing documentation.files in AI output');\nif (!Array.isArray(r.socials?.posts)) throw new Error('Missing socials.posts array in AI output');\n\nconst projectDir = `${BASE_DIR}/${r.projectId}`;\nconst docsDir = `${projectDir}/docs`;\nconst socialsDir = `${projectDir}/socials`;\n\nfs.mkdirSync(docsDir, { recursive: true });\nfs.mkdirSync(socialsDir, { recursive: true });\n\n// docs\nconst files = r.documentation.files;\nconst required = ['introduction','vision','roadmap','tokenomics','faq'];\nfor (const key of required) {\n  if (!files[key]) throw new Error(`Missing doc file: ${key}`);\n  fs.writeFileSync(`${docsDir}/${key}.md`, files[key], 'utf8');\n}\n\n// socials\nif (r.socials.posts.length !== 15) throw new Error('socials.posts must have exactly 15 items');\nfs.writeFileSync(`${socialsDir}/posts.json`, JSON.stringify(r.socials.posts, null, 2), 'utf8');\n\n// manifest\nfs.writeFileSync(`${projectDir}/manifest.json`, JSON.stringify({\n  projectId: r.projectId,\n  generatedAt: new Date().toISOString(),\n  docs: required.map(k => `${k}.md`),\n  socials: ['posts.json']\n}, null, 2), 'utf8');\n\nreturn { success: true, path: projectDir };\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -368,
+        -384
+      ],
+      "id": "5002dd10-e959-44f8-b269-84a0e0fd10ef",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MCP Client": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "cfff7e46-b87f-4af7-ba56-add03a1b0a98",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "b6c420919a177b1d4f9583cf160ff0d1f880ba43c4d1343574051fc70ac563ec"
+  },
+  "id": "cUCII9Px6A9v0uo41gZ5M",
+  "tags": []
+}
