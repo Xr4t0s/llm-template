@@ -10,22 +10,22 @@ services:
 
   backend:
     build: ./apps/backend
-    ports:
-      - "3001:3001"
+    expose:
+      - "3001"  # Changed from ports to expose
     environment:
-        - MCP_BASE_URL=${MCP_BASE_URL}
-        - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - MCP_BASE_URL=${MCP_BASE_URL}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
     networks:
       - common
 
-  # NEW: Nginx Reverse Proxy
+  # Nginx Reverse Proxy
   nginx:
     image: nginx:alpine
     container_name: llm-nginx
     restart: unless-stopped
     ports:
       - "80:80"
-      # - "443:443"
+      # - "443:443"  # Uncomment for HTTPS later
     volumes:
       - ./nginx/nginx-http.conf:/etc/nginx/nginx.conf:ro
       # - ./nginx/ssl-params.conf:/etc/nginx/ssl-params.conf:ro
@@ -36,11 +36,13 @@ services:
       - llm-network
       - common
     depends_on:
+      - frontend
+      - backend
       - mcp-docs
       - mcp-website
       - mcp-visuals
 
-  # NEW: Certbot for SSL certificates
+  # Certbot (commented for HTTP testing)
   # certbot:
   #   image: certbot/certbot:latest
   #   container_name: llm-certbot
@@ -51,7 +53,7 @@ services:
   #   networks:
   #     - llm-network
 
-  # Placeholder MCP servers (we'll build these next)
+  # Placeholder MCP servers
   mcp-docs:
     image: python:3.12-slim
     container_name: mcp-docs
