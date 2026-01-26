@@ -1,0 +1,148 @@
+Metadata-Version: 2.4
+Name: mcp-documentation-server
+Version: 0.1.0
+Summary: MCP server for documentation generation
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: mcp[cli]>=1.26.0
+
+# MCP Documentation Server
+
+Orchestrates documentation generation for decentralized applications.
+
+## Tools
+
+### 1. `generate_documentation`
+Creates 5 markdown files ready for GitBook:
+- `01_introduction.md` - Project overview and quick start
+- `02_vision.md` - Mission, values, and philosophy  
+- `03_roadmap.md` - Timeline and milestones
+- `04_tokenomics.md` - Token economics or utility explanation
+- `05_faq.md` - 10-15 frequently asked questions
+
+**Usage:**
+```json
+{
+  "project_name": "MyToken",
+  "lore": "A revolutionary DeFi protocol...",
+  "tone": "professional",
+  "project_type": "defi",
+  "goal": "utility",
+  "has_mascot": false,
+  "tagline": "The future of finance"
+}
+```
+
+### 2. `generate_lore`
+Assembles scattered ideas into one unified, consistent narrative.
+
+**Usage:**
+```json
+{
+  "project_name": "MyToken",
+  "project_type": "meme",
+  "tone": "playful",
+  "has_mascot": true,
+  "goal": "community",
+  "visual_vibe": "bold",
+  "user_input": "We want to build the dankest meme coin..."
+}
+```
+
+**Output:** 400-600 word unified lore document covering:
+- Core identity
+- Origin story
+- Vision & mission
+- Core values
+- Target audience
+- Unique selling proposition
+- Mascot details (if applicable)
+- Tone of voice guidelines
+- Key messaging pillars
+
+### 3. `generate_social_content`
+Creates 10-20 ready-to-post social media content pieces.
+
+**Usage:**
+```json
+{
+  "project_name": "MyToken",
+  "lore": "Our unified project narrative...",
+  "tone": "meme",
+  "platforms": ["twitter", "telegram"],
+  "count": 15,
+  "content_types": ["announcement", "engagement", "meme"]
+}
+```
+
+**Output:** Mix of:
+- 40% engagement/community posts
+- 30% educational posts
+- 20% announcements
+- 10% meme/fun posts
+
+Optimized for each platform with proper formatting, hashtags, and CTAs.
+
+## Running Locally
+```bash
+# Install dependencies
+pip install -e .
+
+# Run server
+python main.py
+
+# Server will be available at http://localhost:8001
+```
+
+## Running with Docker
+```bash
+# Build
+docker build -t mcp-documentation-server .
+
+# Run
+docker run -p 8001:8001 mcp-documentation-server
+```
+
+## Testing Tools
+```bash
+# Using MCP CLI
+mcp dev main.py
+
+# The server exposes tools via SSE transport
+# Claude API can connect to it via the configured MCP endpoint
+```
+
+## Integration with NestJS
+
+The NestJS backend calls Claude API with MCP context:
+```typescript
+const response = await claude.messages.create({
+  model: "claude-sonnet-4-20250514",
+  max_tokens: 4096,
+  tools: [{
+    type: "custom",
+    name: "generate_documentation",
+    mcp_server: "https://yourdomain.com/mcp/documentation"
+  }],
+  messages: [{
+    role: "user",
+    content: "Generate docs with these params: {...}"
+  }]
+});
+```
+
+## Environment Variables
+
+None required - stateless server.
+
+## Health Check
+```bash
+curl http://localhost:8001/health
+```
+
+## Notes
+
+- This server is **stateless** - it generates prompts, not final content
+- Claude API executes the prompts and generates actual content
+- Responses are structured prompts optimized for documentation generation
+- All tools return detailed instructions for Claude to follow

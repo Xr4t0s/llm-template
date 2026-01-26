@@ -7,9 +7,8 @@ Tools:
 2. generate_lore - Assembles project identity into consistent narrative
 3. generate_social_content - Creates 10-20 social media posts
 """
-
 from mcp.server.fastmcp import FastMCP
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 # -------------------------------------------------
 # MCP SERVER INITIALIZATION
@@ -38,7 +37,7 @@ def generate_documentation(
     - The LLM MUST output a strict JSON array of files.
     - Each file MUST contain a `path` and `content`.
     """
-    
+
     prompt = f"""
 You are an autonomous documentation generation agent.
 
@@ -164,10 +163,10 @@ Generate the JSON array now.
 --------------------------------
 LAST REQUIREMENTS
 --------------------------------
-After having done create those files, DO NOT CALL MPC, if files are ready, FINISH. 
+After having done create those files, DO NOT CALL MPC, if files are ready, FINISH.
 
 """
-    
+
     return prompt
 
 
@@ -186,10 +185,10 @@ def generate_lore(
 ) -> str:
     """
     Assemble project identity into one cohesive, consistent narrative.
-    
+
     Takes scattered ideas and creates a unified lore that will be used
     across all marketing materials, documentation, and social content.
-    
+
     Args:
         project_name: Name of the project
         project_type: Type (meme, defi, nft, dao, gaming, etc.)
@@ -199,7 +198,7 @@ def generate_lore(
         visual_vibe: Visual aesthetic (bold, minimal, retro, futuristic)
         user_input: Any additional context or ideas from user
     """
-    
+
     mascot_section = """
 # MASCOT CHARACTER
 If the project has a mascot, create:
@@ -208,7 +207,7 @@ If the project has a mascot, create:
 - Role in the project narrative
 - Catchphrase or signature move
 """ if has_mascot else ""
-    
+
     prompt = f"""
 You are a brand strategist and storyteller for Web3 projects.
 
@@ -273,7 +272,7 @@ The main themes to emphasize in all communications
 
 Generate the unified lore now.
 """
-    
+
     return prompt
 
 
@@ -291,10 +290,10 @@ def generate_social_content(
 ) -> str:
     """
     Generate 10-20 social media posts optimized for X (Twitter) and Telegram.
-    
+
     Creates ready-to-post content that maintains brand consistency and
     maximizes engagement.
-    
+
     Args:
         project_name: Name of the project
         lore: Project narrative and identity
@@ -303,18 +302,18 @@ def generate_social_content(
         count: Number of posts to generate (10-20)
         content_types: Types of posts (announcement, meme, engagement, educational)
     """
-    
+
     platform_specs = {
         "twitter": "280 characters, hashtags, hooks, viral potential",
         "telegram": "Longer form, community-focused, can include emojis and formatting",
         "discord": "Casual, conversational, community announcements"
     }
-    
+
     platform_guidelines = "\n".join([
         f"- **{platform.upper()}**: {platform_specs.get(platform, 'General social media')}"
         for platform in platforms
     ])
-    
+
     content_type_examples = {
         "announcement": "New features, updates, milestones",
         "engagement": "Questions, polls, community callouts",
@@ -322,12 +321,13 @@ def generate_social_content(
         "meme": "Funny, relatable, shareable content",
         "hype": "Excitement building, countdowns, teasers"
     }
-    
+
     content_guidelines = "\n".join([
         f"- **{ctype.upper()}**: {content_type_examples.get(ctype, 'General content')}"
         for ctype in content_types
     ])
-    
+
+
     prompt = f"""
 You are a social media manager for Web3 projects, specializing in viral content.
 
@@ -393,7 +393,188 @@ Type: [announcement/engagement/educational/meme]
 
 Generate {count} posts now.
 """
-    
+
+    return prompt
+
+
+@mcp.tool()
+def generate_landing_page(
+    project_name: str,
+    lore: str,
+    tone: str,
+    goal: str = "convert",
+    target_audience: str = "Web3 users",
+    primary_cta: str = "Get Started",
+    secondary_cta: str = "Learn More",
+    key_features: Optional[List[str]] = None,
+    sections: List[str] = ["hero", "problem", "solution", "features", "how_it_works", "social_proof", "faq", "final_cta", "footer"],
+    include_seo: bool = True,
+    include_faq_count: int = 6,
+    color_palette: List[str] = ["indigo", "lime"]
+) -> str:
+    """
+    Generate a production-ready HTML/CSS landing page for a Web3 project.
+
+    Creates a complete, single-file HTML landing page with embedded CSS,
+    ready to upload to Hostinger or any web host.
+
+    Args:
+        project_name: Name of the project
+        lore: Project narrative and identity
+        tone: Brand tone (ex: premium, aggressive, funny, mysterious, clean, degen, serious)
+        goal: Landing page objective (convert, whitelist, waitlist, mint, presale, download, utility)
+        target_audience: Who this page is for
+        primary_cta: Main CTA button text
+        secondary_cta: Secondary CTA button text
+        key_features: List of key features/benefits (optional)
+        sections: Sections to include in the landing page
+        include_seo: Whether to generate SEO meta tags
+        include_faq_count: Number of FAQs to generate
+        color_palette: Color scheme for the design
+    """
+
+    if key_features is None:
+        key_features = [
+            "Fast onboarding",
+            "Real utility",
+            "Community-first design",
+            "Secure by default",
+            "Built for scale"
+        ]
+
+    section_specs = {
+        "hero": "Hero section with hook, subheadline, CTAs, and a quick credibility line",
+        "problem": "Problem statement: what sucks today and why users care",
+        "solution": "Your unique solution and the key promise",
+        "features": "3-6 feature cards with benefits (not just features)",
+        "how_it_works": "Step-by-step explanation (3 steps max, super clear)",
+        "tokenomics": "Token utility + distribution summary (only if relevant)",
+        "roadmap": "Short roadmap with milestones (Now / Next / Later)",
+        "social_proof": "Community, stats, testimonials placeholders, partners, logos",
+        "faq": "FAQs that remove friction and objections",
+        "final_cta": "A strong closing section that pushes action",
+        "footer": "Footer links: docs, socials, legal, contact"
+    }
+
+    sections_guidelines = "\n".join([
+        f"- **{s.upper()}**: {section_specs.get(s, 'Custom section')}"
+        for s in sections
+    ])
+
+    features_guidelines = "\n".join([f"- {f}" for f in key_features])
+
+    color_scheme = " + ".join(color_palette)
+
+    prompt = f"""
+You are a senior Web3 frontend developer and conversion expert.
+
+Your mission: create a PRODUCTION-READY, SINGLE-FILE HTML landing page that can be uploaded directly to Hostinger.
+
+# PROJECT CONTEXT
+**Name**: {project_name}
+**Tone**: {tone}
+**Goal**: {goal}
+**Target audience**: {target_audience}
+**Color Palette**: {color_scheme}
+
+# PROJECT LORE (IDENTITY / STORY)
+{lore}
+
+# KEY FEATURES / BENEFITS
+{features_guidelines}
+
+# SECTIONS TO GENERATE
+{sections_guidelines}
+
+---
+
+# YOUR TASK
+Generate a COMPLETE, PRODUCTION-READY HTML file with embedded CSS.
+
+## TECHNICAL REQUIREMENTS
+- Single HTML file with all CSS in <style> tags
+- Fully responsive (mobile-first design)
+- Modern, clean design using the {color_scheme} color palette
+- No external dependencies (no Bootstrap, no frameworks)
+- Optimized for fast loading
+- Cross-browser compatible
+- Semantic HTML5
+- Accessible (ARIA labels where needed)
+
+## DESIGN REQUIREMENTS
+- Modern Web3 aesthetic
+- Clean, professional layout
+- Smooth scrolling
+- Hover effects on interactive elements
+- Mobile hamburger menu
+- Gradient backgrounds using {color_scheme} colors
+- Professional typography (use Google Fonts via CDN)
+- Card-based layouts for features
+- Proper spacing and white space
+- Call-to-action buttons that stand out
+
+## COPYWRITING RULES
+- Hook must be strong (first line should hit hard)
+- Speak benefits > features
+- Minimal fluff, max clarity
+- Use short sentences
+- Keep the tone **{tone}** consistently
+- Include trust signals (security, transparency, community)
+- Avoid vague claims unless backed by specifics
+- Make it skimmable: headings, bullets, blocks
+
+## CTA RULES
+- Primary CTA text: **{primary_cta}**
+- Secondary CTA text: **{secondary_cta}**
+- CTA should appear multiple times (hero + middle + final)
+- CTAs should be prominent and use contrasting colors
+
+## SEO REQUIREMENTS
+{"- Include complete meta tags (title, description, keywords, Open Graph, Twitter Card)" if include_seo else "- Include basic meta tags"}
+- Proper heading hierarchy (H1, H2, H3)
+- Alt text for all images (use placeholder descriptions)
+- Semantic HTML structure
+
+## FAQ REQUIREMENTS
+- Generate {include_faq_count} FAQs
+- Must include: "Is it safe?", "How do I start?", "What makes you different?"
+- Use accordion-style layout (expandable/collapsible)
+- Add simple JavaScript for accordion functionality
+
+---
+
+# OUTPUT FORMAT
+
+Return ONLY the complete HTML code, starting with <!DOCTYPE html> and ending with </html>.
+
+The HTML must include:
+1. Complete <!DOCTYPE html> declaration
+2. <head> section with:
+   - Meta tags (charset, viewport, SEO)
+   - Title tag
+   - Google Fonts link
+   - Embedded CSS in <style> tags
+3. <body> section with:
+   - Navigation bar (sticky)
+   - All requested sections in order
+   - Footer
+4. Embedded JavaScript for:
+   - Mobile menu toggle
+   - FAQ accordion
+   - Smooth scrolling
+   - Any interactive elements
+
+## IMPORTANT
+- Return ONLY the HTML code, no explanations
+- Use placeholder images from https://via.placeholder.com/
+- Make it ready to save as index.html and upload immediately
+- Ensure all links are placeholder hrefs (#)
+- Add HTML comments to mark each section clearly
+- Use proper indentation for readability
+
+Generate the complete HTML file now.
+"""
+
     return prompt
 
 
