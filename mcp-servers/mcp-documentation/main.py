@@ -6,6 +6,8 @@ Tools:
 1. generate_documentation - Creates 5 markdown files for GitBook
 2. generate_lore - Assembles project identity into consistent narrative
 3. generate_social_content - Creates 10-20 social media posts
+4. generate_visuals - Creates design briefs for Logo, Banner, Meme, BuyBot, DEXScreener
+5. generate_landing_page - Creates production-ready HTML landing page
 """
 from mcp.server.fastmcp import FastMCP
 from typing import Dict, List, Optional
@@ -397,6 +399,314 @@ Generate {count} posts now.
     return prompt
 
 
+# -------------------------------------------------
+# TOOL 4: GENERATE VISUALS
+# -------------------------------------------------
+@mcp.tool()
+def generate_visuals(
+    project_name: str,
+    lore: str,
+    tone: str,
+    visual_vibe: str = "bold",
+    color_palette: List[str] = ["indigo", "lime"],
+    mascot_description: str = "",
+    visuals_to_generate: List[str] = ["logo", "banner", "meme", "buybot_image", "dexscreener_image"],
+    style_guide: str = ""
+) -> str:
+    """
+    Generate visual design prompts and specifications for Web3 project assets.
+
+    Creates detailed briefs for each visual asset that can be used with
+    image generation AI or handed to a designer.
+
+    Args:
+        project_name: Name of the project
+        lore: Project narrative and identity
+        tone: Brand tone (serious, playful, meme, professional)
+        visual_vibe: Visual aesthetic (bold, minimal, retro, futuristic, neon, cyberpunk)
+        color_palette: Primary and secondary colors
+        mascot_description: Description of mascot (if applicable)
+        visuals_to_generate: List of visuals needed
+        style_guide: Additional style guidelines
+    """
+
+    visual_specs = {
+        "logo": "Primary logo for all branding purposes",
+        "banner": "Social media banner for Twitter/Telegram headers",
+        "meme": "Shareable meme image that resonates with Web3 community",
+        "buybot_image": "Image showcasing the buy/trade bot functionality",
+        "dexscreener_image": "Professional chart/graph image for DEX Screener listing"
+    }
+
+    visuals_guidelines = "\n".join([
+        f"- **{v.upper()}**: {visual_specs.get(v, 'Custom visual')}"
+        for v in visuals_to_generate
+    ])
+
+    color_scheme = " + ".join(color_palette)
+    mascot_info = f"\n**Mascot Reference**: {mascot_description}" if mascot_description else ""
+
+    prompt = f"""
+You are a creative art director and visual designer specializing in Web3 and crypto projects.
+
+Your mission: create detailed, actionable visual briefs for all assets needed by {project_name}.
+
+# PROJECT CONTEXT
+**Name**: {project_name}
+**Tone**: {tone}
+**Visual Vibe**: {visual_vibe}
+**Color Palette**: {color_scheme}
+{mascot_info}
+
+# PROJECT LORE (BRAND IDENTITY)
+{lore}
+
+# ADDITIONAL STYLE GUIDELINES
+{style_guide if style_guide else "No additional guidelines provided"}
+
+---
+
+# YOUR TASK
+Generate detailed visual design briefs for the following assets:
+
+{visuals_guidelines}
+
+For EACH visual, provide:
+1. **Purpose & Context**: What is this visual for and where will it be used?
+2. **Design Brief**: Detailed description for a designer or AI image generator
+3. **Dimensions & Specs**: Exact sizing requirements
+4. **Color & Style**: Specific color usage, gradients, effects
+5. **Key Elements**: What must be included
+6. **Mood & Feel**: Emotional tone and energy
+7. **Don'ts**: What to avoid
+8. **AI Prompt**: A detailed prompt for Midjourney, DALL-E, or similar tools (if applicable)
+
+---
+
+# VISUAL SPECIFICATIONS
+
+## 1. LOGO
+**Purpose**: Primary brand mark, favicon, social avatars
+**Dimensions**: 
+- Primary: 1000x1000px (square)
+- Favicon: 512x512px
+- App Icon: 1024x1024px
+
+**Design Brief**:
+- Must work at all sizes (from 16x16px to 1000x1000px)
+- Should be memorable and distinctive
+- Must work in single-color (black/white) and full color
+- Should reflect the {tone} tone and {visual_vibe} aesthetic
+- Primary colors: {color_scheme}
+- Consider simplicity for favicon/small sizes
+- Must be instantly recognizable
+
+**Variations Needed**:
+- Full logo with text
+- Icon-only version
+- Inverted/dark version
+- Favicon format
+
+---
+
+## 2. BANNER
+**Purpose**: Twitter/Telegram header, Discord server banner, website header
+**Dimensions**: 
+- Twitter: 1500x500px
+- Telegram: 1590x400px
+- Discord: 960x540px (min: 320x180px)
+
+**Design Brief**:
+- Hero visual that captures the essence of {project_name}
+- Must include project name prominently
+- Can include tagline/key message
+- Should be eye-catching and shareable
+- Use {color_scheme} color palette
+- Reflect {visual_vibe} aesthetic
+- Leave safe zones for text overlays
+- Should work with logo placement in top corner
+
+**Key Elements**:
+- Project name (large, readable)
+- Optional: tagline or key message
+- Visual elements that represent the project
+- Should feel premium yet approachable
+- Dynamic composition, not static
+
+---
+
+## 3. MEME
+**Purpose**: Community engagement, viral social media posts, entertainment
+**Dimensions**: 
+- Instagram Square: 1080x1080px
+- Twitter: 1024x512px
+- General: 1080x1080px (square format recommended)
+
+**Design Brief**:
+- Funny, relatable, shareable content
+- Should resonate with Web3/crypto audience
+- Can be humorous, irreverent, or clever
+- Must feature the {project_name} branding subtly
+- Use {tone} tone in visual style
+- Include text overlay (meme caption style)
+- Should encourage shares and comments
+- Can reference crypto culture, market trends, or community inside jokes
+
+**Mood**:
+- Entertaining and shareable
+- Relatable to crypto/Web3 community
+- Subtle branding (not too pushy)
+- High engagement potential
+
+---
+
+## 4. BUYBOT IMAGE
+**Purpose**: Marketing the bot's functionality, app store listing, social posts
+**Dimensions**: 
+- Primary: 1200x800px
+- Instagram Story: 1080x1920px
+- Thumbnail: 1280x720px
+
+**Design Brief**:
+- Showcase ease of use and speed of the buybot
+- Should convey: automation, speed, security, simplicity
+- Can include interface mockups or visual metaphors
+- Use {color_scheme} with high contrast for clarity
+- Modern, sleek design aesthetic
+- Should inspire confidence and excitement
+- Consider showing: charts, upward trends, quick actions, security features
+
+**Key Elements**:
+- Visual representation of the bot in action
+- User-friendly interface (real or conceptual)
+- Speed/efficiency indicators
+- Trust/security signals
+- Clear indication of ease of use
+- {project_name} branding
+
+**Visual Style**:
+- {visual_vibe} aesthetic
+- Modern, professional
+- High-contrast, easy to read
+- Dynamic, energetic feel
+- Should not look technical/intimidating
+
+---
+
+## 5. DEXSCREENER IMAGE
+**Purpose**: DEX Screener listing thumbnail, social proof, marketing material
+**Dimensions**: 
+- DEX Screener: 1200x600px
+- Trading interface: 1000x500px
+- Social post: 1200x628px
+
+**Design Brief**:
+- Professional, data-focused visual
+- Should convey: legitimacy, trading potential, community strength
+- Can include: chart elements, price action visualization, community metrics
+- Use {color_scheme} with green/red chart colors (standard for trading)
+- Clean, professional design
+- Should not look like a scam or low-effort project
+- Can feature: logo, project name, key metrics
+
+**Key Elements**:
+- Project logo or name prominently
+- Chart/graph visualization (can be stylized, not necessarily realistic)
+- Positive visual cues (uptrends, growth indicators)
+- Professional color scheme
+- Trust signals (verified, community, volume)
+
+**Visual Style**:
+- Professional and trustworthy
+- Data-driven aesthetic
+- Clean lines and typography
+- Premium feel
+- Finance-focused aesthetic
+
+---
+
+# TONE & STYLE GUIDANCE
+Across ALL visuals:
+- **Tone**: {tone}
+- **Aesthetic**: {visual_vibe}
+- **Colors**: {color_scheme}
+- **Feel**: {("Playful, fun, engaging" if tone == "playful" else "Professional, serious, credible" if tone == "serious" else "Bold, edgy, community-focused")}
+
+---
+
+# OUTPUT FORMAT
+
+For each visual, structure your response as:
+
+```
+═══════════════════════════════════════════════════════
+VISUAL: [NAME]
+═══════════════════════════════════════════════════════
+
+PURPOSE & CONTEXT
+[Details about where and how this visual will be used]
+
+DIMENSIONS & TECHNICAL SPECS
+- Primary: [size]
+- Variations: [other sizes needed]
+- Format: PNG/SVG/JPG
+- Resolution: [DPI if needed]
+
+DESIGN BRIEF
+[Detailed visual description for designer or AI tool]
+
+COLOR & STYLE REQUIREMENTS
+- Primary colors: [colors]
+- Secondary colors: [colors]
+- Gradients: [if applicable]
+- Effects: [if applicable]
+- Typography: [font style recommendations]
+
+KEY ELEMENTS TO INCLUDE
+- Element 1
+- Element 2
+- Element 3
+[...]
+
+MOOD & FEEL
+[Emotional tone and energy level]
+
+DON'T INCLUDE
+- [Things to avoid]
+- [Bad practices]
+- [Common mistakes]
+
+AI GENERATION PROMPT
+[A detailed, specific prompt for Midjourney, DALL-E, or similar]
+Example: "A sleek, modern logo of a [description]..."
+
+DESIGNER NOTES
+[Additional context or flexibility notes]
+
+═══════════════════════════════════════════════════════
+```
+
+---
+
+# FINAL REQUIREMENTS
+- Be specific and concrete (avoid vague descriptions)
+- Each visual should be unique but cohesive
+- Think about how visuals will look together as a brand system
+- Consider practical use cases (how will these be deployed?)
+- Make briefs actionable for both AI tools AND human designers
+- Ensure brand consistency across all visuals
+- Use realistic hex color codes where possible
+- Include technical specs for file formats
+
+Generate the visual briefs for all requested assets now.
+"""
+
+    return prompt
+
+
+# -------------------------------------------------
+# TOOL 5: GENERATE LANDING PAGE
+# -------------------------------------------------
 @mcp.tool()
 def generate_landing_page(
     project_name: str,
@@ -565,6 +875,7 @@ The HTML must include:
    - Any interactive elements
 
 ## IMPORTANT
+- No markdown like ```html, the file should ABSOLUTELY start by <!DOCTYPE html> and finish by </html>
 - Return ONLY the HTML code, no explanations
 - Use placeholder images from https://via.placeholder.com/
 - Make it ready to save as index.html and upload immediately
