@@ -151,15 +151,21 @@ The output MUST follow EXACTLY this structure:
 CONTENT REQUIREMENTS
 --------------------------------
 
-- Each file: 300–800 words
+- Each file: 800-1500 words
 - Proper markdown structure (titles, subtitles, lists)
-- Emojis ONLY in titles, and only if tone is "meme" or "community"
+- Emojis ONLY in titles, and more if tone is "meme" or "community"
 - No placeholders
 - No TODOs
 - No generic filler content
 - Be specific, concrete, and actionable
 
 Generate the JSON array now.
+
+--------------------------------
+LAST REQUIREMENTS
+--------------------------------
+After having done create those files, DO NOT CALL MPC, if files are ready, FINISH. 
+
 """
     
     return prompt
