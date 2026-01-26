@@ -45,6 +45,7 @@ services:
       - N8N_DIAGNOSTICS_ENABLED=false
 
       - N8N_RESTRICT_FILE_ACCESS_TO=/data/shared
+      - N8N_RUNNERS_HEARTBEAT_INTERVAL=360
       - NODE_FUNCTION_ALLOW_BUILTIN=crypto,fs
     volumes:
       - ./n8n/data:/home/node/.n8n
