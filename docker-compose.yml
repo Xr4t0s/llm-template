@@ -1,10 +1,76 @@
 services:
-  backend:
-    build: ./apps/backend
-    ports:
-      - "3001:3001"
-
   frontend:
     build: ./apps/frontend
     ports:
       - "3000:3000"
+    depends_on:
+      - backend
+
+  backend:
+    build: ./apps/backend
+    ports:
+      - "3001:3001"
+    environment:
+        - MCP_BASE_URL=${MCP_BASE_URL}
+        - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+
+  # NEW: Nginx Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    container_name: llm-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      # - "443:443"
+    volumes:
+      - ./nginx/nginx-http.conf:/etc/nginx/nginx.conf:ro
+      # - ./nginx/ssl-params.conf:/etc/nginx/ssl-params.conf:ro
+      # - ./certbot/conf:/etc/letsencrypt:ro
+      # - ./certbot/www:/var/www/certbot:ro
+      - nginx-logs:/var/log/nginx
+    networks:
+      - llm-network
+    depends_on:
+      - mcp-docs
+      - mcp-website
+      - mcp-visuals
+
+  # NEW: Certbot for SSL certificates
+  # certbot:
+  #   image: certbot/certbot:latest
+  #   container_name: llm-certbot
+  #   volumes:
+  #     - ./certbot/conf:/etc/letsencrypt
+  #     - ./certbot/www:/var/www/certbot
+  #   entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+  #   networks:
+  #     - llm-network
+
+  # Placeholder MCP servers (we'll build these next)
+  mcp-docs:
+    image: python:3.12-slim
+    container_name: mcp-docs
+    command: python -m http.server 8001
+    networks:
+      - llm-network
+
+  mcp-website:
+    image: python:3.12-slim
+    container_name: mcp-website
+    command: python -m http.server 8002
+    networks:
+      - llm-network
+
+  mcp-visuals:
+    image: python:3.12-slim
+    container_name: mcp-visuals
+    command: python -m http.server 8003
+    networks:
+      - llm-network
+
+volumes:
+  nginx-logs:
+
+networks:
+  llm-network:
+    driver: bridge
