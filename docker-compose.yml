@@ -10,8 +10,8 @@ services:
 
   backend:
     build: ./apps/backend
-    expose:
-      - "3001"  # Changed from ports to expose
+    ports:
+      - "3001:3001" # Remap for testing api
     environment:
       - MCP_BASE_URL=${MCP_BASE_URL}
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
