@@ -4,27 +4,13 @@
       "parameters": {
         "options": {}
       },
-      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
-      "typeVersion": 1.4,
-      "position": [
-        -1312,
-        320
-      ],
-      "id": "2ff99bf0-1a33-469a-99a0-57da3816ed3c",
-      "name": "When chat message received",
-      "webhookId": "36e7145c-5e5c-4e3d-94c8-7638b1b67f3a"
-    },
-    {
-      "parameters": {
-        "options": {}
-      },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        -576,
-        -16
+        -832,
+        352
       ],
-      "id": "fc4265f3-ed2c-44ab-b85a-54ea7e654dd6",
+      "id": "a64ec5b2-8918-4276-a227-419617daa4af",
       "name": "AI Agent"
     },
     {
@@ -35,19 +21,22 @@
           "value": "gpt-4.1-mini"
         },
         "builtInTools": {},
-        "options": {}
+        "options": {
+          "timeout": 180000
+        }
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.3,
       "position": [
-        -672,
-        208
+        -928,
+        576
       ],
-      "id": "195a33cf-6b5d-442c-bd0f-d6a83595ca85",
+      "id": "58837959-f2ec-405c-8eb3-3972bb182d2c",
       "name": "OpenAI Chat Model",
+      "retryOnFail": true,
       "credentials": {
         "openAiApi": {
-          "id": "a0rDwhX9iRjxmCRa",
+          "id": "OcgIdTpnAX0zmJz3",
           "name": "OpenAi account"
         }
       }
@@ -59,25 +48,25 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        -528,
-        208
+        -784,
+        576
       ],
-      "id": "166ac4e6-1e57-4e14-b3cf-95e49594ba0e",
+      "id": "9aa26f08-3746-4921-bcc9-5d8827d8d51e",
       "name": "Simple Memory"
     },
     {
       "parameters": {
-        "endpointUrl": "https://f86dccbde507.ngrok-free.app/sse",
+        "endpointUrl": "https://18159343f9d7.ngrok-free.app/sse",
         "serverTransport": "sse",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
       "typeVersion": 1.2,
       "position": [
-        -336,
-        208
+        -592,
+        576
       ],
-      "id": "792b02f1-a5a9-47fc-ab3b-b71505f9363d",
+      "id": "ddc0393e-44c4-4ca2-a52a-60ea8ef8e46b",
       "name": "MCP Client"
     },
     {
@@ -90,10 +79,10 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        -1280,
-        -64
+        -1536,
+        304
       ],
-      "id": "461ebd67-2d09-484b-a601-ffc22f789e1f",
+      "id": "7bab28fa-f032-4f13-8d89-0366f5aeedab",
       "name": "Webhook",
       "webhookId": "a78c2256-c123-4280-b22d-b375ff664f36"
     },
@@ -104,23 +93,23 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -912,
-        -64
+        -1168,
+        304
       ],
-      "id": "802661e6-9f69-4909-a28f-814937e73ae0",
+      "id": "c6f35684-80f6-4e4d-8fc6-ea60030aba8c",
       "name": "Code in JavaScript1"
     },
     {
       "parameters": {
-        "jsCode": "// Ton input = [{ output: \"JSON_STRING\" }]\n\nconst raw = items[0].json.output;\n\n// Parse la string JSON\nconst files = JSON.parse(raw);\n\n// Retourne 1 item par fichier\nreturn files.map(file => ({\n  json: {\n    path: file.path,\n    content: file.content\n  }\n}));\n"
+        "jsCode": "// Ton input = [{ output: \"JSON_STRING\" }]\n\nconst fs = require('fs');\nfs.writeFileSync('/tmp/test.txt', 'test');\n\nconst folder = $('Code in JavaScript1').first().json.sessionId;\n\nfs.mkdirSync(`/data/shared/${folder}/documentation`, { recursive: true });\n\n\nconst raw = $input.first().json.output;\n// Parse la string JSON\nconst files = JSON.parse(raw);\n// Retourne 1 item par fichier\nreturn files.map(file => ({\n  json: {\n    path: file.path,\n    content: file.content\n  }\n}));\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -32,
-        -384
+        -176,
+        0
       ],
-      "id": "22db7f2c-c230-4c15-94d2-5009756de946",
+      "id": "36973211-d8a5-4ddd-aa08-4a58890cbfd0",
       "name": "Code in JavaScript"
     },
     {
@@ -136,10 +125,10 @@
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        176,
-        -384
+        -16,
+        0
       ],
-      "id": "95e3cd65-c389-428d-ac7e-3636e2b1888e",
+      "id": "1d357612-6ca9-4a97-9d0a-4cfc04a20b31",
       "name": "Convert to File"
     },
     {
@@ -167,6 +156,52 @@
                 ],
                 "combinator": "and"
               }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "01ccf0e1-a569-48e4-a7f4-059359abd89f",
+                    "leftValue": "={{ $('Webhook').item.json.body.step }}",
+                    "rightValue": "2",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "3230de04-f5a1-46a4-92a9-0f3fd78e6afc",
+                    "leftValue": "={{ $('Webhook').item.json.body.step }}",
+                    "rightValue": "3",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
             }
           ]
         },
@@ -176,40 +211,144 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.4,
       "position": [
-        -224,
-        -16
+        -448,
+        336
       ],
-      "id": "4776a803-0030-42aa-ae9b-d6c467be605a",
+      "id": "09aa0b3a-ba0f-49fb-89f2-41e4f99ed6c2",
       "name": "Switch"
     },
     {
       "parameters": {
         "operation": "write",
-        "fileName": "=/outputs/{{ $binary.data.fileName }}",
+        "fileName": "=/data/shared/{{ $('Code in JavaScript1').item.json.sessionId }}/documentation/{{ $binary.data.fileName }}",
         "options": {}
       },
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1.1,
       "position": [
-        400,
-        -384
+        128,
+        0
       ],
-      "id": "ed8146dd-680f-43e8-8d32-86da63023491",
-      "name": "Read/Write Files from Disk"
+      "id": "7e41fcf0-21ba-47fa-ab61-16f7ab9ab220",
+      "name": "Read/Write Files from Disk",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -1536,
+        624
+      ],
+      "id": "a98dd6db-aeb7-420b-9843-a275020f8ab3",
+      "name": "When chat message received",
+      "webhookId": "36e7145c-5e5c-4e3d-94c8-7638b1b67f3a"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Ton input = [{ output: \"JSON_STRING\" }]\n\nconst raw = items[0].json.output;\n\n// Parse la string JSON\n\nconst fs = require('fs');\n\nconst folder = $('Code in JavaScript1').first().json.sessionId;\n\nfs.mkdirSync(`/data/shared/${folder}/website`, { recursive: true });\n\n// Retourne 1 item par fichier\nreturn {\n    path: \"/data/shared/${folder}/website/index.html\",\n    content: $input.first().json.output\n  };\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -176,
+        176
+      ],
+      "id": "eaa22c32-31ca-42f3-a31f-49558a90a5b9",
+      "name": "Code in JavaScript2"
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "content",
+        "binaryPropertyName": "=data",
+        "options": {
+          "encoding": "utf8",
+          "fileName": "={{ $json.path.split(\"/\")[3] }}"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -16,
+        176
+      ],
+      "id": "ddbd2007-660f-416b-bd85-88048b558e8a",
+      "name": "Convert to File1"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "=/data/shared/{{ $('Code in JavaScript1').item.json.sessionId }}/website/index.html",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        128,
+        176
+      ],
+      "id": "50bc48af-e61d-47c1-9aa1-bf97832d3957",
+      "name": "Read/Write Files from Disk1",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "prompt": "={{ $json.content }}",
+        "options": {
+          "returnImageUrls": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.1,
+      "position": [
+        -16,
+        336
+      ],
+      "id": "63c5b35f-6356-4bd7-94d6-6e51290a3718",
+      "name": "Generate an image",
+      "credentials": {
+        "openAiApi": {
+          "id": "OcgIdTpnAX0zmJz3",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $input.first().json.output;\n\nconst fs = require('fs');\n\nconst folder = $('Code in JavaScript1').first().json.sessionId;\n\nfs.mkdirSync(`/data/shared/${folder}/assets`, { recursive: true });\n\nreturn JSON.parse(data);\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -176,
+        336
+      ],
+      "id": "5590363d-8b36-4a44-ba47-b5c247d63220",
+      "name": "Code in JavaScript3"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "=/data/shared/{{ $('Code in JavaScript1').item.json.sessionId }}/assets/{{ $binary.data.fileName + $json.id.split('/')[5] }}.{{ $json.fileExtension }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        128,
+        336
+      ],
+      "id": "6273057c-8746-4aeb-8d54-bf402b45a4df",
+      "name": "Read/Write Files from Disk2",
+      "alwaysOutputData": false
     }
   ],
   "connections": {
-    "When chat message received": {
-      "main": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "AI Agent": {
       "main": [
         [
@@ -262,8 +401,7 @@
             "type": "main",
             "index": 0
           }
-        ],
-        []
+        ]
       ]
     },
     "Code in JavaScript1": {
@@ -307,6 +445,75 @@
             "type": "main",
             "index": 0
           }
+        ],
+        [
+          {
+            "node": "Code in JavaScript2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code in JavaScript3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript2": {
+      "main": [
+        [
+          {
+            "node": "Convert to File1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File1": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate an image": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript3": {
+      "main": [
+        [
+          {
+            "node": "Generate an image",
+            "type": "main",
+            "index": 0
+          }
         ]
       ]
     }
@@ -314,6 +521,6 @@
   "pinData": {},
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "033db48e0e4b18a485445fe802f4fc3760345ec3e453e59fa62907922c4bfe16"
+    "instanceId": "687525e662e08c5ad52e2a0b8e9a9a8f0fca252f661bd30873173d3eba1f0987"
   }
 }
