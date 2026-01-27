@@ -1,3 +1,6 @@
 pnpm-lock.yaml
-node_modules
+package-lock.json
+node_modules/
 n8n/data
+dist/
+.nuxt/

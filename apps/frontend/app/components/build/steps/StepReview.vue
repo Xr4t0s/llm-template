@@ -193,10 +193,39 @@ const selectedOutputs = computed(() => {
 
 /* ---------- action ---------- */
 
-function build() {
-  const payload = { ...store.$state }
-  console.log('BUILD PAYLOAD', payload)
+async function build() {
+  const payload = {
+    sessionId: "2b6390ca51ec4a7eb3f9e65ed9536684",
+    step: 1,
+    prompt: "Use only the generate_documentation tool to perform the step mentionned, STEP 1: Documentation generation.",
+    data: {
+      lore: store.lore,
+      hasMascot: store.hasMascot,
+      tone: store.tone,
+      taglineStyle: store.taglineStyle,
+      projectType: store.projectType,
+      goal: store.goal,
+      visualVibe: store.visualVibe,
+      palettes: store.palettes,
+      outputs: store.outputs,
+    },
+  }
 
-  // Ici tu brancheras l’appel Nest plus tard
+  const res = await fetch('/api/v1/generate/doc', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+
+  if (!res.ok) {
+    throw await res.json()
+  }
+
+  return await res.json()
 }
+
+
+
 </script>

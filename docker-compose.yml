@@ -1,5 +1,7 @@
 services:
   frontend:
+    volumes:
+      - ./apps/frontend:/app
     build: ./apps/frontend
     expose:
       - "3000"
@@ -10,6 +12,8 @@ services:
 
   backend:
     build: ./apps/backend
+    volumes:
+      - ./apps/backend:/app
     ports:
       - "3001:3001" # Remap for testing api
     environment:
@@ -35,8 +39,8 @@ services:
       - N8N_PORT=5678
       - N8N_PROTOCOL=http
 
-      - N8N_EDITOR_BASE_URL=http://localhost/n8n
-      - WEBHOOK_URL=http://localhost/n8n/
+      - N8N_EDITOR_BASE_URL=http://llm-n8n:5678/
+      - N8N_WEBHOOK_URL=http://llm-n8n:5678/webhook/a78c2256-c123-4280-b22d-b375ff664f36
 
       # ⚠️ IMPORTANT pour l'import auto
       - N8N_IMPORT_EXPORT_DIR=/workflows
@@ -54,6 +58,7 @@ services:
 
     networks:
       - llm-network
+      - common
 
   # Nginx Reverse Proxy
   nginx:
@@ -76,8 +81,8 @@ services:
       - frontend
       - backend
       - mcp-docs
-      - mcp-website
-      - mcp-visuals
+      # - mcp-website
+      # - mcp-visuals
 
   # Certbot (commented for HTTP testing)
   # certbot:
@@ -118,6 +123,8 @@ services:
 
 volumes:
   nginx-logs:
+  frontend:
+  backend:
 
 networks:
   common:

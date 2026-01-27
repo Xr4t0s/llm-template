@@ -96,13 +96,13 @@ curl -s -X POST "$WEBHOOK_URL" \
         \"logo\": true,
         \"banner\": true,
         \"pfp\": false,
-        \"announcements\": true,
-        \"memes\": true,
-        \"stickers\": true,
+        \"announcements\": false,
+        \"memes\": false,
+        \"stickers\": false,
         \"documentation\": true,
-        \"onepager\": true,
-        \"roadmap\": true,
-        \"faq\": true
+        \"onepager\": false,
+        \"roadmap\": false,
+        \"faq\": false
       }
     }
   }"

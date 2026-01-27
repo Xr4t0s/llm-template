@@ -3,32 +3,33 @@ import type { ProjectType, ProjectGoal, BuildOutputs } from '~/types/build'
 
 export const useBuildProtocol = defineStore('buildProtocol', {
   state: () => ({
-    step: 1,
+	step: 1,
 
-    lore: '',
-    hasMascot: true,
-    tone: 'Playful',
-    taglineStyle: 'Short & punchy',
+	lore: '',
+	hasMascot: true,
+	tone: 'Meme', // ✅ FIX
+	taglineStyle: 'Short & punchy',
 
-    projectType: '' as ProjectType,
-    goal: '' as ProjectGoal,
+	projectType: '' as ProjectType,
+	goal: '' as ProjectGoal,
 
-    visualVibe: 'clean',
-    palettes: [] as string[],
+	visualVibe: 'clean', // ✅ OK (lowercase)
+	palettes: [] as string[],
 
-    outputs: {
-      logo: true,
-      banner: true,
-      pfp: true,
-      announcements: true,
-      memes: false,
-      stickers: false,
-      documentation: true,
-      onepager: false,
-      roadmap: true,
-      faq: true,
-    } as BuildOutputs,
-  }),
+	outputs: {
+		logo: true,
+		banner: true,
+		pfp: true,
+		announcements: true,
+		memes: false,
+		stickers: false,
+		documentation: true,
+		onepager: false,
+		roadmap: true,
+		faq: true,
+	},
+	}),
+
 
   getters: {
     canGoNext(state) {
