@@ -699,6 +699,26 @@ DESIGNER NOTES
 - Include technical specs for file formats
 
 Generate the visual briefs for all requested assets now.
+
+# OUTPUT FORMAT
+
+- you will answer with this format EVERYTIME :
+{{
+	{{
+		"path": "filename",
+        "content": "<prompt>"
+	}},
+    {{
+		"path": "filename",
+        "content": "<prompt>"
+	}},
+    {{
+    	...
+	}},
+    ...
+}}
+
+YOU WILL ABSOLUTELY SEND ONLY THIS JSON IN RETURN, WITH AS MANY FIELDS AS THE PROMPT ASK FOR !
 """
 
     return prompt

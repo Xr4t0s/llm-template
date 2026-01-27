@@ -85,7 +85,7 @@ curl -s -X POST "$WEBHOOK_URL" \
     \"prompt\": \"Use only generate_visuals tool to perform the step mentionned, STEP 3: Multi-assets generation.\",
     \"data\": {
       \"lore\": \"LLM Studio can make your life easier by doing everything you need for you web3 project\",
-      \"hasMascot\": false,
+      \"hasMascot\": true,
       \"tone\": \"Serious\",
       \"taglineStyle\": \"Short & punchy\",
       \"projectType\": \"tool\",
@@ -94,15 +94,15 @@ curl -s -X POST "$WEBHOOK_URL" \
       \"palettes\": [\"indigo\", \"lime\"],
       \"outputs\": {
         \"logo\": true,
-        \"banner\": false,
+        \"banner\": true,
         \"pfp\": false,
-        \"announcements\": false,
-        \"memes\": false,
-        \"stickers\": false,
+        \"announcements\": true,
+        \"memes\": true,
+        \"stickers\": true,
         \"documentation\": true,
-        \"onepager\": false,
-        \"roadmap\": false,
-        \"faq\": false
+        \"onepager\": true,
+        \"roadmap\": true,
+        \"faq\": true
       }
     }
   }"
