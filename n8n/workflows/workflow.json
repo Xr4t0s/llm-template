@@ -7,8 +7,8 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        -832,
-        352
+        -1040,
+        48
       ],
       "id": "a64ec5b2-8918-4276-a227-419617daa4af",
       "name": "AI Agent"
@@ -28,8 +28,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.3,
       "position": [
-        -928,
-        576
+        -1088,
+        272
       ],
       "id": "58837959-f2ec-405c-8eb3-3972bb182d2c",
       "name": "OpenAI Chat Model",
@@ -48,23 +48,23 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        -784,
-        576
+        -960,
+        272
       ],
       "id": "9aa26f08-3746-4921-bcc9-5d8827d8d51e",
       "name": "Simple Memory"
     },
     {
       "parameters": {
-        "endpointUrl": "https://18159343f9d7.ngrok-free.app/sse",
+        "endpointUrl": "https://70c894f1aef8.ngrok-free.app/sse",
         "serverTransport": "sse",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
       "typeVersion": 1.2,
       "position": [
-        -592,
-        576
+        -832,
+        272
       ],
       "id": "ddc0393e-44c4-4ca2-a52a-60ea8ef8e46b",
       "name": "MCP Client"
@@ -73,14 +73,14 @@
       "parameters": {
         "httpMethod": "POST",
         "path": "a78c2256-c123-4280-b22d-b375ff664f36",
-        "responseMode": "lastNode",
+        "responseMode": "responseNode",
         "options": {}
       },
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
         -1536,
-        304
+        -144
       ],
       "id": "7bab28fa-f032-4f13-8d89-0366f5aeedab",
       "name": "Webhook",
@@ -93,8 +93,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1168,
-        304
+        -1312,
+        48
       ],
       "id": "c6f35684-80f6-4e4d-8fc6-ea60030aba8c",
       "name": "Code in JavaScript1"
@@ -106,8 +106,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -176,
-        0
+        -400,
+        -144
       ],
       "id": "36973211-d8a5-4ddd-aa08-4a58890cbfd0",
       "name": "Code in JavaScript"
@@ -125,8 +125,8 @@
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        -16,
-        0
+        -176,
+        -144
       ],
       "id": "1d357612-6ca9-4a97-9d0a-4cfc04a20b31",
       "name": "Convert to File"
@@ -211,8 +211,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.4,
       "position": [
-        -448,
-        336
+        -624,
+        32
       ],
       "id": "09aa0b3a-ba0f-49fb-89f2-41e4f99ed6c2",
       "name": "Switch"
@@ -226,8 +226,8 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1.1,
       "position": [
-        128,
-        0
+        48,
+        -144
       ],
       "id": "7e41fcf0-21ba-47fa-ab61-16f7ab9ab220",
       "name": "Read/Write Files from Disk",
@@ -240,8 +240,8 @@
       "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "typeVersion": 1.4,
       "position": [
-        -1536,
-        624
+        -1312,
+        240
       ],
       "id": "a98dd6db-aeb7-420b-9843-a275020f8ab3",
       "name": "When chat message received",
@@ -254,8 +254,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -176,
-        176
+        -400,
+        48
       ],
       "id": "eaa22c32-31ca-42f3-a31f-49558a90a5b9",
       "name": "Code in JavaScript2"
@@ -273,8 +273,8 @@
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        -16,
-        176
+        -176,
+        48
       ],
       "id": "ddbd2007-660f-416b-bd85-88048b558e8a",
       "name": "Convert to File1"
@@ -288,8 +288,8 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1.1,
       "position": [
-        128,
-        176
+        48,
+        48
       ],
       "id": "50bc48af-e61d-47c1-9aa1-bf97832d3957",
       "name": "Read/Write Files from Disk1",
@@ -306,8 +306,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 2.1,
       "position": [
-        -16,
-        336
+        -176,
+        240
       ],
       "id": "63c5b35f-6356-4bd7-94d6-6e51290a3718",
       "name": "Generate an image",
@@ -325,8 +325,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -176,
-        336
+        -400,
+        240
       ],
       "id": "5590363d-8b36-4a44-ba47-b5c247d63220",
       "name": "Code in JavaScript3"
@@ -340,12 +340,27 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1.1,
       "position": [
-        128,
-        336
+        48,
+        240
       ],
       "id": "6273057c-8746-4aeb-8d54-bf402b45a4df",
       "name": "Read/Write Files from Disk2",
       "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"success\": true,\n  \"status\": \"running\",\n  \"step\": \"{{ $json.body.step }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        -1312,
+        -144
+      ],
+      "id": "74e30747-e4c9-48fc-b6a9-0e0702d4095f",
+      "name": "Respond to Webhook"
     }
   ],
   "connections": {
@@ -398,6 +413,11 @@
         [
           {
             "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Respond to Webhook",
             "type": "main",
             "index": 0
           }
