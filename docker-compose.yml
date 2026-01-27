@@ -3,6 +3,8 @@ services:
     volumes:
       - ./apps/frontend:/app
     build: ./apps/frontend
+    environment:
+      - REOWN_PROJECT_ID=d61d68cb1a573a4678dc4bcad697bd68
     expose:
       - "3000"
     depends_on:

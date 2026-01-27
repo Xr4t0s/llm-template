@@ -1,6 +1,5 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common'
 import axios from 'axios'
-import { GenerateDocDto } from './dto/project-config.dto'
 
 @Injectable()
 export class BuildService {
@@ -9,21 +8,38 @@ export class BuildService {
 
   async triggerWorkflow(payload: any) {
     try {
-		console.log(this.N8N_WEBHOOK_URL);
-      const res = await axios.post(
+	  console.log(this.N8N_WEBHOOK_URL);
+      let res = axios.post(
         this.N8N_WEBHOOK_URL,
-        payload,
+		payload={
+			sessionId: "2b6390ca51ec4a7eb3f9e65ed9536684",
+			step: 1,
+			prompt: "Use only the generate_documentation tool to perform the step mentionned, STEP 1: Documentation generation.",
+			data: payload
+		},
         {
           headers: {
             'Content-Type': 'application/json',
           },
-          timeout: 15_000,
         },
       )
+      res = axios.post(
+        this.N8N_WEBHOOK_URL,
+		payload={
+			sessionId: "2b6390ca51ec4a7eb3f9e65ed9536684",
+			step: 2,
+			prompt: "Use only the generate_landing_page tool to perform the step mentionned, STEP 2: Static Website Generation.",
+			data: payload
+		},
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      )	  
 
       return {
-        status: 'ok',
-        n8nResponse: res.data,
+        status: 'posted'
       }
     } catch (err: any) {
       throw new HttpException(

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Memecp - All-in-One Web3 Project Builder</title>
+  <meta name="description" content="Memecp lets project creators build their entire Web3 project at once: websites, documentation, visuals, social content, and more." />
+  <meta name="keywords" content="Web3, project builder, crypto, documentation, visuals, automated asset generation" />
+  <meta property="og:title" content="Memecp - All-in-One Web3 Project Builder" />
+  <meta property="og:description" content="Memecp lets project creators build their entire Web3 project at once: websites, documentation, visuals, social content, and more." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="#" />
+  <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=Memecp+Project+Builder" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Memecp - All-in-One Web3 Project Builder" />
+  <meta name="twitter:description" content="Memecp lets project creators build their entire Web3 project at once: websites, documentation, visuals, social content, and more." />
+  <meta name="twitter:image" content="https://via.placeholder.com/1200x630.png?text=Memecp+Project+Builder" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: 'Inter', Arial, sans-serif; line-height: 1.6; color: #333344;
+      background: #f9fafc; scroll-behavior: smooth;
+    }
+    a { text-decoration: none; color: #4c51bf; }
+    a:hover, a:focus { text-decoration: underline; outline: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+    .flex { display: flex; align-items: center; }
+    .justify-between { justify-content: space-between; }
+    .text-center { text-align: center; }
+    .mb-20 { margin-bottom: 5rem; }
+    .mb-10 { margin-bottom: 2.5rem; }
+    .mb-6 { margin-bottom: 1.5rem; }
+    .mb-4 { margin-bottom: 1rem; }
+    .btn-primary {
+      background: linear-gradient(90deg, #4c51bf 0%, #f43f5e 100%);
+      color: white; padding: 0.75rem 1.75rem; border: none; border-radius: 6px;
+      font-weight: 700; cursor: pointer; transition: background-color 0.3s ease;
+      margin-right: 1rem; font-size: 1.1rem;
+    }
+    .btn-primary:hover, .btn-primary:focus {
+      background: linear-gradient(90deg, #3c3fa1, #be123c);
+      outline: none;
+    }
+    .btn-secondary {
+      background: transparent; border: 2px solid #4c51bf; padding: 0.75rem 1.75rem;
+      border-radius: 6px; font-weight: 700; color: #4c51bf; cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease; font-size: 1.1rem;
+    }
+    .btn-secondary:hover, .btn-secondary:focus {
+      background-color: #4c51bf; color: white; outline: none;
+    }
+    nav {
+      background: white; position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.05);
+    }
+    nav .container {
+      display: flex; justify-content: space-between; align-items: center; height: 60px;
+    }
+    nav .logo {
+      font-size: 1.5rem; font-weight: 700; color: #4c51bf;
+    }
+    nav .nav-links {
+      display: flex; gap: 1.5rem;
+    }
+    nav .nav-links a {
+      font-weight: 600; color: #4c51bf;
+    }
+    .hamburger {
+      display: none; flex-direction: column; cursor: pointer;
+      width: 24px; height: 18px; justify-content: space-between;
+    }
+    .hamburger span {
+      display: block; height: 3px; background-color: #4c51bf; border-radius: 3px;
+    }
+    @media (max-width: 768px) {
+      nav .nav-links {
+        position: fixed; top: 60px; right: 0; background: white;
+        height: calc(100% - 60px); width: 250px; flex-direction: column;
+        transform: translateX(100%); transition: transform 0.3s ease;
+        box-shadow: -2px 0 8px rgba(0,0,0,0.1); padding-top: 2rem; z-index: 99;
+      }
+      nav .nav-links.open { transform: translateX(0); }
+      nav .nav-links a {
+        padding: 1rem 2rem; font-size: 1.1rem;
+      }
+      .hamburger { display: flex; }
+    }
+    #hero {
+      background: linear-gradient(135deg, #4c51bf 0%, #f43f5e 100%);
+      color: white; padding: 6rem 0 5rem; text-align: center;
+    }
+    #hero h1 {
+      font-size: 2.8rem; font-weight: 900; margin-bottom: 1rem;
+    }
+    #hero p {
+      font-size: 1.25rem; margin-bottom: 2.5rem; max-width: 600px;
+      margin-left: auto; margin-right: auto; font-weight: 500;
+    }
+    #hero .btn-group {
+      display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;
+    }
+    #hero .credibility {
+      margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;
+    }
+    #features {
+      padding: 4rem 0; background: white;
+    }
+    #features h2 {
+      text-align: center; font-size: 2.5rem; font-weight: 700;
+      margin-bottom: 3rem; color: #2c2f4a;
+    }
+    .feature-cards {
+      display: grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      gap: 2rem; max-width: 1000px; margin: 0 auto;
+    }
+    .feature-card {
+      background: #fee2e2; padding: 2rem; border-radius: 12px;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.05); font-weight: 600;
+      color: #831843; transition: box-shadow 0.3s ease;
+    }
+    .feature-card:hover, .feature-card:focus-within {
+      box-shadow: 0 4px 15px rgba(220, 38, 38, 0.5);
+      outline: none;
+    }
+    .feature-card h3 {
+      margin-bottom: 1rem; font-weight: 700; color: #be123c;
+    }
+    #how_it_works {
+      padding: 4rem 0; background: #fef2f2;
+    }
+    #how_it_works h2 {
+      text-align: center; font-size: 2.5rem; font-weight: 700;
+      margin-bottom: 3rem; color: #2c2f4a;
+    }
+    .steps {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 2rem; max-width: 900px; margin: 0 auto;
+    }
+    .step {
+      background: white; flex: 1 1 280px; padding: 2rem;
+      border-radius: 12px; box-shadow: 0 2px 10px rgb(0 0 0 / 0.05);
+      font-weight: 600; color: #333344; text-align: center;
+      transition: box-shadow 0.3s ease;
+    }
+    .step:hover, .step:focus-within {
+      box-shadow: 0 4px 20px rgb(204 0 0 / 0.3);
+      outline: none;
+    }
+    .step-number {
+      width: 50px; height: 50px; background: #be123c;
+      border-radius: 50%; color: white;
+      font-weight: 700; font-size: 1.5rem; line-height: 50px;
+      margin: 0 auto 1rem;
+    }
+    .step-title {
+      font-size: 1.3rem; margin-bottom: 0.75rem; color: #be123c;
+    }
+    #social_proof {
+      padding: 4rem 0; background: white;
+    }
+    #social_proof h2 {
+      text-align: center; font-size: 2.5rem; font-weight: 700;
+      margin-bottom: 3rem; color: #2c2f4a;
+    }
+    .social-proofs {
+      display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 2rem; max-width: 1000px; margin: 0 auto;
+    }
+    .proof {
+      background: #fef2f2; padding: 1.5rem; border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      font-weight: 600; color: #333344; text-align: center;
+    }
+    .proof img {
+      margin-bottom: 1rem; max-height: 40px;
+    }
+    .proof .stat {
+      font-size: 2rem; font-weight: 900; color: #be123c;
+      margin-bottom: 0.5rem;
+    }
+    .proof .text {
+      font-weight: 500;
+    }
+    #faq {
+      padding: 4rem 0; background: #fef2f2; max-width: 900px;
+      margin: 0 auto;
+    }
+    #faq h2 {
+      text-align: center; font-size: 2.5rem; font-weight: 700;
+      margin-bottom: 3rem; color: #2c2f4a;
+    }
+    .faq-item {
+      border-bottom: 1px solid #fca5a5;
+    }
+    .faq-question {
+      padding: 1rem 0; font-weight: 700; font-size: 1.1rem;
+      cursor: pointer; color: #be123c;
+      display: flex; justify-content: space-between; align-items: center;
+      user-select: none;
+      background: none; border: none; width: 100%;
+    }
+    .faq-answer {
+      max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+      font-weight: 500; color: #333344; padding-right: 1rem;
+    }
+    .faq-answer.open {
+      padding-top: 0.75rem; max-height: 500px;
+    }
+    .faq-toggle-icon {
+      font-weight: 900; transition: transform 0.3s ease;
+      user-select: none;
+    }
+    .faq-toggle-icon.open {
+      transform: rotate(45deg);
+    }
+    #final_cta {
+      background: linear-gradient(135deg, #4c51bf 0%, #f43f5e 100%);
+      color: white; padding: 4rem 1rem; text-align: center;
+    }
+    #final_cta h2 {
+      font-size: 2.5rem; font-weight: 700; margin-bottom: 1.5rem;
+    }
+    #final_cta button {
+      font-size: 1.3rem; padding: 1rem 2.5rem; border-radius: 8px;
+      border: none; background: #831843; color: white;
+      font-weight: 700; cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    #final_cta button:hover, #final_cta button:focus {
+      background: #be123c; outline: none;
+    }
+    footer {
+      background: #2c2f4a; color: #fda4af; padding: 2rem 1rem;
+      font-size: 0.9rem;
+    }
+    footer .container {
+      display: flex; flex-wrap: wrap; justify-content: space-between;
+      gap: 1rem; align-items: center; max-width: 1100px;
+    }
+    footer nav a {
+      margin-right: 1.25rem; color: #fda4af; transition: color 0.3s ease;
+    }
+    footer nav a:hover, footer nav a:focus {
+      color: white; outline: none;
+    }
+    .sr-only {
+      position: absolute; overflow: hidden; clip: rect(0 0 0 0);
+      height: 1px; width: 1px; margin: -1px; padding: 0; border: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav role="navigation" aria-label="Primary Navigation">
+    <div class="container">
+      <a href="#" class="logo" aria-label="Memecp Home">Memecp</a>
+      <button class="hamburger" aria-controls="primary-menu" aria-expanded="false" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links" id="primary-menu">
+        <a href="#features">Features</a>
+        <a href="#how_it_works">How It Works</a>
+        <a href="#social_proof">Community</a>
+        <a href="#faq">FAQ</a>
+        <a href="#final_cta" class="btn-primary">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero" role="region" aria-label="Hero Section">
+    <div class="container">
+      <h1>Build Your Entire Web3 Project At Once</h1>
+      <p>Memecp automates asset generation — websites, documentation, visuals, tweets — all from one tool. Save time and launch faster with a future-proof, customizable builder.</p>
+      <div class="btn-group">
+        <a href="#" class="btn-primary">Get Started</a>
+        <a href="#" class="btn-secondary">Learn More</a>
+      </div>
+      <p class="credibility">Trusted by project creators and Web3 developers worldwide.</p>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" role="region" aria-label="Features Section">
+    <div class="container">
+      <h2>Key Benefits</h2>
+      <div class="feature-cards">
+        <article class="feature-card" tabindex="0">
+          <h3>All-in-One Project Builder</h3>
+          <p>Create every part of your Web3 project from a single interface — no need to juggle multiple tools.</p>
+        </article>
+        <article class="feature-card" tabindex="0">
+          <h3>Automated Asset Generation</h3>
+          <p>Generate websites, documentation, visuals, and social content automatically to streamline your workflow.</p>
+        </article>
+        <article class="feature-card" tabindex="0">
+          <h3>Time-Saving Efficiency</h3>
+          <p>Cut down development cycles and launch quickly, freeing you to focus on innovation.</p>
+        </article>
+        <article class="feature-card" tabindex="0">
+          <h3>Customizable Outputs & Branding</h3>
+          <p>Maintain your project's unique style with configurable options tailored to your brand.</p>
+        </article>
+        <article class="feature-card" tabindex="0">
+          <h3>Future-Proof Design</h3>
+          <p>Leverage a sleek, futuristic aesthetic that appeals to Web3 audiences and stands out.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how_it_works" role="region" aria-label="How It Works Section">
+    <div class="container">
+      <h2>How It Works</h2>
+      <div class="steps" role="list">
+        <article class="step" role="listitem" tabindex="0">
+          <div class="step-number" aria-hidden="true">1</div>
+          <h3 class="step-title">Define Your Project</h3>
+          <p>Input your project details, goals, and branding preferences into Memecp’s intuitive interface.</p>
+        </article>
+        <article class="step" role="listitem" tabindex="0">
+          <div class="step-number" aria-hidden="true">2</div>
+          <h3 class="step-title">Generate Assets</h3>
+          <p>Automatically produce your website, documentation, visuals, and social media content with precision.</p>
+        </article>
+        <article class="step" role="listitem" tabindex="0">
+          <div class="step-number" aria-hidden="true">3</div>
+          <h3 class="step-title">Launch and Iterate</h3>
+          <p>Deploy your project quickly, gather feedback, and easily update assets as your project evolves.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Proof Section -->
+  <section id="social_proof" role="region" aria-label="Community and Social Proof Section">
+    <div class="container">
+      <h2>Community & Impact</h2>
+      <div class="social-proofs" aria-live="polite">
+        <div class="proof" tabindex="0">
+          <img src="https://via.placeholder.com/100x40.png?text=Partner+Logo" alt="Partner Logo" />
+          <div class="stat" aria-label="1000 plus satisfied users">1000+</div>
+          <div class="text">Satisfied Project Creators</div>
+        </div>
+        <div class="proof" tabindex="0">
+          <img src="https://via.placeholder.com/100x40.png?text=Community" alt="Community Icon" />
+          <div class="stat" aria-label="Active users in Discord community">500+</div>
+          <div class="text">Active Community Members</div>
+        </div>
+        <div class="proof" tabindex="0">
+          <img src="https://via.placeholder.com/100x40.png?text=Testimonials" alt="Testimonials Icon" />
+          <div class="stat" aria-label="4.8 out of 5 star rating">4.8/5</div>
+          <div class="text">Average User Rating</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" role="region" aria-label="Frequently Asked Questions Section">
+    <div class="container">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq1" id="faq1-btn">
+          Is Memecp safe to use?
+          <span class="faq-toggle-icon" aria-hidden="true">+</span>
+        </button>
+        <div id="faq1" class="faq-answer" role="region" aria-labelledby="faq1-btn" hidden>
+          Yes, Memecp follows industry best practices to ensure your data and projects are secure and private.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq2" id="faq2-btn">
+          How do I start using Memecp?
+          <span class="faq-toggle-icon" aria-hidden="true">+</span>
+        </button>
+        <div id="faq2" class="faq-answer" role="region" aria-labelledby="faq2-btn" hidden>
+          Simply sign up, enter your project details, and start generating assets with our easy-to-use platform.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq3" id="faq3-btn">
+          What makes Memecp different from other tools?
+          <span class="faq-toggle-icon" aria-hidden="true">+</span>
+        </button>
+        <div id="faq3" class="faq-answer" role="region" aria-labelledby="faq3-btn" hidden>
+          Memecp combines automated generation of websites, documentation, visuals, and social content in one seamless system focused on Web3 projects.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq4" id="faq4-btn">
+          Can I customize the generated assets?
+          <span class="faq-toggle-icon" aria-hidden="true">+</span>
+        </button>
+        <div id="faq4" class="faq-answer" role="region" aria-labelledby="faq4-btn" hidden>
+          Yes, Memecp offers flexible customization options to tailor outputs to your unique brand requirements.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq5" id="faq5-btn">
+          Is Memecp suitable for beginners?
+          <span class="faq-toggle-icon" aria-hidden="true">+</span>
+        </button>
+        <div id="faq5" class="faq-answer" role="region" aria-labelledby="faq5-btn" hidden>
+          Absolutely. Our intuitive interface is designed to accommodate both beginners and experienced developers.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq6" id="faq6-btn">
+          How often is Memecp updated?
+          <span class="faq-toggle-icon" aria-hidden="true">+</span>
+        </button>
+        <div id="faq6" class="faq-answer" role="region" aria-labelledby="faq6-btn" hidden>
+          We regularly update Memecp with new features and improvements, informed by user feedback and industry trends.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section id="final_cta" role="region" aria-label="Call to Action Section">
+    <div class="container">
+      <h2>Ready to Build Your Project Faster?</h2>
+      <button onclick="location.href='#'">Get Started</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="container">
+      <nav aria-label="Footer Navigation">
+        <a href="#">Documentation</a>
+        <a href="#">Socials</a>
+        <a href="#">Legal</a>
+        <a href="#">Contact</a>
+      </nav>
+      <div>&copy; 2024 Memecp. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', () => {
+      const expanded = hamburger.getAttribute('aria-expanded') === 'true' || false;
+      hamburger.setAttribute('aria-expanded', !expanded);
+      navLinks.classList.toggle('open');
+    });
+
+    // FAQ accordion
+    const faqButtons = document.querySelectorAll('.faq-question');
+    faqButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+        button.setAttribute('aria-expanded', !expanded);
+        const answer = document.getElementById(button.getAttribute('aria-controls'));
+        if (expanded) {
+          answer.hidden = true;
+          answer.classList.remove('open');
+          button.querySelector('.faq-toggle-icon').classList.remove('open');
+        } else {
+          answer.hidden = false;
+          answer.classList.add('open');
+          button.querySelector('.faq-toggle-icon').classList.add('open');
+        }
+      });
+      button.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          button.click();
+        }
+      });
+    });
+
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+          if (navLinks.classList.contains('open')) {
+            navLinks.classList.remove('open');
+            hamburger.setAttribute('aria-expanded', false);
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

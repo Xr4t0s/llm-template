@@ -47,31 +47,6 @@
 			This allows us to secure your session, associate generated artifacts
 			with your identity, and unlock advanced features.
 		</p>
-		<p class="text-(--text-soft) leading-relaxed max-w-xl">
-			To access the build workspace, you need to connect a wallet.
-			This allows us to secure your session, associate generated artifacts
-			with your identity, and unlock advanced features.
-		</p>
-		<p class="text-(--text-soft) leading-relaxed max-w-xl">
-			To access the build workspace, you need to connect a wallet.
-			This allows us to secure your session, associate generated artifacts
-			with your identity, and unlock advanced features.
-		</p>
-		<p class="text-(--text-soft) leading-relaxed max-w-xl">
-			To access the build workspace, you need to connect a wallet.
-			This allows us to secure your session, associate generated artifacts
-			with your identity, and unlock advanced features.
-		</p>
-		<p class="text-(--text-soft) leading-relaxed max-w-xl">
-			To access the build workspace, you need to connect a wallet.
-			This allows us to secure your session, associate generated artifacts
-			with your identity, and unlock advanced features.
-		</p>
-		<p class="text-(--text-soft) leading-relaxed max-w-xl">
-			To access the build workspace, you need to connect a wallet.
-			This allows us to secure your session, associate generated artifacts
-			with your identity, and unlock advanced features.
-		</p>
 
 		<div class="pt-6">
 			<client-only>
@@ -122,7 +97,9 @@
 			<!-- Step content (prend toute la hauteur restante) -->
 			<div class="build-content flex-1 flex pt-6">
 				<Transition name="fade-slide" mode="out-in">
-				<StepIdentity v-if="step === 1" key="step-1" />
+				<BuildSuccess v-if="store.buildDone" key="success" />
+
+				<StepIdentity v-else-if="step === 1" key="step-1" />
 				<StepProject v-else-if="step === 2" key="step-2" />
 				<StepVisual v-else-if="step === 3" key="step-3" />
 				<StepOutputs v-else-if="step === 4" key="step-4" />
@@ -153,6 +130,7 @@ import StepProject from '~/components/build/steps/StepProject.vue'
 import StepVisual from '~/components/build/steps/StepVisual.vue'
 import StepOutputs from '~/components/build/steps/StepOutputs.vue'
 import StepReview from '~/components/build/steps/StepReview.vue'
+import BuildSuccess from '~/components/build/steps/Success.vue'
 
 definePageMeta({
   middleware: ['auth-wallet'],

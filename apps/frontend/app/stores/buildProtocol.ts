@@ -4,6 +4,7 @@ import type { ProjectType, ProjectGoal, BuildOutputs } from '~/types/build'
 export const useBuildProtocol = defineStore('buildProtocol', {
   state: () => ({
 	step: 1,
+	buildDone: false,
 
 	lore: '',
 	hasMascot: true,

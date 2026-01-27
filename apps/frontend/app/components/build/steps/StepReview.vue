@@ -195,20 +195,15 @@ const selectedOutputs = computed(() => {
 
 async function build() {
   const payload = {
-    sessionId: "2b6390ca51ec4a7eb3f9e65ed9536684",
-    step: 1,
-    prompt: "Use only the generate_documentation tool to perform the step mentionned, STEP 1: Documentation generation.",
-    data: {
-      lore: store.lore,
-      hasMascot: store.hasMascot,
-      tone: store.tone,
-      taglineStyle: store.taglineStyle,
-      projectType: store.projectType,
-      goal: store.goal,
-      visualVibe: store.visualVibe,
-      palettes: store.palettes,
-      outputs: store.outputs,
-    },
+    lore: store.lore,
+    hasMascot: store.hasMascot,
+    tone: store.tone,
+    taglineStyle: store.taglineStyle,
+    projectType: store.projectType,
+    goal: store.goal,
+    visualVibe: store.visualVibe,
+    palettes: store.palettes,
+    outputs: store.outputs,
   }
 
   const res = await fetch('/api/v1/generate/doc', {
@@ -223,6 +218,8 @@ async function build() {
     throw await res.json()
   }
 
+  store.buildDone = true
+  
   return await res.json()
 }
 

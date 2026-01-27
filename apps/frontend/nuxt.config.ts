@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   ssr: false,
   runtimeConfig: {
 	public: {
-		projectId: process.env.NUXT_PROJECT_ID
+		projectId: "d61d68cb1a573a4678dc4bcad697bd68"
 	}
   },
   app: {
