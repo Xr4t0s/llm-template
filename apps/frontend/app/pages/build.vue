@@ -136,7 +136,6 @@ definePageMeta({
   middleware: ['auth-wallet'],
   hideFooter: true
 })
-
 const account = useAppKitAccount()
 const isConnected = computed(() => !!account.value?.isConnected)
 

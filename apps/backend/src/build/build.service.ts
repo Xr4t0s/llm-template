@@ -9,7 +9,7 @@ export class BuildService {
   async triggerWorkflow(payload: any) {
     try {
 	  console.log(this.N8N_WEBHOOK_URL);
-      let res = axios.post(
+      let res = await axios.post(
         this.N8N_WEBHOOK_URL,
 		payload={
 			sessionId: "2b6390ca51ec4a7eb3f9e65ed9536684",
@@ -21,26 +21,35 @@ export class BuildService {
           headers: {
             'Content-Type': 'application/json',
           },
+		  timeout: 300000
         },
       )
-      res = axios.post(
-        this.N8N_WEBHOOK_URL,
-		payload={
-			sessionId: "2b6390ca51ec4a7eb3f9e65ed9536684",
-			step: 2,
-			prompt: "Use only the generate_landing_page tool to perform the step mentionned, STEP 2: Static Website Generation.",
-			data: payload
-		},
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        },
-      )	  
-
-      return {
-        status: 'posted'
-      }
+    //   res = axios.post(
+    //     this.N8N_WEBHOOK_URL,
+	// 	payload={
+	// 		sessionId: "2b6390ca51ec4a7eb3f9e65ed9536684",
+	// 		step: 2,
+	// 		prompt: "Use only the generate_landing_page tool to perform the step mentionned, STEP 2: Static Website Generation.",
+	// 		data: payload
+	// 	},
+    //     {
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+		  
+    //     },
+    //   )	  
+	  if (res.status == 200) {
+        return {
+		  success: true,
+          result: res.data
+        }
+	  } else {
+		return {
+			success: false,
+			result: res.data
+		}
+	  } 
     } catch (err: any) {
       throw new HttpException(
         {

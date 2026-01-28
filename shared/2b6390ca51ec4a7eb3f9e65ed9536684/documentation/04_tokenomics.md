@@ -1,26 +1,17 @@
-# Project Utility and Economic Model
+# Tokenomics (Or Lack Thereof) 💤
 
-## Utility Model
-
-Memecp operates as a software-as-a-service (SaaS) platform designed to enhance project creation productivity in Web3. Unlike typical blockchain projects, it does not utilize a native token or cryptocurrency.
+Undefined operates without a traditional token model. Instead, we focus on building utility-first experiences that reward participation and creativity through:
 
 ## Distribution
+No token distribution at this stage — we’re all about community growth and service quality.
 
-Memecp's distribution is based on tiered subscription offerings and enterprise licensing. Users pay for access to features and capabilities aligned with their project needs.
+## Utility & Incentives
+- Tiered access to advanced customization and early features.
+- Community recognition for meme contests and participation.
+- Voting rights for future platform features and mascot evolution.
 
-## Incentives
+## Supply & Participation
+Rather than token supply, we value user engagement metrics and meme contributions to keep the ecosystem pumping.
 
-- **User-Focused Utility:** Providing tangible value through time savings and quality enhancement.
-- **Customer Loyalty:** Future incentive programs may reward long-term subscribers.
-
-## Participation Logic
-
-Users participate by subscribing to Memecp’s services and leveraging the platform for project development. The model incentivizes continuous use through feature expansions and seamless integrations.
-
-## Economic Sustainability
-
-Revenue generated from subscriptions directly supports platform maintenance, development, customer support, and innovation initiatives. This ensures a self-sustaining business model dedicated to serving its user base effectively.
-
-## No Token Model
-
-Memecp chooses not to issue its own token, focusing instead on delivering dependable utility and high-value SaaS services. This decision prioritizes user experience, platform stability, and long-term viability.
+## Why No Token?
+Focusing on utility avoids the pitfalls of pump-and-dump models, aligning incentives with long-term project health and meme-culture vitality.
