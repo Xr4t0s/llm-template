@@ -15,11 +15,11 @@ export const useAuthStore = defineStore('auth', () => {
   };
 
   const initFromStorage = () => {
-    if (process.client) {
+    if (typeof window !== 'undefined') {
       const storedToken = localStorage.getItem('auth_token');
       if (storedToken) {
         token.value = storedToken;
-        // Optionnel: valider le token avec le backend
+        isConnected.value = true;
       }
     }
   };
@@ -64,7 +64,7 @@ export const useAuthStore = defineStore('auth', () => {
       const result = await verifyRes.json();
       token.value = result.token;
       
-      if (process.client) {
+      if (typeof window !== 'undefined') {
         localStorage.setItem('auth_token', result.token);
       }
       
@@ -85,7 +85,7 @@ export const useAuthStore = defineStore('auth', () => {
     isConnected.value = false;
     publicKey.value = null;
     token.value = null;
-    if (process.client) {
+    if (typeof window !== 'undefined') {
       localStorage.removeItem('auth_token');
     }
   };
