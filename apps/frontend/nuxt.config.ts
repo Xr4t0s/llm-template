@@ -37,7 +37,7 @@ export default defineNuxtConfig({
   ],
   vue: {
     compilerOptions: {
-      isCustomElement: (tag) => tag === 'appkit-button',
+      isCustomElement: (tag: any) => tag === 'appkit-button',
     },
   },
 })

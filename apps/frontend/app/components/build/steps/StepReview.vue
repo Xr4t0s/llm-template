@@ -206,10 +206,13 @@ async function build() {
     outputs: store.outputs,
   }
 
+  const { token } = useAuthStore();
+
   const res = await fetch('/api/v1/generate/doc', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+	  'Authorization': `Bearer ${token}`
     },
     body: JSON.stringify(payload),
   })
