@@ -1,0 +1,595 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -992,
+        1552
+      ],
+      "id": "f27997d7-c033-41ab-9aa0-2e66d3e9fb82",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -1088,
+        1776
+      ],
+      "id": "3a654be9-9f1f-49c7-b3aa-23e0aeddc74a",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "KmiELevU1uNntTLP",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -944,
+        1776
+      ],
+      "id": "c7690312-477b-455f-bf04-d682784670fa",
+      "name": "Simple Memory1"
+    },
+    {
+      "parameters": {
+        "endpointUrl": "https://ad1d6ac10c33.ngrok-free.app/sse",
+        "serverTransport": "sse",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1.2,
+      "position": [
+        -752,
+        1776
+      ],
+      "id": "451acba0-6a8e-45a9-9858-e7d50932aabe",
+      "name": "MCP Client1"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "a78c2256-c123-4280-b22d-b375ff664f36",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -1488,
+        1552
+      ],
+      "id": "ff16037c-2c1a-4d88-a1f3-75ecd438787a",
+      "name": "Webhook1",
+      "webhookId": "a78c2256-c123-4280-b22d-b375ff664f36"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $json.body;\n\nconst chatinput = body.chatInput;\nconst prompt = body.prompt1;\nconst data = body.data;\n\nreturn [\n  {\n    sessionId: body.sessionId,\n    action: body.action,\n    chatInput: {\n      chatinput,\n      prompt,\n      data\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1248,
+        1504
+      ],
+      "id": "efe06bd9-cd77-437b-8254-18fad299b095",
+      "name": "Code in JavaScript4"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Ton input = [{ output: \"JSON_STRING\" }]\n\nconst raw = items[0].json.output;\n\n// Parse la string JSON\nconst files = JSON.parse(raw);\n\nconst fs = require('fs');\n\nconst folder = $('Code in JavaScript4').first().json.sessionId;\n\nfs.mkdirSync(`/data/shared/${folder}/documentation`, { recursive: true });\n\n// Retourne 1 item par fichier\nreturn files.map(file => ({\n  json: {\n    path: file.path,\n    content: file.content\n  }\n}));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -576,
+        1552
+      ],
+      "id": "361446b2-4a1a-4da7-b123-4101f8d345a8",
+      "name": "Code in JavaScript5"
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "content",
+        "binaryPropertyName": "=data",
+        "options": {
+          "encoding": "utf8",
+          "fileName": "={{ $json.path.split(\"/\")[3] }}"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -352,
+        1552
+      ],
+      "id": "60982cd2-17df-4264-ae41-66b370da54c0",
+      "name": "Convert to File2"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "=/data/shared/{{ $('Code in JavaScript4').item.json.sessionId }}/documentation/{{ $binary.data.fileName }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        -80,
+        1552
+      ],
+      "id": "64755ed9-55de-4b83-9664-624133ae121f",
+      "name": "Read/Write Files from Disk2",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=http://image-gen:7860/gradio_api/call/generate_image",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"data\": [\n    \"{{ $json.content.assets[1].prompts[0].prompt }}\", \n    256,\n    256,\n    1,\n    -1,\n    3.5,\n    \"cpu\",\n    \"FLUX.2-klein-4B (4bit SDNQ - Low VRAM)\",\n    [],\n    null,\n    1\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -112,
+        1920
+      ],
+      "id": "a2d03653-f186-45a0-95e1-5a16fbc9a86e",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Ton input = [{ output: \"JSON_STRING\" }]\n\nconst raw = items[0].json.output;\n\n// Parse la string JSON\n\nconst fs = require('fs');\n\nconst folder = $('Code in JavaScript4').first().json.sessionId;\n\nfs.mkdirSync(`/data/shared/${folder}/assets`, { recursive: true });\n\n// Retourne 1 item par fichier\nreturn {\n    path: \"/data/shared/${folder}/assets/\",\n    content: JSON.parse($input.first().json.output)\n  };\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -384,
+        2000
+      ],
+      "id": "20ad958e-26fc-47d0-91d5-8321b8dfc0b1",
+      "name": "Code in JavaScript7"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -784,
+        2000
+      ],
+      "id": "8ae3342b-f118-43e0-af02-4a70a60dd658",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -880,
+        2224
+      ],
+      "id": "11b53cc2-3eee-4e1c-8b8c-a6c3ba439af9",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "KmiELevU1uNntTLP",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -688,
+        2224
+      ],
+      "id": "f92192fb-7ef2-4870-9eb4-8649028910f3",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "endpointUrl": "https://ad1d6ac10c33.ngrok-free.app/sse",
+        "serverTransport": "sse",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1.2,
+      "position": [
+        -528,
+        2224
+      ],
+      "id": "a9172948-0a7d-49d2-8fcb-67d53bedbb47",
+      "name": "MCP Client"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Ton input = [{ output: \"JSON_STRING\" }]\n\nconst raw = items[0].json.output;\n\n// Parse la string JSON\nconst files = JSON.parse(raw);\n\nconst fs = require('fs');\n\nconst folder = $('Code in JavaScript4').first().json.sessionId;\n\nfs.mkdirSync(`/data/shared/${folder}/documentation`, { recursive: true });\n\nif (!Array.isArray(files) || files.length === 0) {\n  return [];\n}\n\nconst file = files[0];\n\nreturn [{\n  json: {\n    lore: file.content\n  }\n}];\n\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -576,
+        1776
+      ],
+      "id": "df40db1f-7019-4324-994d-ed782cc299c0",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -1264,
+        2000
+      ],
+      "id": "c6af681e-7999-427d-9ac8-3f831a6a8a6b",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $json.body;\n\nconst chatinput = body.chatInput;\nconst prompt = body.prompt2;\nconst data = body.data;\n\nreturn [\n  {\n    sessionId: body.sessionId,\n    action: body.action,\n    chatInput: {\n      chatinput,\n      prompt,\n      data\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1248,
+        1648
+      ],
+      "id": "353ca9b8-87a0-40a5-a1d8-4a9ef4776197",
+      "name": "Code in JavaScript8"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Entrée:\n// items[0].json = { sessionId, chatInput: { prompt, data: {...} } }\n// items[1].json = { lore: \"long markdown\" }\n\nif (!items?.length) return [];\n\nconst body = items[0].json ?? {};\nconst longLore = items[1]?.json?.lore;\n\n// Récup champs\nconst sessionId = body.sessionId;\nconst action = body.action; // peut être undefined si pas présent\nconst prompt = body.chatInput?.prompt;\nconst data = { ...(body.chatInput?.data ?? {}) };\n\n// Remplace le lore par le lore long si dispo\nif (typeof longLore !== \"undefined\") {\n  data.lore = longLore;\n}\n\n// Si tu veux inclure aussi chatinput (en plus de prompt)\n// => on prend body.chatInput.chatinput si présent, sinon undefined\nconst chatInput = body.chatInput;\n\n// Sortie: 1 seul item n8n (donc array avec 1 élément)\nreturn [{\n  json: {\n    sessionId,\n    action,\n    chatInput: {\n      prompt,\n      data,\n    },\n  },\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1056,
+        2000
+      ],
+      "id": "9f585920-eff3-4443-84d0-f21827bf18fb",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=http://image-gen:7860/gradio_api/call/generate_image",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"data\": [\n    \"{{ $json.content.assets[0].prompts[0].prompt }}\", \n    256,\n    256,\n    1,\n    -1,\n    3.5,\n    \"cpu\",\n    \"FLUX.2-klein-4B (4bit SDNQ - Low VRAM)\",\n    [],\n    null,\n    1\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -112,
+        1776
+      ],
+      "id": "b93d1692-9b2c-4611-a202-4074cc34da9b",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=http://image-gen:7860/gradio_api/call/generate_image",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"data\": [\n    \"{{ $json.content.assets[2].prompts[0].prompt }}\", \n    256,\n    256,\n    1,\n    -1,\n    3.5,\n    \"cpu\",\n    \"FLUX.2-klein-4B (4bit SDNQ - Low VRAM)\",\n    [],\n    null,\n    1\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -112,
+        2064
+      ],
+      "id": "c0cba744-05cd-4b81-8e3e-15c9d1a75924",
+      "name": "HTTP Request2"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=http://image-gen:7860/gradio_api/call/generate_image",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"data\": [\n    \"{{ $json.content.assets[3].prompts[0].prompt }}\", \n    256,\n    256,\n    1,\n    -1,\n    3.5,\n    \"cpu\",\n    \"FLUX.2-klein-4B (4bit SDNQ - Low VRAM)\",\n    [],\n    null,\n    1\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -112,
+        2208
+      ],
+      "id": "eb07b7ff-ff3c-4229-8439-a9fb96cb0d52",
+      "name": "HTTP Request3"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=http://image-gen:7860/gradio_api/call/generate_image",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"data\": [\n    \"{{ $json.content.assets[4].prompts[0].prompt }}\", \n    256,\n    256,\n    1,\n    -1,\n    3.5,\n    \"cpu\",\n    \"FLUX.2-klein-4B (4bit SDNQ - Low VRAM)\",\n    [],\n    null,\n    1\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -112,
+        2352
+      ],
+      "id": "b3447441-9c60-4aa6-839f-105a21e3d1c5",
+      "name": "HTTP Request4"
+    }
+  ],
+  "connections": {
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript5",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MCP Client1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript4",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Code in JavaScript8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript4": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript5": {
+      "main": [
+        [
+          {
+            "node": "Convert to File2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File2": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read/Write Files from Disk2": {
+      "main": [
+        []
+      ]
+    },
+    "Code in JavaScript7": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request3",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MCP Client": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript8": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "instanceId": "4361fa55e62eb285957954f4827159b19e1f8087a83a6af6838fd740d46a82e1"
+  }
+}

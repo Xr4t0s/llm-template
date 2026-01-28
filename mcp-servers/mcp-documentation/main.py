@@ -6,6 +6,8 @@ Tools:
 1. generate_documentation - Creates 5 markdown files for GitBook
 2. generate_lore - Assembles project identity into consistent narrative
 3. generate_social_content - Creates 10-20 social media posts
+4. generate_landing_page - Creates production-ready HTML landing page
+5. generate_image_prompts - Creates AI image generation prompts for project assets
 """
 from mcp.server.fastmcp import FastMCP
 from typing import Dict, List, Optional
@@ -358,7 +360,6 @@ Create a balanced mix:
 
 ## OUTPUT FORMAT
 For each post, provide:
-
 ```
 POST #{"{"}number{"}"}
 Platform: [Twitter/Telegram/Both]
@@ -397,6 +398,9 @@ Generate {count} posts now.
     return prompt
 
 
+# -------------------------------------------------
+# TOOL 4: GENERATE LANDING PAGE
+# -------------------------------------------------
 @mcp.tool()
 def generate_landing_page(
     project_name: str,
@@ -576,6 +580,176 @@ Generate the complete HTML file now.
 """
 
     return prompt
+
+
+# -------------------------------------------------
+# TOOL 5: GENERATE IMAGE PROMPTS (STEP 3)
+# -------------------------------------------------
+
+
+@mcp.tool()
+def generate_image_prompts(
+    project_name: str,
+    lore: str,
+    visual_vibe: str,
+    tone: str,
+    has_mascot: bool = False,
+    mascot_description: str = "",
+    asset_types: Optional[List[str]] = None,
+    art_style: str = "modern digital art",
+    color_palette: Optional[List[str]] = None,
+    count_per_type: int = 3
+) -> str:
+    """
+    Generate AI image generation prompts for exactly 5 project visual assets:
+    - logo
+    - banner
+    - meme_1
+    - meme_2
+    - newbuy_telegram
+
+    Returns a single instruction prompt for an LLM that MUST output a strict JSON
+    object matching the required schema (no markdown, no commentary).
+    """
+
+    # Palette default
+    if color_palette is None:
+        color_palette = ["indigo", "lime", "black"]
+
+    color_scheme = ", ".join(color_palette)
+
+    # EXACTLY 5 assets (fixed set, no filtering)
+    canonical_assets = [
+        {
+            "type": "logo",
+            "name": "Logo",
+            "aspect_ratio": "1:1",
+            "recommended_size": "1024x1024px",
+            "use_case": "Profile picture, app icon, branding",
+            "recommended_tool": "Midjourney/DALL-E/Flux/SD",
+            "parameters": "--ar 1:1 --style raw --v 6",
+        },
+        {
+            "type": "banner",
+            "name": "Banner",
+            "aspect_ratio": "3:1",
+            "recommended_size": "1500x500px",
+            "use_case": "Website hero / X (Twitter) header / wide marketing header",
+            "recommended_tool": "Midjourney/DALL-E/Flux/SD",
+            "parameters": "--ar 3:1 --v 6",
+        },
+        {
+            "type": "meme_1",
+            "name": "Meme Template 1",
+            "aspect_ratio": "1:1",
+            "recommended_size": "1080x1080px",
+            "use_case": "Shareable meme content for social media (template-friendly)",
+            "recommended_tool": "Midjourney/DALL-E/Flux/SD",
+            "parameters": "--ar 1:1 --v 6",
+        },
+        {
+            "type": "meme_2",
+            "name": "Meme Template 2",
+            "aspect_ratio": "1:1",
+            "recommended_size": "1080x1080px",
+            "use_case": "Second meme template with different composition/layout",
+            "recommended_tool": "Midjourney/DALL-E/Flux/SD",
+            "parameters": "--ar 1:1 --v 6",
+        },
+        {
+            "type": "newbuy_telegram",
+            "name": "New Buy Telegram Card",
+            "aspect_ratio": "1:1",
+            "recommended_size": "1080x1080px",
+            "use_case": "Telegram post/card image for 'New Buy' alerts (clear, readable, high contrast)",
+            "recommended_tool": "Midjourney/DALL-E/Flux/SD",
+            "parameters": "--ar 1:1 --style raw --v 6",
+        },
+    ]
+
+    # Build strict schema example (LLM must follow)
+    assets_schema_example_lines = []
+    for a in canonical_assets:
+        assets_schema_example_lines.append(
+            f"""{{
+      "type": "{a['type']}",
+      "name": "{a['name']}",
+      "aspect_ratio": "{a['aspect_ratio']}",
+      "recommended_size": "{a['recommended_size']}",
+      "use_case": "{a['use_case']}",
+      "recommended_tool": "{a['recommended_tool']}",
+      "parameters": "{a['parameters']}",
+      "prompts": [
+        {{"variation": 1, "prompt": "<Complete AI image generation prompt here, 75-150 words>"}},
+        {{"variation": 2, "prompt": "<Complete AI image generation prompt here, 75-150 words>"}},
+        {{"variation": 3, "prompt": "<Complete AI image generation prompt here, 75-150 words>"}}
+      ]
+    }}"""
+        )
+
+    assets_schema_example = ",\n    ".join(assets_schema_example_lines)
+
+    allowed_types = ", ".join([a["type"] for a in canonical_assets])
+
+    prompt = f"""
+You are an expert AI image prompt engineer specializing in Web3 and crypto project branding.
+
+PROJECT CONTEXT
+- Name: {project_name}
+- Visual Vibe: {visual_vibe}
+- Art Style: {art_style}
+- Tone: {tone}
+- Color Palette: {color_scheme}
+
+PROJECT LORE
+{lore}
+
+TASK
+Generate exactly {count_per_type} optimized AI image generation prompt variations for EACH of the 5 assets below:
+- logo
+- banner
+- meme_1
+- meme_2
+- newbuy_telegram
+
+PROMPT RULES
+- Each prompt must be 75–150 words.
+- Must be cohesive as a brand family across all assets.
+- Must incorporate the palette ({color_scheme}) with explicit usage instructions (dominant/accent/gradient/etc.).
+- Reflect {visual_vibe} and {tone} in composition/subject/mood.
+- Avoid vague terms; be concrete and visual.
+- Avoid conflicting style instructions.
+
+ASSET-SPECIFIC RULES
+- logo: scalable, iconic, minimal clutter, works in black & white, readable at small sizes.
+- banner: wide composition, strong focal point, leave intentional negative space for overlay text.
+- meme_1: template-friendly, obvious caption zones, clean negative space, instantly readable.
+- meme_2: different layout than meme_1 (different framing/composition), still template-friendly.
+- newbuy_telegram: looks like a clean alert/notification card image, high contrast, readable typography space,
+  includes visual hints of "new buy" / "signal" / "alert" WITHOUT using brand names of exchanges; keep it professional.
+
+STRICTNESS (NON-NEGOTIABLE)
+- You MUST output exactly 5 assets.
+- The "type" field MUST be one of: {allowed_types}.
+- Do NOT invent any other asset types (e.g., "documentation", "twitter_profile", etc.).
+- Do NOT omit any required fields.
+- If you cannot comply, output exactly: {{"assets": []}}.
+
+OUTPUT REQUIREMENTS (VERY IMPORTANT)
+- Output MUST be valid JSON and NOTHING ELSE (no markdown, no backticks, no commentary).
+- Must match EXACTLY this structure:
+{{
+  "assets": [
+    {assets_schema_example}
+  ]
+}}
+- Keep field names EXACTLY as shown.
+- For each "prompts" list: include variations 1..{count_per_type}.
+- Do not add extra top-level keys. Do not remove keys.
+""".strip()
+
+    return prompt
+
 
 
 # -------------------------------------------------
