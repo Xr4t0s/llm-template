@@ -96,7 +96,7 @@
 
               <!-- Selection checkbox -->
               <div
-                class="flex-shrink-0 w-6 h-6 rounded-lg border-2 flex items-center justify-center transition-all"
+                class="shrink-0 w-6 h-6 rounded-lg border-2 flex items-center justify-center transition-all"
                 :class="
                   store.palettes.includes(p.id)
                     ? 'border-emerald-500 bg-emerald-500'

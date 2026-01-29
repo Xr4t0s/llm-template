@@ -51,6 +51,17 @@ const step = computed(() => buildStore.step)
         <!-- Main Content -->
         <main class="min-h-[calc(100vh-120px)] flex flex-col">
           <!-- Header (only for create mode) -->
+		  <div v-if="mode === 'create'" class="mb-6">
+        	<button
+          	  @click="$emit('back')"
+          	  class="flex items-center gap-2 text-white/60 hover:text-white/80 transition-colors font-medium text-sm"
+        	>
+          	<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          	</svg>
+          	  Back to home
+        	</button>
+      	  </div>
           <BuildHeader v-if="mode === 'create'" />
 
           <!-- Step Content -->
