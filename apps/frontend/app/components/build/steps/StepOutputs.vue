@@ -1,54 +1,54 @@
 <template>
-  <section class="space-y-10">
+  <div class="space-y-8 w-full max-w-3xl">
     <!-- Header -->
-    <header class="space-y-2">
-      <h2 class="text-2xl font-semibold tracking-tight">
+    <div class="space-y-3">
+      <h2 class="text-3xl font-bold text-white">
         Outputs
       </h2>
-      <p class="text-sm text-(--text-soft) max-w-xl">
+      <p class="text-white/60 leading-relaxed">
         Select what you want to generate now. You can always add more later.
-        Focus on what’s needed for the next step of your project.
+        Focus on what's needed for the next step of your project.
       </p>
-    </header>
+    </div>
 
-    <!-- Visual outputs -->
+    <!-- Visual assets section -->
     <div class="space-y-4">
       <div>
-        <div class="text-sm font-semibold">
-          Visual assets
-        </div>
-        <div class="text-xs text-(--text-soft)">
-          Identity and communication visuals.
-        </div>
+        <h3 class="text-sm font-semibold text-white mb-1">
+          📐 Visual assets
+        </h3>
+        <p class="text-xs text-white/50">
+          Identity and communication visuals
+        </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-        <CheckRow
+        <CheckboxCard
           label="Logos"
           desc="3–5 variants, light & dark, SVG / PNG"
           v-model="store.outputs.logo"
         />
-        <CheckRow
+        <CheckboxCard
           label="Profile pictures (PFP)"
           desc="Square avatars aligned with the DA"
           v-model="store.outputs.pfp"
         />
-        <CheckRow
+        <CheckboxCard
           label="Banners"
           desc="Twitter / X headers with tagline"
           v-model="store.outputs.banner"
         />
-        <CheckRow
+        <CheckboxCard
           label="Announcement cards"
           desc="Launch, milestones, partnerships"
           v-model="store.outputs.announcements"
         />
-        <CheckRow
+        <CheckboxCard
           label="Memes"
           desc="Templates for viral content"
           v-model="store.outputs.memes"
         />
-        <CheckRow
+        <CheckboxCard
           label="Stickers"
           desc="Telegram sticker pack"
           v-model="store.outputs.stickers"
@@ -56,34 +56,34 @@
       </div>
     </div>
 
-    <!-- Content outputs -->
+    <!-- Content & documentation section -->
     <div class="space-y-4">
       <div>
-        <div class="text-sm font-semibold">
-          Content & documentation
-        </div>
-        <div class="text-xs text-(--text-soft)">
-          Textual assets and structured explanations.
-        </div>
+        <h3 class="text-sm font-semibold text-white mb-1">
+          📝 Content & documentation
+        </h3>
+        <p class="text-xs text-white/50">
+          Textual assets and structured explanations
+        </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-        <CheckRow
+        <CheckboxCard
           label="Documentation"
-          desc="Structured, GitBook-ready documentation"
+          desc="Structured, GitBook-ready docs"
           v-model="store.outputs.documentation"
         />
-        <CheckRow
+        <CheckboxCard
           label="One-pager"
           desc="Short overview of the project"
           v-model="store.outputs.onepager"
         />
-        <CheckRow
+        <CheckboxCard
           label="Roadmap"
           desc="Phases, milestones, future plans"
           v-model="store.outputs.roadmap"
         />
-        <CheckRow
+        <CheckboxCard
           label="FAQ"
           desc="Common questions and disclaimers"
           v-model="store.outputs.faq"
@@ -91,28 +91,37 @@
       </div>
     </div>
 
-    <!-- Summary -->
-    <div
-      class="
-        rounded-2xl
-        border
-        border-white/10
-        bg-white/5
-        p-4
-        text-xs
-        text-(--text-soft)
-      "
-    >
-      {{ selectedCount }} output{{ selectedCount > 1 ? 's' : '' }} selected.
-      This will define the scope of the build.
+    <!-- Summary card -->
+    <div class="bg-gradient-to-r from-cyan-500/10 to-indigo-500/10 backdrop-blur-xl border border-cyan-500/20 rounded-xl p-5 space-y-3">
+      <div class="flex items-center gap-2 text-white">
+        <svg class="w-5 h-5 text-cyan-400" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2z" clip-rule="evenodd" />
+        </svg>
+        <span class="font-semibold text-sm">
+          {{ selectedCount }} output{{ selectedCount !== 1 ? 's' : '' }} selected
+        </span>
+      </div>
+      <p class="text-xs text-white/60">
+        This selection will define the scope of your build. More outputs = more time to generate.
+      </p>
     </div>
-  </section>
+
+    <!-- Validation hint -->
+    <div v-if="selectedCount === 0" class="flex items-center gap-3 px-4 py-3 rounded-lg bg-orange-500/10 border border-orange-500/20">
+      <svg class="w-5 h-5 text-orange-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+      </svg>
+      <p class="text-sm text-orange-300">
+        Select at least one output to continue
+      </p>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useBuildProtocol } from '~/stores/buildProtocol'
-import CheckRow from '../ui/CheckRow.vue'
+import CheckboxCard from '../ui/CheckRow.vue'
 
 const store = useBuildProtocol()
 

@@ -1,44 +1,36 @@
 <template>
-  <section class="space-y-10">
+  <div class="space-y-8 w-full max-w-3xl">
     <!-- Header -->
-    <header class="space-y-2">
-      <h2 class="text-2xl font-semibold tracking-tight">
+    <div class="space-y-3">
+      <h2 class="text-3xl font-bold text-white">
         Visual Direction
       </h2>
-      <p class="text-sm text-(--text-soft) max-w-xl">
+      <p class="text-white/60 leading-relaxed">
         Lock the artistic direction of your project. Consistency matters more
         than creativity at this stage.
       </p>
-    </header>
+    </div>
 
-    <!-- Visual vibe -->
+    <!-- Visual vibe selection -->
     <div class="space-y-4">
-      <div>
-        <div class="text-sm font-semibold">
-          Visual vibe
-        </div>
-        <div class="text-xs text-(--text-soft)">
-          Overall aesthetic and mood.
-        </div>
-      </div>
+      <label class="text-sm font-semibold text-white block">
+        Visual vibe
+      </label>
+      <p class="text-xs text-white/50 -mt-2">
+        Overall aesthetic and mood
+      </p>
 
       <div class="flex flex-wrap gap-2">
         <button
           v-for="v in vibes"
           :key="v.value"
-          class="
-            px-3
-            py-1.5
-            rounded-full
-            text-xs
-            transition-all
-          "
-          :class="
-            store.visualVibe === v.value
-              ? 'bg-white/20 text-white'
-              : 'bg-white/5 hover:bg-white/10 text-(--text-soft)'
-          "
           @click="store.visualVibe = v.value"
+          class="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300"
+          :class="[
+            store.visualVibe === v.value
+              ? 'bg-gradient-to-r from-indigo-600 to-cyan-500 text-white shadow-lg shadow-indigo-500/30'
+              : 'bg-white/5 border border-white/20 text-white/70 hover:bg-white/10 hover:border-white/30'
+          ]"
         >
           {{ v.label }}
         </button>
@@ -48,52 +40,123 @@
     <!-- Palette selection -->
     <div class="space-y-4">
       <div>
-        <div class="text-sm font-semibold">
+        <label class="text-sm font-semibold text-white block mb-2">
           Color palettes
-        </div>
-        <div class="text-xs text-(--text-soft)">
-          Choose up to <strong>2</strong> palettes to keep visual consistency.
-        </div>
+        </label>
+        <p class="text-xs text-white/50">
+          Choose up to <strong>2 palettes</strong> to keep visual consistency
+        </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <PaletteCard
+      <div class="space-y-3">
+        <button
           v-for="p in palettes"
           :key="p.id"
-          :palette="p"
-          :selected="store.palettes.includes(p.id)"
-          :class="
-            store.palettes.length >= maxPalettes &&
-            !store.palettes.includes(p.id)
-              ? 'opacity-40 cursor-not-allowed'
-              : ''
-          "
-          @toggle="toggle(p.id)"
-        />
+          @click="togglePalette(p.id)"
+          :disabled="store.palettes.length >= maxPalettes && !store.palettes.includes(p.id)"
+          class="group relative w-full text-left transition-all"
+        >
+          <!-- Glow effect -->
+          <div
+            v-if="store.palettes.includes(p.id)"
+            class="absolute inset-0 bg-gradient-to-r from-emerald-600/20 to-cyan-500/20 rounded-xl blur opacity-100 transition-opacity duration-300"
+          />
+
+          <!-- Card -->
+          <div
+            class="relative bg-white/5 backdrop-blur-xl border rounded-xl p-4 transition-all duration-300"
+            :class="[
+              store.palettes.includes(p.id)
+                ? 'border-emerald-500/50 bg-white/10 shadow-lg shadow-emerald-500/20'
+                : 'border-white/20 hover:bg-white/10 hover:border-white/30',
+              store.palettes.length >= maxPalettes && !store.palettes.includes(p.id) && 'opacity-50 cursor-not-allowed'
+            ]"
+          >
+            <div class="flex items-center gap-4">
+              <!-- Palette preview -->
+              <div class="flex gap-2">
+                <div
+                  v-for="(color, idx) in p.chips"
+                  :key="idx"
+                  class="w-8 h-8 rounded-lg border border-white/20 shadow-lg"
+                  :style="{ backgroundColor: color }"
+                  :title="color"
+                />
+              </div>
+
+              <!-- Content -->
+              <div class="flex-1 min-w-0">
+                <h3 class="font-semibold text-white text-sm">
+                  {{ p.name }}
+                </h3>
+                <p class="text-xs text-white/60">
+                  {{ p.subtitle }}
+                </p>
+              </div>
+
+              <!-- Selection checkbox -->
+              <div
+                class="flex-shrink-0 w-6 h-6 rounded-lg border-2 flex items-center justify-center transition-all"
+                :class="
+                  store.palettes.includes(p.id)
+                    ? 'border-emerald-500 bg-emerald-500'
+                    : 'border-white/20 group-hover:border-white/40'
+                "
+              >
+                <svg v-if="store.palettes.includes(p.id)" class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </button>
       </div>
 
-      <!-- Selected summary -->
-      <div class="text-xs text-(--text-soft)">
-        Selected palettes: {{ store.palettes.length }} / {{ maxPalettes }}
+      <!-- Selected counter -->
+      <div class="text-xs text-white/50 font-mono text-center pt-2">
+        {{ store.palettes.length }} / {{ maxPalettes }} selected
       </div>
     </div>
-  </section>
+
+    <!-- Summary -->
+    <div class="grid grid-cols-2 gap-4 pt-4">
+      <!-- Vibe summary -->
+      <div class="bg-white/5 backdrop-blur-xl border border-white/20 rounded-lg p-4 space-y-1">
+        <p class="text-xs uppercase tracking-widest text-white/40 font-semibold">
+          Vibe
+        </p>
+        <p class="text-sm font-semibold text-white">
+          {{ prettyVibe }}
+        </p>
+      </div>
+
+      <!-- Palettes summary -->
+      <div class="bg-white/5 backdrop-blur-xl border border-white/20 rounded-lg p-4 space-y-1">
+        <p class="text-xs uppercase tracking-widest text-white/40 font-semibold">
+          Palettes
+        </p>
+        <p class="text-sm font-semibold text-white">
+          {{ store.palettes.length > 0 ? store.palettes.join(', ') : '—' }}
+        </p>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useBuildProtocol } from '~/stores/buildProtocol'
-import PaletteCard from '../ui/PaletteCard.vue'
 
 const store = useBuildProtocol()
 const maxPalettes = 2
 
 const vibes = [
-  { value: 'clean', label: 'Clean / Minimal' },
-  { value: 'bold', label: 'Bold / Loud' },
-  { value: 'dark', label: 'Dark / Tech' },
-  { value: 'meme', label: 'Meme / Chaotic' },
-  { value: 'future', label: 'Futuristic' },
-] as const
+  { value: 'clean' as const, label: '✨ Clean / Minimal' },
+  { value: 'bold' as const, label: '💥 Bold / Loud' },
+  { value: 'dark' as const, label: '🌙 Dark / Tech' },
+  { value: 'meme' as const, label: '🎨 Meme / Chaotic' },
+  { value: 'future' as const, label: '🔮 Futuristic' },
+]
 
 const palettes = [
   {
@@ -120,18 +183,25 @@ const palettes = [
     subtitle: 'Experimental, playful',
     chips: ['#A3E635', '#111827', '#374151', '#F9FAFB'],
   },
-] as const
+]
 
-function toggle(id: string) {
-  const i = store.palettes.indexOf(id)
-
-  if (i >= 0) {
-    store.palettes.splice(i, 1)
-    return
+const prettyVibe = computed(() => {
+  const map: Record<string, string> = {
+    clean: 'Clean / Minimal',
+    bold: 'Bold / Loud',
+    dark: 'Dark / Tech',
+    meme: 'Meme / Chaotic',
+    future: 'Futuristic',
   }
+  return map[store.visualVibe] || '—'
+})
 
-  if (store.palettes.length >= maxPalettes) return
-
-  store.palettes.push(id)
+function togglePalette(id: string) {
+  const idx = store.palettes.indexOf(id)
+  if (idx >= 0) {
+    store.palettes.splice(idx, 1)
+  } else if (store.palettes.length < maxPalettes) {
+    store.palettes.push(id)
+  }
 }
 </script>
