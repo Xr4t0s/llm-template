@@ -44,7 +44,7 @@ const step = computed(() => buildStore.step)
 
       <div class="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-6 items-start">
         <!-- Sidebar -->
-        <aside v-if="mode === 'create'" class="lg:sticky lg:top-24 lg:h-[calc(100vh-120px)]">
+        <aside v-if="mode === 'create'" class="lg:sticky lg:top-0 lg:h-[calc(100vh-120px)]">
           <BuildSidebar />
         </aside>
 

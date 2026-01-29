@@ -110,37 +110,7 @@
       </div>
     </div>
 
-    <!-- Launch section -->
-    <div class="space-y-4 pt-6 border-t border-white/10">
-      <div class="flex items-start gap-3 p-4 rounded-lg bg-cyan-500/10 border border-cyan-500/20">
-        <svg class="w-5 h-5 text-cyan-400 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
-        </svg>
-        <div>
-          <p class="text-sm text-cyan-300 font-medium mb-1">Ready to launch?</p>
-          <p class="text-xs text-cyan-300/70">
-            Once launched, the build process will generate all selected assets following the defined direction.
-            You can edit and regenerate outputs later.
-          </p>
-        </div>
-      </div>
-
-      <button
-        @click="launchBuild"
-        :disabled="selectedOutputs.length === 0"
-        class="w-full group relative px-8 py-4 rounded-xl font-semibold text-white overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-      >
-        <!-- Gradient background -->
-        <div class="absolute inset-0 bg-linear-to-r from-indigo-600 to-cyan-500 opacity-100 group-hover:opacity-90 group-disabled:opacity-70 transition-opacity" />
-        <!-- Shimmer effect -->
-        <div class="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full group-disabled:translate-x-full transition-transform duration-500" />
-        <!-- Content -->
-        <span class="relative flex items-center justify-center gap-2">
-          <span class="text-lg">🚀</span>
-          Launch build
-        </span>
-      </button>
-    </div>
+    
   </div>
 </template>
 

@@ -31,7 +31,7 @@
     </main>
 
     <!-- Footer -->
-    <Footer />
+    <Footer v-if="route.path !== '/build'"/>
 
     <!-- Scroll indicator (appears on scroll) -->
     <div 

@@ -1,19 +1,5 @@
 <template>
   <div class="space-y-6">
-    <!-- Title section -->
-    <div class="space-y-3">
-      <div class="flex items-baseline gap-3">
-        <h1 class="text-5xl font-bold text-white">
-          Build
-        </h1>
-        <span class="text-lg text-white/40 font-mono">
-          {{ String(store.step).padStart(2, '0') }} / {{ String(totalSteps).padStart(2, '0') }}
-        </span>
-      </div>
-      <p class="text-lg text-white/60">
-        {{ currentStep!.subtitle }}
-      </p>
-    </div>
 
     <!-- Progress Section -->
     <div class="space-y-2">

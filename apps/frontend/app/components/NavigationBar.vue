@@ -60,9 +60,7 @@
 
 		  
           <!-- Mobile wallet button -->
-          <div class="sm:hidden">
-            <WalletButton />
-          </div>
+          
           <!-- Mobile menu button -->
           <button
             class="lg:hidden group relative w-11 h-11 flex items-center justify-center rounded-lg bg-white/10 hover:bg-white/15 border border-white/10 hover:border-white/20 transition-all duration-300"
@@ -112,6 +110,9 @@
           <div class="h-px bg-linear-to-r from-white/0 via-white/10 to-white/0 my-2" />
 
           <!-- Additional mobile-specific actions could go here -->
+		   <div class="sm:hidden">
+            <WalletButton />
+          </div>
           <div class="px-4 py-3 text-xs text-white/40 text-center">
             Build Web3 with intention
           </div>

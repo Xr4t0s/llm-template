@@ -71,7 +71,7 @@ function backToHome() {
       <div
         v-if="!authStore.isConnected"
         key="wallet"
-        class="relative z-10 min-h-screen flex items-center justify-center px-4 sm:px-6"
+        class="relative z-10 min-h-screen flex items-center justify-center p-4 sm:px-6"
       >
         <div class="w-full max-w-5xl">
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
