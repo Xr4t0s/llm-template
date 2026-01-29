@@ -7,8 +7,8 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        -992,
-        1552
+        -1304,
+        1600
       ],
       "id": "f27997d7-c033-41ab-9aa0-2e66d3e9fb82",
       "name": "AI Agent1"
@@ -26,8 +26,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.3,
       "position": [
-        -1088,
-        1776
+        -1360,
+        1824
       ],
       "id": "3a654be9-9f1f-49c7-b3aa-23e0aeddc74a",
       "name": "OpenAI Chat Model1",
@@ -45,23 +45,23 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        -944,
-        1776
+        -1232,
+        1824
       ],
       "id": "c7690312-477b-455f-bf04-d682784670fa",
       "name": "Simple Memory1"
     },
     {
       "parameters": {
-        "endpointUrl": "https://ad1d6ac10c33.ngrok-free.app/sse",
+        "endpointUrl": "https://eb25216b047b.ngrok-free.app/sse",
         "serverTransport": "sse",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
       "typeVersion": 1.2,
       "position": [
-        -752,
-        1776
+        -1104,
+        1824
       ],
       "id": "451acba0-6a8e-45a9-9858-e7d50932aabe",
       "name": "MCP Client1"
@@ -76,8 +76,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        -1488,
-        1552
+        -1808,
+        1916
       ],
       "id": "ff16037c-2c1a-4d88-a1f3-75ecd438787a",
       "name": "Webhook1",
@@ -90,8 +90,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1248,
-        1504
+        -1584,
+        1600
       ],
       "id": "efe06bd9-cd77-437b-8254-18fad299b095",
       "name": "Code in JavaScript4"
@@ -103,8 +103,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -576,
-        1552
+        -896,
+        1504
       ],
       "id": "361446b2-4a1a-4da7-b123-4101f8d345a8",
       "name": "Code in JavaScript5"
@@ -122,8 +122,8 @@
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        -352,
-        1552
+        -672,
+        1504
       ],
       "id": "60982cd2-17df-4264-ae41-66b370da54c0",
       "name": "Convert to File2"
@@ -137,8 +137,8 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1.1,
       "position": [
-        -80,
-        1552
+        -448,
+        1504
       ],
       "id": "64755ed9-55de-4b83-9664-624133ae121f",
       "name": "Read/Write Files from Disk2",
@@ -156,8 +156,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        -112,
-        1920
+        -1808,
+        2496
       ],
       "id": "a2d03653-f186-45a0-95e1-5a16fbc9a86e",
       "name": "HTTP Request1"
@@ -169,8 +169,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -384,
-        2000
+        240,
+        1820
       ],
       "id": "20ad958e-26fc-47d0-91d5-8321b8dfc0b1",
       "name": "Code in JavaScript7"
@@ -182,8 +182,8 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        -784,
-        2000
+        -168,
+        1820
       ],
       "id": "8ae3342b-f118-43e0-af02-4a70a60dd658",
       "name": "AI Agent"
@@ -201,8 +201,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.3,
       "position": [
-        -880,
-        2224
+        -224,
+        2044
       ],
       "id": "11b53cc2-3eee-4e1c-8b8c-a6c3ba439af9",
       "name": "OpenAI Chat Model",
@@ -220,23 +220,23 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        -688,
-        2224
+        -96,
+        2044
       ],
       "id": "f92192fb-7ef2-4870-9eb4-8649028910f3",
       "name": "Simple Memory"
     },
     {
       "parameters": {
-        "endpointUrl": "https://ad1d6ac10c33.ngrok-free.app/sse",
+        "endpointUrl": "https://eb25216b047b.ngrok-free.app/sse",
         "serverTransport": "sse",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
       "typeVersion": 1.2,
       "position": [
-        -528,
-        2224
+        32,
+        2044
       ],
       "id": "a9172948-0a7d-49d2-8fcb-67d53bedbb47",
       "name": "MCP Client"
@@ -248,8 +248,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -576,
-        1776
+        -896,
+        1696
       ],
       "id": "df40db1f-7019-4324-994d-ed782cc299c0",
       "name": "Code in JavaScript"
@@ -259,8 +259,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.2,
       "position": [
-        -1264,
-        2000
+        -672,
+        1820
       ],
       "id": "c6af681e-7999-427d-9ac8-3f831a6a8a6b",
       "name": "Merge"
@@ -272,8 +272,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1248,
-        1648
+        -896,
+        1916
       ],
       "id": "353ca9b8-87a0-40a5-a1d8-4a9ef4776197",
       "name": "Code in JavaScript8"
@@ -285,8 +285,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1056,
-        2000
+        -448,
+        1820
       ],
       "id": "9f585920-eff3-4443-84d0-f21827bf18fb",
       "name": "Code in JavaScript1"
@@ -303,8 +303,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        -112,
-        1776
+        -1808,
+        2272
       ],
       "id": "b93d1692-9b2c-4611-a202-4074cc34da9b",
       "name": "HTTP Request"
@@ -321,8 +321,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        -112,
-        2064
+        -1808,
+        2720
       ],
       "id": "c0cba744-05cd-4b81-8e3e-15c9d1a75924",
       "name": "HTTP Request2"
@@ -339,8 +339,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        -112,
-        2208
+        -1808,
+        2944
       ],
       "id": "eb07b7ff-ff3c-4229-8439-a9fb96cb0d52",
       "name": "HTTP Request3"
@@ -351,17 +351,171 @@
         "url": "=http://image-gen:7860/gradio_api/call/generate_image",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"data\": [\n    \"{{ $json.content.assets[4].prompts[0].prompt }}\", \n    256,\n    256,\n    1,\n    -1,\n    3.5,\n    \"cpu\",\n    \"FLUX.2-klein-4B (4bit SDNQ - Low VRAM)\",\n    [],\n    null,\n    1\n  ]\n}",
+        "jsonBody": "={\n  \"data\": [\n    \"{{ $json.content.assets[4].prompts[0].prompt }}\", \n    256,\n    256,\n    4,\n    -1,\n    3.5,\n    \"cpu\",\n    \"FLUX.2-klein-4B (4bit SDNQ - Low VRAM)\",\n    [],\n    null,\n    1\n  ]\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        -112,
-        2352
+        464,
+        1820
       ],
       "id": "b3447441-9c60-4aa6-839f-105a21e3d1c5",
       "name": "HTTP Request4"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "=/data/shared/{{ $('Code in JavaScript9').item.json.sessionId }}/website/index.html",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        2272,
+        1944
+      ],
+      "id": "d3b42cf4-2bf4-423e-96fc-93d6f91b02d9",
+      "name": "Read/Write Files from Disk3",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "content",
+        "binaryPropertyName": "=data",
+        "options": {
+          "encoding": "utf8",
+          "fileName": "={{ $json.path.split(\"/\")[3] }}"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        2048,
+        1944
+      ],
+      "id": "db08868b-8d0a-4a7c-8be2-e9000d8c1038",
+      "name": "Convert to File3"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Ton input = [{ output: \"JSON_STRING\" }]\n\nconst raw = items[0].json.output;\n\n// Parse la string JSON\n\nconst fs = require('fs');\n\nconst folder = $('Code in JavaScript4').first().json.sessionId;\n\nfs.mkdirSync(`/data/shared/${folder}/website`, { recursive: true });\n\n// Retourne 1 item par fichier\nreturn {\n    path: \"/data/shared/${folder}/website/index.html\",\n    content: $input.first().json.output\n  };\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1824,
+        1944
+      ],
+      "id": "3cb5f077-5668-4a1d-a98f-c4fec6903230",
+      "name": "Code in JavaScript6"
+    },
+    {
+      "parameters": {
+        "url": "=http://image-gen:7860/gradio_api/call/generate_image/{{ $json.event_id }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        688,
+        1820
+      ],
+      "id": "de6e6cf3-69d3-4af3-954d-e84d7d9c3bde",
+      "name": "HTTP Request5"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body =  $input.first().json.body;\n\nconst chatinput = body.chatInput;\nconst prompt = body.prompt3;\nconst data = body.data;\n\nreturn [\n  {\n    sessionId: body.sessionId,\n    action: body.action,\n    chatInput: {\n      chatinput,\n      prompt,\n      data\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1136,
+        1944
+      ],
+      "id": "813891cd-6eed-49e1-bc0c-b01d2957fb77",
+      "name": "Code in JavaScript9"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        1416,
+        1944
+      ],
+      "id": "d7732a63-4f27-420c-bda4-7c32a2403a85",
+      "name": "AI Agent2"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "builtInTools": {},
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        1360,
+        2168
+      ],
+      "id": "e62f4bc8-1118-4ab4-8fae-f730fcee78e4",
+      "name": "OpenAI Chat Model2",
+      "credentials": {
+        "openAiApi": {
+          "id": "KmiELevU1uNntTLP",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        1488,
+        2168
+      ],
+      "id": "a57bce6f-17f4-4e52-8354-201210f74dd8",
+      "name": "Simple Memory2"
+    },
+    {
+      "parameters": {
+        "endpointUrl": "https://eb25216b047b.ngrok-free.app/sse",
+        "serverTransport": "sse",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1.2,
+      "position": [
+        1616,
+        2168
+      ],
+      "id": "a3e4b6b9-b833-4311-9443-30697f8af9d5",
+      "name": "MCP Client2"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        912,
+        1944
+      ],
+      "id": "abf82b28-237a-4436-ace4-35634cb13710",
+      "name": "Merge2"
     }
   ],
   "connections": {
@@ -426,6 +580,11 @@
             "node": "Code in JavaScript8",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -471,26 +630,6 @@
     "Code in JavaScript7": {
       "main": [
         [
-          {
-            "node": "HTTP Request1",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "HTTP Request",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "HTTP Request2",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "HTTP Request3",
-            "type": "main",
-            "index": 0
-          },
           {
             "node": "HTTP Request4",
             "type": "main",
@@ -581,6 +720,116 @@
         [
           {
             "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request4": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File3": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript6": {
+      "main": [
+        [
+          {
+            "node": "Convert to File3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request5": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript9": {
+      "main": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent2": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory2": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MCP Client2": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge2": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript9",
             "type": "main",
             "index": 0
           }
