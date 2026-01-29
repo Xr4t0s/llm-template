@@ -4,6 +4,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { AuthService } from './auth.service';
 import { JwtStrategy } from './jwt.strategy';
 import { PassportModule } from '@nestjs/passport';
+import { ProfilesModule } from 'src/profiles/profiles.module';
 
 @Module({
   controllers: [AuthController],
@@ -12,8 +13,9 @@ import { PassportModule } from '@nestjs/passport';
 	PassportModule,
 	JwtModule.register({
       secret: process.env.JWT_SECRET || 'your-secret-key',
-      signOptions: { expiresIn: '7d' },
+      signOptions: { expiresIn: '1h' },
     }),
+	ProfilesModule
   ]
 })
 export class AuthModule {}

@@ -3,10 +3,14 @@ import { Injectable } from '@nestjs/common';
 import nacl from 'tweetnacl';
 import * as bs58 from 'bs58';
 import { JwtService } from '@nestjs/jwt';
+import { ProfilesService } from 'src/profiles/profiles.service';
 
 @Injectable()
 export class AuthService {
-  constructor(private jwtService: JwtService) {}
+  constructor(
+	private jwtService: JwtService,
+	private readonly profilesService: ProfilesService,
+  ) {}
 
   private payloads = new Map<string, { payload: string; timestamp: number }>();
 
@@ -52,6 +56,29 @@ export class AuthService {
       return false;
     }
   }
+
+  async verifyAndAuthenticate(
+    publicKey: string,
+    payload: string,
+    signature: string,
+  ) {
+    const isValid = this.verifySignature(publicKey, payload, signature)
+  
+    if (!isValid) {
+      return null
+    }
+  
+    // 🔐 Signature OK → profile garanti
+    const profile = await this.profilesService.findOrCreateByAddress(publicKey)
+  
+    const token = this.generateToken(publicKey)
+  
+    return {
+      token,
+      profile,
+    }
+  }
+
 
   generateToken(publicKey: string): string {
     return this.jwtService.sign({ publicKey }, { expiresIn: '7d' });

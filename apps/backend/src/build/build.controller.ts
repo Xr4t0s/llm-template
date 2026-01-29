@@ -1,14 +1,17 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common'
+import { Body, Controller, Post, Req, UseGuards } from '@nestjs/common'
 import { BuildService } from './build.service'
 import { JwtAuthGuard } from 'src/auth/auth.guard'
 
 @Controller('generate')
 export class BuildController {
-  constructor(private readonly daService: BuildService) {}
+  constructor(private readonly buildService: BuildService) {}
 
   @Post('doc')
   @UseGuards(JwtAuthGuard)
-  async buildBuild(@Body() payload: any) {
-    return this.daService.triggerWorkflow(payload)
+  async buildBuild(@Req() req: any, @Body() payload: any) {
+	return this.buildService.triggerWorkflow({
+      ...payload,
+      address: req.user.publicKey,
+    })
   }
 }

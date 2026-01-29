@@ -23,6 +23,27 @@ services:
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
     networks:
       - common
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: llm-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: llm_template
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - common
 
   n8n:
     image: n8nio/n8n:latest
@@ -127,6 +148,7 @@ volumes:
   nginx-logs:
   frontend:
   backend:
+  postgres_data:
 
 networks:
   common:

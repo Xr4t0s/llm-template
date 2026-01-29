@@ -2,11 +2,20 @@ import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import { Connection, Transaction, SystemProgram, LAMPORTS_PER_SOL, PublicKey } from '@solana/web3.js';
 
+type Profile = {
+	address: string
+	builds: number
+	running: boolean
+	step: number
+	substep: number
+}
+
 export const useAuthStore = defineStore('auth', () => {
   const isConnected = ref(false);
   const publicKey = ref<string | null>(null);
   const isLoading = ref(false);
   const token = ref<string | null>(null);
+  const profile = ref<Profile | null>(null);
 
   const toHex = (arr: Uint8Array): string => {
     return Array.from(arr)
@@ -63,6 +72,7 @@ export const useAuthStore = defineStore('auth', () => {
       
       const result = await verifyRes.json();
       token.value = result.token;
+	  profile.value = result.profile;
       
       if (typeof window !== 'undefined') {
         localStorage.setItem('auth_token', result.token);

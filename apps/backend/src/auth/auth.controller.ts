@@ -16,7 +16,7 @@ export class AuthController {
   }
 
   @Post('verify')
-  verify(
+  async verify(
     @Body() body: { publicKey: string; payload: string; signature: string },
   ) {
     const { publicKey, payload, signature } = body;
@@ -25,17 +25,12 @@ export class AuthController {
       throw new BadRequestException('Missing required fields');
     }
 
-    const isValid = this.authService.verifySignature(
+    const ret = await this.authService.verifyAndAuthenticate(
       publicKey,
       payload,
       signature,
     );
-
-    if (!isValid) {
-      throw new BadRequestException('Invalid signature');
-    }
-
-    const token = this.authService.generateToken(publicKey);
-    return { success: true, token, publicKey };
+	
+	return {success: true, token: ret?.token, profile: ret?.profile}
   }
 }
