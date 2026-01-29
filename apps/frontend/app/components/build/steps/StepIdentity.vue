@@ -23,7 +23,7 @@
 
         <div class="relative">
           <!-- Textarea wrapper with glow -->
-          <div class="absolute inset-0 bg-gradient-to-r from-indigo-600/10 to-cyan-500/10 rounded-xl blur opacity-0 focus-within:opacity-100 transition-opacity duration-300" />
+          <div class="absolute inset-0 bg-linear-to-r from-indigo-600/10 to-cyan-500/10 rounded-xl blur opacity-0 focus-within:opacity-100 transition-opacity duration-300" />
 
           <textarea
             v-model="store.lore"
@@ -52,7 +52,7 @@
     <div class="space-y-6">
       <!-- Mascot toggle -->
       <div class="group relative">
-        <div class="absolute inset-0 bg-gradient-to-r from-purple-600/10 to-pink-600/10 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div class="absolute inset-0 bg-linear-to-r from-purple-600/10 to-pink-600/10 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
         <div class="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-5 cursor-pointer group-hover:border-white/20 transition-all duration-300"
 		  @click="store.hasMascot = !store.hasMascot"
@@ -98,7 +98,7 @@
             class="relative group px-4 py-3 rounded-lg font-medium text-sm transition-all duration-300"
             :class="[
               store.tone === tone
-                ? 'bg-gradient-to-r from-indigo-600 to-cyan-500 text-white shadow-lg shadow-indigo-500/30'
+                ? 'bg-linear-to-r from-indigo-600 to-cyan-500 text-white shadow-lg shadow-indigo-500/30'
                 : 'bg-white/5 border border-white/20 text-white/70 hover:bg-white/10 hover:border-white/30'
             ]"
           >

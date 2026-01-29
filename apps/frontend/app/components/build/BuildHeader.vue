@@ -25,11 +25,11 @@
       <!-- Main progress bar with glow -->
       <div class="relative h-2 bg-white/10 rounded-full overflow-hidden border border-white/20">
         <div
-          class="h-full bg-gradient-to-r from-indigo-500 via-cyan-400 to-emerald-400 rounded-full transition-all duration-500 ease-out shadow-lg shadow-indigo-500/50"
+          class="h-full bg-linear-to-r from-indigo-500 via-cyan-400 to-emerald-400 rounded-full transition-all duration-500 ease-out shadow-lg shadow-indigo-500/50"
           :style="{ width: `${progress}%` }"
         />
         <div
-          class="absolute inset-0 bg-gradient-to-r from-indigo-400 via-cyan-300 to-emerald-300 opacity-0 blur-lg transition-opacity duration-500"
+          class="absolute inset-0 bg-linear-to-r from-indigo-400 via-cyan-300 to-emerald-300 opacity-0 blur-lg transition-opacity duration-500"
           :style="{ width: `${progress}%`, opacity: Math.min(progress / 100 * 0.3, 0.3) }"
         />
       </div>
@@ -48,7 +48,7 @@
         <div
           class="w-3 h-3 rounded-full transition-all duration-300"
           :class="[
-            s.id === store.step && 'bg-gradient-to-r from-indigo-400 to-cyan-400 shadow-lg shadow-indigo-500/50 scale-125',
+            s.id === store.step && 'bg-linear-to-r from-indigo-400 to-cyan-400 shadow-lg shadow-indigo-500/50 scale-125',
             s.id < store.step && 'bg-emerald-500 hover:bg-emerald-400',
             s.id > store.step && 'bg-white/20 cursor-not-allowed',
           ]"

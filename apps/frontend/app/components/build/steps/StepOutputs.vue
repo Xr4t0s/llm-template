@@ -92,7 +92,7 @@
     </div>
 
     <!-- Summary card -->
-    <div class="bg-gradient-to-r from-cyan-500/10 to-indigo-500/10 backdrop-blur-xl border border-cyan-500/20 rounded-xl p-5 space-y-3">
+    <div class="bg-linear-to-r from-cyan-500/10 to-indigo-500/10 backdrop-blur-xl border border-cyan-500/20 rounded-xl p-5 space-y-3">
       <div class="flex items-center gap-2 text-white">
         <svg class="w-5 h-5 text-cyan-400" fill="currentColor" viewBox="0 0 20 20">
           <path fill-rule="evenodd" d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2z" clip-rule="evenodd" />

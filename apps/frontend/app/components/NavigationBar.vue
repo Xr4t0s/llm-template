@@ -11,11 +11,11 @@
           to="/"
           class="flex items-center gap-2 group"
         >
-          <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/50 group-hover:shadow-xl group-hover:shadow-indigo-500/70 transition-all">
+          <div class="w-10 h-10 rounded-lg bg-linear-to-br from-indigo-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/50 group-hover:shadow-xl group-hover:shadow-indigo-500/70 transition-all">
             <span class="text-white font-bold text-lg">⚡</span>
           </div>
-          <span class="text-white font-bold text-xl group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-indigo-400 group-hover:to-cyan-400 group-hover:bg-clip-text transition-all">
-            LLM Studio
+          <span class="text-white font-bold text-xl group-hover:text-transparent group-hover:bg-linear-to-r group-hover:from-indigo-400 group-hover:to-cyan-400 group-hover:bg-clip-text transition-all">
+			MCP
           </span>
         </NuxtLink>
 
@@ -30,7 +30,7 @@
           >
             {{ link.label }}
             <!-- Underline animation on active -->
-            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-indigo-400 to-cyan-400 group-hover:w-full transition-all duration-300" />
+            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-linear-to-r from-indigo-400 to-cyan-400 group-hover:w-full transition-all duration-300" />
           </NuxtLink>
         </div>
 

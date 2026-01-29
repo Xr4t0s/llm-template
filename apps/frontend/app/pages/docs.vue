@@ -1,5 +1,5 @@
 <template>
-  <main class="relative min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 pt-24 pb-20">
+  <main class="relative min-h-screen bg-linear-to-br from-slate-950 via-purple-950 to-slate-950 pt-24 pb-20">
     <!-- Animated background -->
     <div class="fixed inset-0 overflow-hidden pointer-events-none">
       <div class="absolute -top-40 -right-40 w-80 h-80 bg-indigo-600/10 rounded-full blur-3xl animate-pulse" />
@@ -30,9 +30,9 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <!-- Intent -->
           <div class="group relative">
-            <div class="absolute inset-0 bg-gradient-to-br from-indigo-600/20 to-cyan-500/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div class="absolute inset-0 bg-linear-to-br from-indigo-600/20 to-cyan-500/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <div class="relative bg-white/5 backdrop-blur-xl border border-white/20 rounded-xl p-6 space-y-3 group-hover:border-white/30 transition-all duration-300">
-              <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500/20 to-cyan-500/20 flex items-center justify-center text-lg">
+              <div class="w-10 h-10 rounded-lg bg-linear-to-br from-indigo-500/20 to-cyan-500/20 flex items-center justify-center text-lg">
                 🎯
               </div>
               <h3 class="text-lg font-semibold text-white">Intent</h3>
@@ -45,9 +45,9 @@
 
           <!-- State Management -->
           <div class="group relative">
-            <div class="absolute inset-0 bg-gradient-to-br from-cyan-600/20 to-emerald-500/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div class="absolute inset-0 bg-linear-to-br from-cyan-600/20 to-emerald-500/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <div class="relative bg-white/5 backdrop-blur-xl border border-white/20 rounded-xl p-6 space-y-3 group-hover:border-white/30 transition-all duration-300">
-              <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500/20 to-emerald-500/20 flex items-center justify-center text-lg">
+              <div class="w-10 h-10 rounded-lg bg-linear-to-br from-cyan-500/20 to-emerald-500/20 flex items-center justify-center text-lg">
                 💾
               </div>
               <h3 class="text-lg font-semibold text-white">State Management</h3>
@@ -60,9 +60,9 @@
 
           <!-- Structured Flows -->
           <div class="group relative">
-            <div class="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-pink-500/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div class="absolute inset-0 bg-linear-to-br from-purple-600/20 to-pink-500/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <div class="relative bg-white/5 backdrop-blur-xl border border-white/20 rounded-xl p-6 space-y-3 group-hover:border-white/30 transition-all duration-300">
-              <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center text-lg">
+              <div class="w-10 h-10 rounded-lg bg-linear-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center text-lg">
                 🔀
               </div>
               <h3 class="text-lg font-semibold text-white">Structured Flows</h3>
@@ -75,9 +75,9 @@
 
           <!-- Ship-Ready Artifacts -->
           <div class="group relative">
-            <div class="absolute inset-0 bg-gradient-to-br from-emerald-600/20 to-cyan-500/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div class="absolute inset-0 bg-linear-to-br from-emerald-600/20 to-cyan-500/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <div class="relative bg-white/5 backdrop-blur-xl border border-white/20 rounded-xl p-6 space-y-3 group-hover:border-white/30 transition-all duration-300">
-              <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 flex items-center justify-center text-lg">
+              <div class="w-10 h-10 rounded-lg bg-linear-to-br from-emerald-500/20 to-cyan-500/20 flex items-center justify-center text-lg">
                 📦
               </div>
               <h3 class="text-lg font-semibold text-white">Ship-Ready Artifacts</h3>
@@ -101,7 +101,7 @@
           <!-- Frontend -->
           <div class="bg-white/5 backdrop-blur-xl border border-white/20 rounded-xl p-6 space-y-3 hover:border-white/30 transition-all duration-300">
             <div class="flex items-start gap-4">
-              <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500/20 to-cyan-500/20 flex items-center justify-center flex-shrink-0 text-lg">
+              <div class="w-10 h-10 rounded-lg bg-linear-to-br from-indigo-500/20 to-cyan-500/20 flex items-center justify-center flex-shrink-0 text-lg">
                 🎨
               </div>
               <div class="space-y-2">
@@ -117,7 +117,7 @@
           <!-- Backend Orchestration -->
           <div class="bg-white/5 backdrop-blur-xl border border-white/20 rounded-xl p-6 space-y-3 hover:border-white/30 transition-all duration-300">
             <div class="flex items-start gap-4">
-              <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500/20 to-emerald-500/20 flex items-center justify-center flex-shrink-0 text-lg">
+              <div class="w-10 h-10 rounded-lg bg-linear-to-br from-cyan-500/20 to-emerald-500/20 flex items-center justify-center flex-shrink-0 text-lg">
                 ⚙️
               </div>
               <div class="space-y-2">
@@ -133,7 +133,7 @@
           <!-- LLM Routing -->
           <div class="bg-white/5 backdrop-blur-xl border border-white/20 rounded-xl p-6 space-y-3 hover:border-white/30 transition-all duration-300">
             <div class="flex items-start gap-4">
-              <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center flex-shrink-0 text-lg">
+              <div class="w-10 h-10 rounded-lg bg-linear-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center flex-shrink-0 text-lg">
                 🧠
               </div>
               <div class="space-y-2">
@@ -149,7 +149,7 @@
           <!-- Web3 Integration -->
           <div class="bg-white/5 backdrop-blur-xl border border-white/20 rounded-xl p-6 space-y-3 hover:border-white/30 transition-all duration-300">
             <div class="flex items-start gap-4">
-              <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 flex items-center justify-center flex-shrink-0 text-lg">
+              <div class="w-10 h-10 rounded-lg bg-linear-to-br from-emerald-500/20 to-cyan-500/20 flex items-center justify-center flex-shrink-0 text-lg">
                 🔗
               </div>
               <div class="space-y-2">
@@ -172,7 +172,7 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div class="bg-gradient-to-br from-indigo-500/10 to-cyan-500/10 border border-indigo-500/20 rounded-lg p-4 space-y-2">
+          <div class="bg-linear-to-br from-indigo-500/10 to-cyan-500/10 border border-indigo-500/20 rounded-lg p-4 space-y-2">
             <p class="text-sm font-semibold text-indigo-400">Step 1</p>
             <h3 class="text-white font-semibold">Connect Wallet</h3>
             <p class="text-xs text-white/60">
@@ -180,7 +180,7 @@
             </p>
           </div>
 
-          <div class="bg-gradient-to-br from-cyan-500/10 to-emerald-500/10 border border-cyan-500/20 rounded-lg p-4 space-y-2">
+          <div class="bg-linear-to-br from-cyan-500/10 to-emerald-500/10 border border-cyan-500/20 rounded-lg p-4 space-y-2">
             <p class="text-sm font-semibold text-cyan-400">Step 2</p>
             <h3 class="text-white font-semibold">Define Your Project</h3>
             <p class="text-xs text-white/60">
@@ -188,7 +188,7 @@
             </p>
           </div>
 
-          <div class="bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-lg p-4 space-y-2">
+          <div class="bg-linear-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-lg p-4 space-y-2">
             <p class="text-sm font-semibold text-purple-400">Step 3</p>
             <h3 class="text-white font-semibold">Generate & Ship</h3>
             <p class="text-xs text-white/60">

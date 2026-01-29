@@ -119,7 +119,7 @@ const step = computed(() => buildStore.step)
                     class="inline-block group relative px-8 py-3 rounded-xl font-semibold text-white overflow-hidden"
                   >
                     <!-- Gradient background -->
-                    <div class="absolute inset-0 bg-gradient-to-r from-indigo-600 to-cyan-500 opacity-100 group-hover:opacity-90 transition-opacity" />
+                    <div class="absolute inset-0 bg-linear-to-r from-indigo-600 to-cyan-500 opacity-100 group-hover:opacity-90 transition-opacity" />
                     <!-- Text -->
                     <span class="relative flex items-center gap-2">
                       Create your first build

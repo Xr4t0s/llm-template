@@ -22,7 +22,9 @@
         <!-- Status indicator -->
         <div class="flex items-center gap-3 justify-center">
           <div class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse" />
-          <span class="text-white/70 font-medium">Build in progress</span>
+          <span class="text-white/70 font-medium">
+            {{ isRunning ? 'Build in progress' : 'Build complete' }}
+          </span>
         </div>
 
         <!-- Info grid -->
@@ -49,7 +51,7 @@
           </div>
           <div class="h-2 bg-white/10 rounded-full overflow-hidden border border-white/20">
             <div
-              class="h-full bg-gradient-to-r from-emerald-500 to-cyan-400 rounded-full transition-all duration-500 ease-out"
+              class="h-full bg-linear-to-r from-emerald-500 to-cyan-400 rounded-full transition-all duration-500 ease-out"
               :style="{ width: `${progress}%` }"
             />
           </div>
@@ -65,12 +67,12 @@
           :style="{ animationDelay: `${idx * 0.1}s` }"
         >
           <div
-            class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold transition-all duration-300"
+            class="shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold transition-all duration-300"
             :class="[
               idx < currentStep
                 ? 'bg-emerald-500 text-white'
                 : idx === currentStep
-                  ? 'bg-gradient-to-r from-indigo-600 to-cyan-500 text-white animate-pulse'
+                  ? 'bg-linear-to-r from-indigo-600 to-cyan-500 text-white animate-pulse'
                   : 'bg-white/20 text-white/60'
             ]"
           >
@@ -102,12 +104,13 @@
 
         <button
           @click="openResults"
-          class="group relative px-8 py-3 rounded-xl font-semibold text-white overflow-hidden"
+          :disabled="isRunning"
+          class="group relative px-8 py-3 rounded-xl font-semibold text-white overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <!-- Gradient background -->
-          <div class="absolute inset-0 bg-gradient-to-r from-indigo-600 to-cyan-500 opacity-100 group-hover:opacity-90 transition-opacity rounded-xl" />
+          <div class="absolute inset-0 bg-linear-to-r from-indigo-600 to-cyan-500 opacity-100 group-hover:opacity-90 transition-opacity rounded-xl" />
           <!-- Shimmer effect -->
-          <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500 rounded-xl" />
+          <div class="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500 rounded-xl" />
           <!-- Text -->
           <span class="relative flex items-center gap-2">
             View results
@@ -135,6 +138,8 @@ const store = useBuildProtocol()
 const progress = ref(0)
 const currentStep = ref(0)
 const currentTime = ref('')
+const isRunning = ref(true)
+const loading = ref(true)
 
 const steps = [
   'Preparing assets',
@@ -157,14 +162,49 @@ const selectedCount = computed(() =>
   Object.values(store.outputs).filter(Boolean).length
 )
 
-function openResults() {
-  // Navigate to results or open in new tab
-//   navigateTo(`/build/results/${store.id}`)
+// Calcul du progress en fonction de step et substep
+function calculateProgress(step: number, substep: number): number {
+  const stepProgress = step * 20 // 0, 20, 40, 60, 80
+  const substepProgress = (substep - 1) * 4 // 0 à 16 par étape
+  return Math.min(stepProgress + substepProgress, 100)
 }
 
-// Simulate progress
+// Récupère les données du profil depuis l'API
+async function fetchProfileData() {
+  try {
+	const { token } = useAuthStore()
+    const response = await fetch('/api/v1/profile',
+		{
+			headers: {
+				"Authorization": `Bearer ${token}`
+			}
+		}
+	)
+    if (!response.ok) {
+      throw new Error(`API error: ${response.status}`)
+    }
+    const data = await response.json()
+    
+    if (data.profile) {
+      const { step, substep, running } = data.profile
+      currentStep.value = step
+      isRunning.value = running
+      progress.value = calculateProgress(step, substep)
+    }
+  } catch (error) {
+    console.error('Failed to fetch profile data:', error)
+  }
+}
+
+function openResults() {
+  if (!isRunning.value) {
+    // Naviguer vers les résultats
+    // navigateTo(`/build/results/${store.id}`)
+  }
+}
+
 onMounted(() => {
-  // Update current time
+  // Mise à jour de l'heure
   const updateTime = () => {
     const now = new Date()
     currentTime.value = now.toLocaleTimeString()
@@ -172,23 +212,17 @@ onMounted(() => {
   updateTime()
   const timeInterval = setInterval(updateTime, 1000)
 
-  // Simulate progress
-  const progressInterval = setInterval(() => {
-    if (progress.value < 100) {
-      progress.value += Math.random() * 15
-      if (progress.value > 100) progress.value = 100
-    }
+  // Récupère les données initiales
+  fetchProfileData()
+  loading.value = false
 
-    // Update step based on progress
-    if (progress.value < 20) currentStep.value = 0
-    else if (progress.value < 40) currentStep.value = 1
-    else if (progress.value < 60) currentStep.value = 2
-    else if (progress.value < 80) currentStep.value = 3
-    else currentStep.value = 4
-  }, 1000)
+  // Polling pour les updates du progress
+  const pollInterval = setInterval(() => {
+    fetchProfileData()
+  }, 3000) // Récupère les données toutes les secondes
 
   onUnmounted(() => {
-    clearInterval(progressInterval)
+    clearInterval(pollInterval)
     clearInterval(timeInterval)
   })
 })

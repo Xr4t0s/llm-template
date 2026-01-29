@@ -17,7 +17,7 @@
         <!-- Background glow for active -->
         <div
           v-if="s.id === store.step"
-          class="absolute inset-0 bg-gradient-to-r from-indigo-600/20 to-cyan-500/20 rounded-xl blur transition-opacity duration-300"
+          class="absolute inset-0 bg-linear-to-r from-indigo-600/20 to-cyan-500/20 rounded-xl blur transition-opacity duration-300"
         />
 
         <!-- Card -->
@@ -33,7 +33,7 @@
           <div
             class="relative w-8 h-8 rounded-lg flex items-center justify-center font-semibold text-sm transition-all duration-300"
             :class="[
-              s.id === store.step && 'bg-gradient-to-br from-indigo-500 to-cyan-400 text-white shadow-lg shadow-indigo-500/50',
+              s.id === store.step && 'bg-linear-to-br from-indigo-500 to-cyan-400 text-white shadow-lg shadow-indigo-500/50',
               s.id < store.step && 'bg-emerald-500/30 text-emerald-300 border border-emerald-500/50',
               s.id > store.step && 'bg-white/10 text-white/40 border border-white/10',
             ]"

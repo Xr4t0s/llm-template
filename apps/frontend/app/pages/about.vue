@@ -1,5 +1,5 @@
 <template>
-  <main class="relative min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 pt-24 pb-20">
+  <main class="relative min-h-screen bg-linear-to-br from-slate-950 via-purple-950 to-slate-950 pt-24 pb-20">
     <!-- Animated background -->
     <div class="fixed inset-0 overflow-hidden pointer-events-none">
       <div class="absolute -top-40 -right-40 w-80 h-80 bg-indigo-600/10 rounded-full blur-3xl animate-pulse" />
@@ -55,7 +55,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <!-- Intent over Iteration -->
           <div class="group relative">
-            <div class="absolute inset-0 bg-gradient-to-br from-indigo-600/20 to-cyan-500/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div class="absolute inset-0 bg-linear-to-br from-indigo-600/20 to-cyan-500/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <div class="relative bg-white/5 backdrop-blur-xl border border-white/20 rounded-xl p-6 space-y-3 group-hover:border-white/30 transition-all duration-300">
               <h3 class="text-lg font-semibold text-white">Intent over Iteration</h3>
               <p class="text-white/60 text-sm leading-relaxed">
@@ -67,7 +67,7 @@
 
           <!-- Structure over Chaos -->
           <div class="group relative">
-            <div class="absolute inset-0 bg-gradient-to-br from-cyan-600/20 to-emerald-500/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div class="absolute inset-0 bg-linear-to-br from-cyan-600/20 to-emerald-500/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <div class="relative bg-white/5 backdrop-blur-xl border border-white/20 rounded-xl p-6 space-y-3 group-hover:border-white/30 transition-all duration-300">
               <h3 class="text-lg font-semibold text-white">Structure over Chaos</h3>
               <p class="text-white/60 text-sm leading-relaxed">
@@ -79,7 +79,7 @@
 
           <!-- Ownership over Dependency -->
           <div class="group relative">
-            <div class="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-pink-500/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div class="absolute inset-0 bg-linear-to-br from-purple-600/20 to-pink-500/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <div class="relative bg-white/5 backdrop-blur-xl border border-white/20 rounded-xl p-6 space-y-3 group-hover:border-white/30 transition-all duration-300">
               <h3 class="text-lg font-semibold text-white">Ownership over Dependency</h3>
               <p class="text-white/60 text-sm leading-relaxed">
@@ -91,7 +91,7 @@
 
           <!-- Quality over Quantity -->
           <div class="group relative">
-            <div class="absolute inset-0 bg-gradient-to-br from-emerald-600/20 to-cyan-500/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div class="absolute inset-0 bg-linear-to-br from-emerald-600/20 to-cyan-500/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             <div class="relative bg-white/5 backdrop-blur-xl border border-white/20 rounded-xl p-6 space-y-3 group-hover:border-white/30 transition-all duration-300">
               <h3 class="text-lg font-semibold text-white">Quality over Quantity</h3>
               <p class="text-white/60 text-sm leading-relaxed">
@@ -185,7 +185,7 @@
       </section>
 
       <!-- CTA Section -->
-      <section class="text-center space-y-6 p-8 rounded-xl bg-gradient-to-r from-indigo-500/10 to-cyan-500/10 border border-indigo-500/20">
+      <section class="text-center space-y-6 p-8 rounded-xl bg-linear-to-r from-indigo-500/10 to-cyan-500/10 border border-indigo-500/20">
         <div class="space-y-4">
           <h2 class="text-2xl sm:text-3xl font-bold text-white">
             Ready to build with intention?
@@ -198,8 +198,8 @@
           to="/build"
           class="inline-block group relative px-8 py-4 rounded-xl font-semibold text-white overflow-hidden"
         >
-          <div class="absolute inset-0 bg-gradient-to-r from-indigo-600 to-cyan-500 opacity-100 group-hover:opacity-90 transition-opacity" />
-          <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500" />
+          <div class="absolute inset-0 bg-linear-to-r from-indigo-600 to-cyan-500 opacity-100 group-hover:opacity-90 transition-opacity" />
+          <div class="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500" />
           <span class="relative flex items-center gap-2">
             Start building
             <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">

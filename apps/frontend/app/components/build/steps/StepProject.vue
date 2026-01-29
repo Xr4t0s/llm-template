@@ -27,7 +27,7 @@
           <!-- Glow background -->
           <div
             v-if="store.projectType === t.value"
-            class="absolute inset-0 bg-gradient-to-br from-indigo-600/20 to-cyan-500/20 rounded-xl blur opacity-100 transition-opacity duration-300"
+            class="absolute inset-0 bg-linear-to-br from-indigo-600/20 to-cyan-500/20 rounded-xl blur opacity-100 transition-opacity duration-300"
           />
 
           <!-- Card -->
@@ -83,7 +83,7 @@
           class="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300"
           :class="[
             store.goal === g.value
-              ? 'bg-gradient-to-r from-indigo-600 to-cyan-500 text-white shadow-lg shadow-indigo-500/30'
+              ? 'bg-linear-to-r from-indigo-600 to-cyan-500 text-white shadow-lg shadow-indigo-500/30'
               : 'bg-white/5 border border-white/20 text-white/70 hover:bg-white/10 hover:border-white/30'
           ]"
         >

@@ -13,7 +13,7 @@
             <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight text-white">
               Build products
               <br />
-              <span class="bg-gradient-to-r from-indigo-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">
+              <span class="bg-linear-to-r from-indigo-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">
                 with intention
               </span>
             </h1>
@@ -21,7 +21,7 @@
 
           <!-- Subheading -->
           <p class="text-lg sm:text-xl text-white/60 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-            A Web3-native workspace to orchestrate LLMs, manage state, and ship real artifacts —
+            A Web3-native workspace to orchestrate LLMs using our customs MCP services, where you can manage state, and ship real artifacts —
             <span class="text-white font-medium">from idea to production.</span>
           </p>
 
@@ -32,9 +32,9 @@
               class="group relative px-8 py-4 rounded-xl font-semibold text-white overflow-hidden"
             >
               <!-- Gradient background -->
-              <div class="absolute inset-0 bg-gradient-to-r from-indigo-600 to-cyan-500 opacity-100 group-hover:opacity-90 transition-opacity" />
+              <div class="absolute inset-0 bg-linear-to-r from-indigo-600 to-cyan-500 opacity-100 group-hover:opacity-90 transition-opacity" />
               <!-- Shimmer effect -->
-              <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500" />
+              <div class="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500" />
               <!-- Text -->
               <span class="relative flex items-center gap-2">
                 Start building
@@ -73,7 +73,7 @@
         <div class="max-w-3xl space-y-6">
 
           <h2 class="text-3xl sm:text-4xl font-bold text-white">
-            Built for builders, <span class="text-transparent bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text">not prompts.</span>
+            How do we prevent you from <span class="text-transparent bg-linear-to-r from-indigo-400 to-cyan-400 bg-clip-text">prompting.</span>
           </h2>
 
           <p class="text-lg text-white/60 leading-relaxed">
@@ -93,9 +93,9 @@
 
           <!-- Feature 1 -->
           <div class="group relative">
-            <div class="absolute inset-0 bg-gradient-to-br from-indigo-600/20 to-transparent rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
+            <div class="absolute inset-0 bg-linear-to-br from-indigo-600/20 to-transparent rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
             <div class="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 space-y-4 group-hover:border-white/20 transition duration-300">
-              <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-indigo-500/20 to-indigo-400/20 flex items-center justify-center text-2xl">
+              <div class="w-12 h-12 rounded-lg bg-linear-to-br from-indigo-500/20 to-indigo-400/20 flex items-center justify-center text-2xl">
                 🔀
               </div>
               <h3 class="text-lg font-semibold text-white">
@@ -109,9 +109,9 @@
 
           <!-- Feature 2 -->
           <div class="group relative">
-            <div class="absolute inset-0 bg-gradient-to-br from-cyan-600/20 to-transparent rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
+            <div class="absolute inset-0 bg-linear-to-br from-cyan-600/20 to-transparent rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
             <div class="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 space-y-4 group-hover:border-white/20 transition duration-300">
-              <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-cyan-500/20 to-cyan-400/20 flex items-center justify-center text-2xl">
+              <div class="w-12 h-12 rounded-lg bg-linear-to-br from-cyan-500/20 to-cyan-400/20 flex items-center justify-center text-2xl">
                 💾
               </div>
               <h3 class="text-lg font-semibold text-white">
@@ -125,9 +125,9 @@
 
           <!-- Feature 3 -->
           <div class="group relative">
-            <div class="absolute inset-0 bg-gradient-to-br from-emerald-600/20 to-transparent rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
+            <div class="absolute inset-0 bg-linear-to-br from-emerald-600/20 to-transparent rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
             <div class="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 space-y-4 group-hover:border-white/20 transition duration-300">
-              <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-emerald-500/20 to-emerald-400/20 flex items-center justify-center text-2xl">
+              <div class="w-12 h-12 rounded-lg bg-linear-to-br from-emerald-500/20 to-emerald-400/20 flex items-center justify-center text-2xl">
                 🚀
               </div>
               <h3 class="text-lg font-semibold text-white">
@@ -150,7 +150,7 @@
       <div class="max-w-6xl mx-auto px-6">
         <div class="group relative">
           <!-- Gradient glow background -->
-          <div class="absolute inset-0 bg-gradient-to-br from-indigo-600/20 via-purple-600/20 to-transparent rounded-3xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
+          <div class="absolute inset-0 bg-linear-to-br from-indigo-600/20 via-purple-600/20 to-transparent rounded-3xl blur opacity-0 group-hover:opacity-100 transition duration-500" />
           
           <!-- Card -->
           <div class="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl px-8 sm:px-12 py-12 sm:py-16 space-y-6 group-hover:border-white/20 transition duration-300">
@@ -169,7 +169,7 @@
               class="group/btn relative inline-flex px-8 py-4 rounded-xl font-semibold text-white overflow-hidden"
             >
               <!-- Gradient background -->
-              <div class="absolute inset-0 bg-gradient-to-r from-indigo-600 to-cyan-500 opacity-100 group-hover/btn:opacity-90 transition-opacity" />
+              <div class="absolute inset-0 bg-linear-to-r from-indigo-600 to-cyan-500 opacity-100 group-hover/btn:opacity-90 transition-opacity" />
               <!-- Text -->
               <span class="relative flex items-center gap-2">
                 Enter workspace
