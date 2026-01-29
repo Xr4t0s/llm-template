@@ -1,7 +1,7 @@
 <template>
   <footer class="relative z-10 w-full  sm:mt-40 border-t border-white/10">
     <!-- Background gradient -->
-    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-950/5 to-black pointer-events-none" />
+    <div class="absolute inset-0 bg-linear-to-b from-transparent via-indigo-950/5 to-black pointer-events-none" />
 
     <div class="relative max-w-7xl mx-auto px-6 sm:px-8 py-16 sm:py-20">
       <div class="space-y-12 sm:space-y-16">
@@ -16,12 +16,12 @@
               class="flex items-center gap-3 group w-fit"
             >
               <div class="relative">
-                <div class="absolute inset-0 bg-gradient-to-br from-indigo-500 to-cyan-400 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div class="relative w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500 to-cyan-400 flex items-center justify-center">
+                <div class="absolute inset-0 bg-linear-to-br from-indigo-500 to-cyan-400 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div class="relative w-10 h-10 rounded-lg bg-linear-to-br from-indigo-500 to-cyan-400 flex items-center justify-center">
                   <span class="text-white font-black text-lg">⚡</span>
                 </div>
               </div>
-              <span class="text-white font-black text-lg tracking-tight group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-indigo-300 group-hover:to-cyan-300 group-hover:bg-clip-text transition-all duration-300">
+              <span class="text-white font-black text-lg tracking-tight group-hover:text-transparent group-hover:bg-linear-to-r group-hover:from-indigo-300 group-hover:to-cyan-300 group-hover:bg-clip-text transition-all duration-300">
                 Studio
               </span>
             </NuxtLink>
@@ -151,7 +151,7 @@
         </div>
 
         <!-- Divider -->
-        <div class="h-px bg-gradient-to-r from-white/0 via-white/10 to-white/0" />
+        <div class="h-px bg-linear-to-r from-white/0 via-white/10 to-white/0" />
 
         <!-- Bottom section -->
         <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
@@ -172,7 +172,7 @@
               class="group relative w-10 h-10 flex items-center justify-center rounded-lg bg-white/5 border border-white/10 hover:border-white/30 hover:bg-white/10 transition-all duration-300"
             >
               <!-- Hover glow -->
-              <div class="absolute inset-0 rounded-lg bg-gradient-to-br opacity-0 group-hover:opacity-20 transition-opacity duration-300" :style="{ backgroundImage: `linear-gradient(135deg, ${social.color} 0%, rgba(0,0,0,0) 100%)` }" />
+              <div class="absolute inset-0 rounded-lg bg-linear-to-br opacity-0 group-hover:opacity-20 transition-opacity duration-300" :style="{ backgroundImage: `linear-gradient(135deg, ${social.color} 0%, rgba(0,0,0,0) 100%)` }" />
               
               <!-- Icon -->
               <svg class="w-5 h-5 text-white/70 group-hover:text-white transition-colors relative z-10" fill="currentColor" viewBox="0 0 24 24">

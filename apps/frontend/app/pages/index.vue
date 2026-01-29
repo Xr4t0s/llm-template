@@ -47,7 +47,7 @@
           <!-- Subheading -->
           <p class="text-lg sm:text-xl text-white/70 max-w-2xl leading-relaxed animate-fade-in font-light" style="animation-delay: 0.2s;">
             A Web3-native workspace to orchestrate LLMs using custom MCP services. Manage state, maintain context, and ship real artifacts—
-            <span class="text-white font-semibold bg-linear-to-r from-indigo-200 to-cyan-200 bg-clip-text text-transparent">from idea to production.</span>
+            <span class="text-white font-semibold bg-linear-to-r from-indigo-200 to-cyan-200 bg-clip-text">from idea to production.</span>
           </p>
 
           <!-- CTA Buttons -->
@@ -85,7 +85,7 @@
           </div>
 
           <!-- Stats row -->
-          <div class="flex flex-wrap gap-8 pt-8 animate-fade-in border-t border-white/10 pt-8" style="animation-delay: 0.4s;">
+          <div class="flex flex-wrap gap-8 animate-fade-in border-t border-white/10 pt-8" style="animation-delay: 0.4s;">
             <div class="space-y-2">
               <div class="text-3xl font-bold text-transparent bg-clip-text bg-linear-to-r from-indigo-400 to-cyan-400">
                 3<span class="text-sm text-white/40">+</span>

@@ -18,8 +18,8 @@
       </svg>
 
       <!-- Gradient overlays for depth -->
-      <div class="absolute inset-0 bg-gradient-to-b from-black/0 via-transparent to-black/40" />
-      <div class="absolute inset-0 bg-gradient-to-r from-indigo-950/10 via-transparent to-cyan-950/10 opacity-50" />
+      <div class="absolute inset-0 bg-linear-to-b from-black/0 via-transparent to-black/40" />
+      <div class="absolute inset-0 bg-linear-to-r from-indigo-950/10 via-transparent to-cyan-950/10 opacity-50" />
     </div>
 
     <!-- Navigation -->

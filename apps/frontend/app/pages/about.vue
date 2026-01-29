@@ -69,7 +69,7 @@
               <div class="h-px bg-linear-to-r from-white/0 via-white/20 to-white/0" />
               
               <p class="text-xl text-white/80 leading-relaxed font-light">
-                What they actually needed wasn't another AI chat interface. They needed a <span class="font-bold text-white bg-linear-to-r from-indigo-300 to-cyan-300 bg-clip-text text-transparent">workspace</span>—one that understood their intent, maintained their context across sessions, and shipped production-ready artifacts from day one.
+                What they actually needed wasn't another AI chat interface. They needed a <span class="font-bold text-white bg-linear-to-r from-indigo-300 to-cyan-300 bg-clip-text">workspace</span>—one that understood their intent, maintained their context across sessions, and shipped production-ready artifacts from day one.
               </p>
               
               <div class="h-px bg-linear-to-r from-white/0 via-white/20 to-white/0" />

@@ -1,11 +1,11 @@
 <template>
   <nav class="fixed top-0 w-full z-50">
     <!-- Backdrop blur background -->
-    <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/0 backdrop-blur-xl border-b border-white/10" />
+    <div class="absolute inset-0 bg-linear-to-b from-black/80 via-black/60 to-black/0 backdrop-blur-xl border-b border-white/10" />
     
     <!-- Animated glow underline -->
     <div 
-      class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+      class="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-indigo-500/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
       style="box-shadow: 0 0 20px rgba(139, 92, 246, 0.3)"
     />
 
@@ -19,14 +19,14 @@
         >
           <!-- Logo box with glow -->
           <div class="relative">
-            <div class="absolute inset-0 bg-gradient-to-br from-indigo-500 via-indigo-400 to-cyan-400 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="filter: blur(8px)" />
-            <div class="relative w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/40 group-hover:shadow-2xl group-hover:shadow-indigo-500/60 transition-all duration-300">
+            <div class="absolute inset-0 bg-linear-to-br from-indigo-500 via-indigo-400 to-cyan-400 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="filter: blur(8px)" />
+            <div class="relative w-10 h-10 rounded-xl bg-linear-to-br from-indigo-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/40 group-hover:shadow-2xl group-hover:shadow-indigo-500/60 transition-all duration-300">
               <span class="text-white font-black text-lg">⚡</span>
             </div>
           </div>
           
           <!-- Logo text with gradient on hover -->
-          <span class="text-white font-black text-xl tracking-tight group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-indigo-300 group-hover:via-cyan-300 group-hover:to-emerald-300 group-hover:bg-clip-text transition-all duration-300">
+          <span class="text-white font-black text-xl tracking-tight group-hover:text-transparent group-hover:bg-linear-to-r group-hover:from-indigo-300 group-hover:via-cyan-300 group-hover:to-emerald-300 group-hover:bg-clip-text transition-all duration-300">
             Studio
           </span>
         </NuxtLink>
@@ -47,7 +47,7 @@
             <span class="relative">{{ link.label }}</span>
             
             <!-- Underline animation on hover -->
-            <span class="absolute bottom-1 left-4 right-4 h-0.5 bg-gradient-to-r from-indigo-400/0 via-indigo-400 to-cyan-400/0 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center" />
+            <span class="absolute bottom-1 left-4 right-4 h-0.5 bg-linear-to-r from-indigo-400/0 via-indigo-400 to-cyan-400/0 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center" />
           </NuxtLink>
         </div>
 
@@ -70,7 +70,7 @@
             :aria-label="mobileMenuOpen ? 'Close menu' : 'Open menu'"
           >
             <!-- Glow on hover -->
-            <div class="absolute inset-0 rounded-lg bg-gradient-to-br from-indigo-500/0 to-cyan-500/0 group-hover:from-indigo-500/10 group-hover:to-cyan-500/10 transition-colors duration-300" />
+            <div class="absolute inset-0 rounded-lg bg-linear-to-br from-indigo-500/0 to-cyan-500/0 group-hover:from-indigo-500/10 group-hover:to-cyan-500/10 transition-colors duration-300" />
             
             <svg class="w-5 h-5 text-white relative transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path v-if="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16" />
@@ -92,7 +92,7 @@
       >
         <div
           v-if="mobileMenuOpen"
-          class="lg:hidden absolute top-full left-4 right-4 mt-3 rounded-2xl bg-gradient-to-br from-white/15 via-white/10 to-white/5 backdrop-blur-2xl border border-white/20 shadow-2xl shadow-black/50 p-4 space-y-2 origin-top"
+          class="lg:hidden absolute top-full left-4 right-4 mt-3 rounded-2xl bg-linear-to-br from-white/15 via-white/10 to-white/5 backdrop-blur-2xl border border-white/20 shadow-2xl shadow-black/50 p-4 space-y-2 origin-top"
         >
           <!-- Navigation links -->
           <NuxtLink
@@ -109,7 +109,7 @@
           </NuxtLink>
 
           <!-- Divider -->
-          <div class="h-px bg-gradient-to-r from-white/0 via-white/10 to-white/0 my-2" />
+          <div class="h-px bg-linear-to-r from-white/0 via-white/10 to-white/0 my-2" />
 
           <!-- Additional mobile-specific actions could go here -->
           <div class="px-4 py-3 text-xs text-white/40 text-center">
