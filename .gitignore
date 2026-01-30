@@ -1,6 +1,11 @@
 pnpm-lock.yaml
 package-lock.json
 node_modules/
-n8n/data/*
+n8n/data/database.sqlite
+n8n/data/*.sqlite
+n8n/data/*.db
+n8n/data/*.wal
+n8n/data/*.shm
+
 dist/
 .nuxt/shared/*
