@@ -1,8 +1,8 @@
 <template>
   <div class="mt-auto pt-8 border-t border-white/10 space-y-6">
     <!-- Hint / Helper text -->
-    <div class="flex items-start gap-3 px-5 py-4 rounded-xl bg-gradient-to-r from-cyan-500/15 to-emerald-500/10 border border-cyan-400/30">
-      <svg class="w-5 h-5 text-cyan-400 shrink-0 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+    <div class="flex items-start gap-3 px-5 py-4 rounded-xl bg-linear-to-r from-cyan-500/15 to-emerald-500/10 border border-cyan-400/30">
+      <svg class="w-5 h-5 text-cyan-400 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
         <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
       </svg>
       <p class="text-sm text-cyan-300 leading-relaxed">
@@ -26,7 +26,7 @@
 
         <!-- Content -->
         <span class="relative flex items-center justify-center gap-2">
-          <svg class="w-5 h-5 group-hover:translate-x-[-4px] transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
           </svg>
           <span class="hidden sm:inline">Back</span>
@@ -40,10 +40,10 @@
         class="flex-1 group relative px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold text-white text-base overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed transition-all"
       >
         <!-- Gradient background -->
-        <div class="absolute inset-0 bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 opacity-100 group-hover:opacity-90 group-disabled:opacity-70 transition-opacity rounded-xl" />
+        <div class="absolute inset-0 bg-linear-to-r from-indigo-600 via-indigo-500 to-cyan-500 opacity-100 group-hover:opacity-90 group-disabled:opacity-70 transition-opacity rounded-xl" />
         
         <!-- Shimmer effect -->
-        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full group-disabled:translate-x-0 transition-transform duration-700 rounded-xl" />
+        <div class="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full group-disabled:translate-x-0 transition-transform duration-700 rounded-xl" />
 
         <!-- Content -->
         <span class="relative flex items-center justify-center gap-3">
