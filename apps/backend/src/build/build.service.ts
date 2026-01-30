@@ -8,7 +8,6 @@ export class BuildService {
 
   async triggerWorkflow(payload: any) {
     try {
-	  console.log(this.N8N_WEBHOOK_URL);
       let res = await axios.post(
         this.N8N_WEBHOOK_URL,
 		payload={

@@ -1,24 +1,131 @@
 """
-MCP Documentation Server
-Orchestrates documentation generation for decentralized applications
+MCP Documentation Server - Refactored
+Orchestrates complete project creation for decentralized applications
 
 Tools:
-1. generate_documentation - Creates 5 markdown files for GitBook
-2. generate_lore - Assembles project identity into consistent narrative
-3. generate_social_content - Creates 10-20 social media posts
-4. generate_visuals - Creates design briefs for Logo, Banner, Meme, BuyBot, DEXScreener
-5. generate_landing_page - Creates production-ready HTML landing page
+1. generate_lore - Project narrative and identity
+2. generate_documentation - 5 markdown files for GitBook
+3. generate_tweets - Social media content for X/Twitter
+4. generate_logo - Design brief for logo
+5. generate_banner - Design brief for banner
+6. generate_x_assets - Design briefs for all X/Twitter assets
+7. generate_website - Production-ready HTML landing page
+8. generate_complete_package - All-in-one orchestration
 """
+
 from mcp.server.fastmcp import FastMCP
-from typing import Dict, List, Optional
+from typing import Optional, List
 
 # -------------------------------------------------
 # MCP SERVER INITIALIZATION
 # -------------------------------------------------
-mcp = FastMCP("documentation-server")
+mcp = FastMCP("documentation-server-v2")
 
 # -------------------------------------------------
-# TOOL 1: GENERATE DOCUMENTATION
+# TOOL 1: GENERATE LORE
+# -------------------------------------------------
+@mcp.tool()
+def generate_lore(
+    project_name: str,
+    project_type: str,
+    goal: str,
+    tone: str = "professional",
+    has_mascot: bool = False,
+    user_input: str = ""
+) -> str:
+    """
+    Generate unified project identity and narrative.
+    
+    Creates the foundation for all marketing and documentation content.
+    
+    Args:
+        project_name: Name of the project
+        project_type: Type (defi, nft, dao, token, gaming, utility, etc.)
+        goal: Primary objective of the project
+        tone: Narrative tone (professional, playful, meme, serious, edgy)
+        has_mascot: Whether to create a mascot character
+        user_input: Additional context or custom ideas
+    
+    Returns:
+        Prompt to send to LLM for lore generation
+    """
+
+    mascot_section = """
+### MASCOT CHARACTER
+- Name and personality
+- Visual description
+- Role in the narrative
+- Catchphrase or signature move
+""" if has_mascot else ""
+
+    prompt = f"""
+You are a brand strategist for Web3 projects.
+
+# PROJECT BRIEF
+- Name: {project_name}
+- Type: {project_type}
+- Goal: {goal}
+- Tone: {tone}
+- Has Mascot: {"Yes" if has_mascot else "No"}
+
+# USER INPUT
+{user_input if user_input else "Standard Web3 project branding"}
+
+---
+
+# TASK
+Create a unified, consistent project lore (400-600 words) that serves as the foundation for ALL future content.
+
+## OUTPUT STRUCTURE
+
+### 1. CORE IDENTITY
+What is {project_name} in the simplest terms? (2-3 sentences)
+
+### 2. ORIGIN STORY
+How did {project_name} come to be? (1 paragraph, memorable)
+
+### 3. VISION & MISSION
+- What we're building
+- Why it matters
+- Who benefits
+
+### 4. CORE VALUES
+3-4 guiding principles
+
+### 5. TARGET AUDIENCE
+Who is this for? (specific)
+
+### 6. UNIQUE SELLING PROPOSITION
+What makes {project_name} different?
+
+{mascot_section}
+
+### 7. TONE OF VOICE
+- How we communicate
+- Words we use
+- Words we avoid
+- Example phrases
+
+### 8. KEY MESSAGING PILLARS
+3-5 main themes to emphasize
+
+---
+
+# REQUIREMENTS
+- Total: 400-600 words
+- Be specific and memorable
+- Ensure internal consistency
+- Make it distinctive and ownable
+- Align with {tone} tone
+
+Generate the lore now. Output ONLY the lore content, nothing else.
+"""
+
+    return prompt
+
+
+# -------------------------------------------------
+# TOOL 2: GENERATE DOCUMENTATION
 # -------------------------------------------------
 @mcp.tool()
 def generate_documentation(
@@ -26,887 +133,1057 @@ def generate_documentation(
     lore: str,
     tone: str,
     project_type: str,
-    goal: str,
-    has_mascot: bool = False,
-    tagline: str = ""
+    goal: str
 ) -> str:
     """
-    Generate complete documentation as multiple markdown files.
-
-    IMPORTANT:
-    - This tool DOES NOT write files itself.
-    - It returns a PROMPT that will be sent to the LLM.
-    - The LLM MUST output a strict JSON array of files.
-    - Each file MUST contain a `path` and `content`.
-    """
-
-    prompt = f"""
-You are an autonomous documentation generation agent.
-
-You are NOT conversational.
-You do NOT explain your reasoning.
-You do NOT ask questions.
-You do NOT add commentary, summaries, or meta text.
-
-Your ONLY task is to generate documentation files.
-
---------------------------------
-PROJECT CONTEXT
---------------------------------
-
-Project Name: {project_name}
-Project Type: {project_type}
-Primary Goal: {goal}
-Tone: {tone}
-Tagline: {tagline if tagline else "Generate an appropriate tagline"}
-Has Mascot: {"Yes" if has_mascot else "No"}
-
---------------------------------
-PROJECT LORE
---------------------------------
-
-{lore}
-
---------------------------------
-TASK
---------------------------------
-
-Generate EXACTLY 5 complete markdown documentation files.
-
-Each file must be:
-- Fully written
-- Production-ready
-- Suitable for GitBook or similar documentation platforms
-- Written in a consistent "{tone}" tone
-
---------------------------------
-FILES TO GENERATE
---------------------------------
-
-1. ./docs/step1/01_introduction.md
-   - Project introduction
-   - What is {project_name}
-   - Key features (3–5 bullet points)
-   - Why the project matters
-   - Quick start overview
-
-2. ./docs/step1/02_vision.md
-   - Vision statement
-   - Core philosophy
-   - Long-term mission
-   - Community values
-   - What makes the project unique
-
-3. ./docs/step1/03_roadmap.md
-   - Clear project phases or timeline
-   - Key milestones
-   - Short-term and long-term goals
-   - Future expansion plans
-
-4. ./docs/step1/04_tokenomics.md
-   {"Generate full tokenomics breakdown" if project_type in ["defi", "token", "dao"] else "Explain project utility and economic model (no token)"}
-   - Distribution (if applicable)
-   - Utility / incentives
-   - Supply or participation logic
-
-5. ./docs/step1/05_faq.md
-   - 10–15 frequently asked questions
-   - Clear and concise answers
-   - Cover basics, technical aspects, community, and roadmap
-
---------------------------------
-STRICT OUTPUT FORMAT (MANDATORY)
---------------------------------
-
-You MUST output ONLY a valid JSON array.
-You MUST NOT wrap the output in an object.
-You MUST NOT include explanations or text outside JSON.
-You MUST NOT stringify the JSON.
-
-The output MUST follow EXACTLY this structure:
-
-[
-  {{
-    "path": "./docs/step1/01_introduction.md",
-    "content": "<full markdown content here>"
-  }},
-  {{
-    "path": "./docs/step1/02_vision.md",
-    "content": "<full markdown content here>"
-  }},
-  {{
-    "path": "./docs/step1/03_roadmap.md",
-    "content": "<full markdown content here>"
-  }},
-  {{
-    "path": "./docs/step1/04_tokenomics.md",
-    "content": "<full markdown content here>"
-  }},
-  {{
-    "path": "./docs/step1/05_faq.md",
-    "content": "<full markdown content here>"
-  }}
-]
-
---------------------------------
-CONTENT REQUIREMENTS
---------------------------------
-
-- Each file: 800-1500 words
-- Proper markdown structure (titles, subtitles, lists)
-- Emojis ONLY in titles, and more if tone is "meme" or "community"
-- No placeholders
-- No TODOs
-- No generic filler content
-- Be specific, concrete, and actionable
-
-Generate the JSON array now.
-
---------------------------------
-LAST REQUIREMENTS
---------------------------------
-After having done create those files, DO NOT CALL MPC, if files are ready, FINISH.
-
-"""
-
-    return prompt
-
-
-# -------------------------------------------------
-# TOOL 2: GENERATE LORE
-# -------------------------------------------------
-@mcp.tool()
-def generate_lore(
-    project_name: str,
-    project_type: str,
-    tone: str,
-    has_mascot: bool,
-    goal: str,
-    visual_vibe: str = "bold",
-    user_input: str = ""
-) -> str:
-    """
-    Assemble project identity into one cohesive, consistent narrative.
-
-    Takes scattered ideas and creates a unified lore that will be used
-    across all marketing materials, documentation, and social content.
-
+    Generate 5 complete markdown documentation files for GitBook.
+    
+    Creates production-ready docs: Introduction, Vision, Roadmap, Tokenomics, FAQ.
+    
     Args:
-        project_name: Name of the project
-        project_type: Type (meme, defi, nft, dao, gaming, etc.)
-        tone: Narrative tone (serious, playful, meme, professional)
-        has_mascot: Whether there's a mascot character
-        goal: Primary objective
-        visual_vibe: Visual aesthetic (bold, minimal, retro, futuristic)
-        user_input: Any additional context or ideas from user
+        project_name: Project name
+        lore: Project narrative (from generate_lore)
+        tone: Writing tone
+        project_type: Type of project
+        goal: Primary goal
+    
+    Returns:
+        Prompt for LLM to generate JSON array of documentation files
     """
-
-    mascot_section = """
-# MASCOT CHARACTER
-If the project has a mascot, create:
-- Name and personality
-- Visual description (for future asset generation)
-- Role in the project narrative
-- Catchphrase or signature move
-""" if has_mascot else ""
 
     prompt = f"""
-You are a brand strategist and storyteller for Web3 projects.
-
-# PROJECT BRIEF
-- **Name**: {project_name}
-- **Type**: {project_type}
-- **Primary Goal**: {goal}
-- **Tone**: {tone}
-- **Visual Vibe**: {visual_vibe}
-- **Has Mascot**: {"Yes - develop a character" if has_mascot else "No"}
-
-# USER INPUT
-{user_input if user_input else "No additional context provided"}
-
----
-
-# YOUR TASK
-Create a unified, consistent project lore that will serve as the foundation for ALL future content.
-
-## OUTPUT STRUCTURE
-
-### 1. CORE IDENTITY (2-3 sentences)
-The absolute essence of {project_name}. What is it in the simplest terms?
-
-### 2. ORIGIN STORY (1 paragraph)
-How did {project_name} come to be? Keep it concise but memorable.
-
-### 3. VISION & MISSION (3-5 bullet points)
-- What we're building
-- Why it matters
-- Who benefits
-
-### 4. CORE VALUES (3-4 values)
-The principles that guide {project_name}
-
-### 5. TARGET AUDIENCE
-Who is this for? Be specific.
-
-### 6. UNIQUE SELLING PROPOSITION
-What makes {project_name} different from similar projects?
-
-{mascot_section}
-
-### 7. TONE OF VOICE GUIDELINES
-- How we communicate
-- Words we use
-- Words we avoid
-- Example phrases
-
-### 8. KEY MESSAGING PILLARS (3-5 themes)
-The main themes to emphasize in all communications
-
----
-
-# REQUIREMENTS
-- Keep total output to 400-600 words
-- Be specific and memorable
-- Ensure internal consistency
-- Make it distinctive and ownable
-- Align with {tone} tone and {visual_vibe} aesthetic
-- This will be used as the source of truth for all content
-
-Generate the unified lore now.
-"""
-
-    return prompt
-
-
-# -------------------------------------------------
-# TOOL 3: GENERATE SOCIAL CONTENT
-# -------------------------------------------------
-@mcp.tool()
-def generate_social_content(
-    project_name: str,
-    lore: str,
-    tone: str,
-    platforms: List[str] = ["twitter", "telegram"],
-    count: int = 15,
-    content_types: List[str] = ["announcement", "engagement", "educational"]
-) -> str:
-    """
-    Generate 10-20 social media posts optimized for X (Twitter) and Telegram.
-
-    Creates ready-to-post content that maintains brand consistency and
-    maximizes engagement.
-
-    Args:
-        project_name: Name of the project
-        lore: Project narrative and identity
-        tone: Social media tone
-        platforms: Platforms to optimize for (twitter, telegram, discord)
-        count: Number of posts to generate (10-20)
-        content_types: Types of posts (announcement, meme, engagement, educational)
-    """
-
-    platform_specs = {
-        "twitter": "280 characters, hashtags, hooks, viral potential",
-        "telegram": "Longer form, community-focused, can include emojis and formatting",
-        "discord": "Casual, conversational, community announcements"
-    }
-
-    platform_guidelines = "\n".join([
-        f"- **{platform.upper()}**: {platform_specs.get(platform, 'General social media')}"
-        for platform in platforms
-    ])
-
-    content_type_examples = {
-        "announcement": "New features, updates, milestones",
-        "engagement": "Questions, polls, community callouts",
-        "educational": "Explaining features, benefits, how-tos",
-        "meme": "Funny, relatable, shareable content",
-        "hype": "Excitement building, countdowns, teasers"
-    }
-
-    content_guidelines = "\n".join([
-        f"- **{ctype.upper()}**: {content_type_examples.get(ctype, 'General content')}"
-        for ctype in content_types
-    ])
-
-
-    prompt = f"""
-You are a social media manager for Web3 projects, specializing in viral content.
+You are a technical documentation writer for Web3 projects.
 
 # PROJECT CONTEXT
-**Name**: {project_name}
-**Tone**: {tone}
+- Name: {project_name}
+- Type: {project_type}
+- Goal: {goal}
+- Tone: {tone}
 
 # PROJECT LORE
 {lore}
 
-# TARGET PLATFORMS
-{platform_guidelines}
+---
 
-# CONTENT TYPES TO CREATE
-{content_guidelines}
+# TASK
+Generate EXACTLY 5 complete, production-ready markdown files for GitBook.
+
+Each file: 800-1500 words, proper markdown structure, NO placeholders, NO TODOs.
+
+## FILES TO GENERATE
+
+1. **01_introduction.md**
+   - What is {project_name}
+   - Key features (3-5 bullet points)
+   - Why it matters
+   - Quick start overview
+
+2. **02_vision.md**
+   - Vision statement
+   - Core philosophy
+   - Long-term mission
+   - Community values
+   - What makes it unique
+
+3. **03_roadmap.md**
+   - Project phases/timeline
+   - Key milestones
+   - Short-term and long-term goals
+   - Future expansion plans
+
+4. **04_tokenomics.md**
+   {"- Full tokenomics breakdown" if project_type in ["defi", "token", "dao"] else "- Project utility and economic model"}
+   - Distribution (if applicable)
+   - Utility/incentives
+   - Supply or participation logic
+
+5. **05_faq.md**
+   - 10-15 frequently asked questions
+   - Clear, concise answers
+   - Cover basics, technical aspects, community, roadmap
 
 ---
 
-# YOUR TASK
-Generate {count} social media posts that are ready to publish immediately.
+# OUTPUT FORMAT (MANDATORY JSON ARRAY)
 
-## DISTRIBUTION
-Create a balanced mix:
-- 40% engagement/community posts
-- 30% educational/informative posts
-- 20% announcement/update posts
-- 10% meme/fun posts
+You MUST output ONLY a valid JSON array. No explanations, no text outside JSON.
 
-## OUTPUT FORMAT
-For each post, provide:
+[
+  {{
+    "filename": "01_introduction.md",
+    "content": "<full markdown content>"
+  }},
+  {{
+    "filename": "02_vision.md",
+    "content": "<full markdown content>"
+  }},
+  {{
+    "filename": "03_roadmap.md",
+    "content": "<full markdown content>"
+  }},
+  {{
+    "filename": "04_tokenomics.md",
+    "content": "<full markdown content>"
+  }},
+  {{
+    "filename": "05_faq.md",
+    "content": "<full markdown content>"
+  }}
+]
 
-```
-POST #{"{"}number{"}"}
-Platform: [Twitter/Telegram/Both]
-Type: [announcement/engagement/educational/meme]
----
-[Post content here]
-[Include hashtags for Twitter]
-[Include emojis where appropriate]
----
-```
+# CONTENT REQUIREMENTS
+- 800-1500 words per file
+- Proper markdown: titles, subtitles, lists
+- Emojis in titles (more if tone is "meme" or "playful")
+- Be specific, concrete, actionable
+- Consistent {tone} tone throughout
 
-## REQUIREMENTS FOR EACH POST
-- **Twitter posts**: Max 280 chars, must include 2-3 relevant hashtags
-- **Telegram posts**: 300-800 chars, more detailed, community-focused
-- Maintain {tone} tone consistently
-- Reference project lore naturally
-- Include clear call-to-action (when appropriate)
-- Use emojis strategically (not excessively)
-- Mix educational value with entertainment
-- Create posts that spark conversations
-- Some posts should be time-sensitive ("This week...", "Coming soon...")
-- Some posts should be evergreen (timeless value)
-
-## SOCIAL MEDIA BEST PRACTICES
-- Start with a hook (first 10 words matter most)
-- Create curiosity or provide value immediately
-- Use active voice
-- Be conversational, not corporate
-- Include numbers when possible (increases engagement)
-- Ask questions to drive comments
-- Create shareable moments
-
-Generate {count} posts now.
+Generate the JSON array now.
 """
 
     return prompt
 
 
 # -------------------------------------------------
-# TOOL 4: GENERATE VISUALS
+# TOOL 3: GENERATE TWEETS
 # -------------------------------------------------
 @mcp.tool()
-def generate_visuals(
+def generate_tweets(
     project_name: str,
     lore: str,
     tone: str,
-    visual_vibe: str = "bold",
-    color_palette: List[str] = ["indigo", "lime"],
-    mascot_description: str = "",
-    visuals_to_generate: List[str] = ["logo", "banner", "meme", "buybot_image", "dexscreener_image"],
-    style_guide: str = ""
+    count: int = 20,
+    include_threads: bool = True
 ) -> str:
     """
-    Generate visual design prompts and specifications for Web3 project assets.
-
-    Creates detailed briefs for each visual asset that can be used with
-    image generation AI or handed to a designer.
-
+    Generate Twitter/X-optimized posts and content.
+    
+    Creates ready-to-post tweets with hooks, hashtags, and engagement tactics.
+    
     Args:
-        project_name: Name of the project
-        lore: Project narrative and identity
-        tone: Brand tone (serious, playful, meme, professional)
-        visual_vibe: Visual aesthetic (bold, minimal, retro, futuristic, neon, cyberpunk)
-        color_palette: Primary and secondary colors
-        mascot_description: Description of mascot (if applicable)
-        visuals_to_generate: List of visuals needed
-        style_guide: Additional style guidelines
+        project_name: Project name
+        lore: Project narrative (from generate_lore)
+        tone: Tweet tone (matches project tone)
+        count: Number of tweets (10-30)
+        include_threads: Whether to include thread prompts
+    
+    Returns:
+        Prompt for LLM to generate tweets
     """
 
-    visual_specs = {
-        "logo": "Primary logo for all branding purposes",
-        "banner": "Social media banner for Twitter/Telegram headers",
-        "meme": "Shareable meme image that resonates with Web3 community",
-        "buybot_image": "Image showcasing the buy/trade bot functionality",
-        "dexscreener_image": "Professional chart/graph image for DEX Screener listing"
-    }
+    threads_section = """
+## BONUS: 3 TWEET THREADS
+For each thread, provide:
+- Thread hook (engaging first tweet)
+- 4-5 tweets in sequence
+- Each tweet < 280 characters
+- Clear value/narrative arc
+- CTA at the end
 
-    visuals_guidelines = "\n".join([
-        f"- **{v.upper()}**: {visual_specs.get(v, 'Custom visual')}"
-        for v in visuals_to_generate
-    ])
-
-    color_scheme = " + ".join(color_palette)
-    mascot_info = f"\n**Mascot Reference**: {mascot_description}" if mascot_description else ""
+Example format:
+THREAD 1: [Topic]
+Tweet 1: [Hook]
+Tweet 2: [Development]
+Tweet 3: [More context]
+Tweet 4: [Key insight]
+Tweet 5: [CTA]
+""" if include_threads else ""
 
     prompt = f"""
-You are a creative art director and visual designer specializing in Web3 and crypto projects.
-
-Your mission: create detailed, actionable visual briefs for all assets needed by {project_name}.
+You are a social media expert specializing in Web3 Twitter growth.
 
 # PROJECT CONTEXT
-**Name**: {project_name}
-**Tone**: {tone}
-**Visual Vibe**: {visual_vibe}
-**Color Palette**: {color_scheme}
-{mascot_info}
+- Name: {project_name}
+- Tone: {tone}
 
-# PROJECT LORE (BRAND IDENTITY)
+# PROJECT LORE
 {lore}
 
-# ADDITIONAL STYLE GUIDELINES
-{style_guide if style_guide else "No additional guidelines provided"}
-
 ---
 
-# YOUR TASK
-Generate detailed visual design briefs for the following assets:
+# TASK
+Generate {count} ready-to-post Twitter/X posts.
 
-{visuals_guidelines}
+## DISTRIBUTION
+- 40% engagement/community posts
+- 30% educational/informative posts
+- 20% announcement/update posts
+- 10% meme/fun posts (if tone allows)
 
-For EACH visual, provide:
-1. **Purpose & Context**: What is this visual for and where will it be used?
-2. **Design Brief**: Detailed description for a designer or AI image generator
-3. **Dimensions & Specs**: Exact sizing requirements
-4. **Color & Style**: Specific color usage, gradients, effects
-5. **Key Elements**: What must be included
-6. **Mood & Feel**: Emotional tone and energy
-7. **Don'ts**: What to avoid
-8. **AI Prompt**: A detailed prompt for Midjourney, DALL-E, or similar tools (if applicable)
+## FORMAT FOR EACH POST
 
+POST #{"{"}N{"}"}
+Type: [Engagement/Educational/Announcement/Meme]
+---
+[Tweet content - max 280 characters]
+[2-3 relevant hashtags]
 ---
 
-# VISUAL SPECIFICATIONS
+## REQUIREMENTS PER TWEET
+- Max 280 characters
+- Strong hook in first line
+- Clear value or entertainment
+- 2-3 hashtags maximum
+- Include emojis strategically
+- Mix educational + entertaining
+- Some time-sensitive, some evergreen
+- Include CTAs where appropriate
+- Use active voice
+- Ask questions to drive replies
 
-## 1. LOGO
-**Purpose**: Primary brand mark, favicon, social avatars
-**Dimensions**: 
-- Primary: 1000x1000px (square)
-- Favicon: 512x512px
-- App Icon: 1024x1024px
+## TWITTER BEST PRACTICES
+- Lead with curiosity or value
+- Numbers increase engagement
+- Questions drive comments
+- Use line breaks for readability
+- Reference {tone} tone consistently
+- Make threads shareable
 
-**Design Brief**:
-- Must work at all sizes (from 16x16px to 1000x1000px)
-- Should be memorable and distinctive
-- Must work in single-color (black/white) and full color
-- Should reflect the {tone} tone and {visual_vibe} aesthetic
-- Primary colors: {color_scheme}
-- Consider simplicity for favicon/small sizes
-- Must be instantly recognizable
+{threads_section}
 
-**Variations Needed**:
-- Full logo with text
-- Icon-only version
-- Inverted/dark version
-- Favicon format
-
----
-
-## 2. BANNER
-**Purpose**: Twitter/Telegram header, Discord server banner, website header
-**Dimensions**: 
-- Twitter: 1500x500px
-- Telegram: 1590x400px
-- Discord: 960x540px (min: 320x180px)
-
-**Design Brief**:
-- Hero visual that captures the essence of {project_name}
-- Must include project name prominently
-- Can include tagline/key message
-- Should be eye-catching and shareable
-- Use {color_scheme} color palette
-- Reflect {visual_vibe} aesthetic
-- Leave safe zones for text overlays
-- Should work with logo placement in top corner
-
-**Key Elements**:
-- Project name (large, readable)
-- Optional: tagline or key message
-- Visual elements that represent the project
-- Should feel premium yet approachable
-- Dynamic composition, not static
-
----
-
-## 3. MEME
-**Purpose**: Community engagement, viral social media posts, entertainment
-**Dimensions**: 
-- Instagram Square: 1080x1080px
-- Twitter: 1024x512px
-- General: 1080x1080px (square format recommended)
-
-**Design Brief**:
-- Funny, relatable, shareable content
-- Should resonate with Web3/crypto audience
-- Can be humorous, irreverent, or clever
-- Must feature the {project_name} branding subtly
-- Use {tone} tone in visual style
-- Include text overlay (meme caption style)
-- Should encourage shares and comments
-- Can reference crypto culture, market trends, or community inside jokes
-
-**Mood**:
-- Entertaining and shareable
-- Relatable to crypto/Web3 community
-- Subtle branding (not too pushy)
-- High engagement potential
-
----
-
-## 4. BUYBOT IMAGE
-**Purpose**: Marketing the bot's functionality, app store listing, social posts
-**Dimensions**: 
-- Primary: 1200x800px
-- Instagram Story: 1080x1920px
-- Thumbnail: 1280x720px
-
-**Design Brief**:
-- Showcase ease of use and speed of the buybot
-- Should convey: automation, speed, security, simplicity
-- Can include interface mockups or visual metaphors
-- Use {color_scheme} with high contrast for clarity
-- Modern, sleek design aesthetic
-- Should inspire confidence and excitement
-- Consider showing: charts, upward trends, quick actions, security features
-
-**Key Elements**:
-- Visual representation of the bot in action
-- User-friendly interface (real or conceptual)
-- Speed/efficiency indicators
-- Trust/security signals
-- Clear indication of ease of use
-- {project_name} branding
-
-**Visual Style**:
-- {visual_vibe} aesthetic
-- Modern, professional
-- High-contrast, easy to read
-- Dynamic, energetic feel
-- Should not look technical/intimidating
-
----
-
-## 5. DEXSCREENER IMAGE
-**Purpose**: DEX Screener listing thumbnail, social proof, marketing material
-**Dimensions**: 
-- DEX Screener: 1200x600px
-- Trading interface: 1000x500px
-- Social post: 1200x628px
-
-**Design Brief**:
-- Professional, data-focused visual
-- Should convey: legitimacy, trading potential, community strength
-- Can include: chart elements, price action visualization, community metrics
-- Use {color_scheme} with green/red chart colors (standard for trading)
-- Clean, professional design
-- Should not look like a scam or low-effort project
-- Can feature: logo, project name, key metrics
-
-**Key Elements**:
-- Project logo or name prominently
-- Chart/graph visualization (can be stylized, not necessarily realistic)
-- Positive visual cues (uptrends, growth indicators)
-- Professional color scheme
-- Trust signals (verified, community, volume)
-
-**Visual Style**:
-- Professional and trustworthy
-- Data-driven aesthetic
-- Clean lines and typography
-- Premium feel
-- Finance-focused aesthetic
-
----
-
-# TONE & STYLE GUIDANCE
-Across ALL visuals:
-- **Tone**: {tone}
-- **Aesthetic**: {visual_vibe}
-- **Colors**: {color_scheme}
-- **Feel**: {("Playful, fun, engaging" if tone == "playful" else "Professional, serious, credible" if tone == "serious" else "Bold, edgy, community-focused")}
-
----
-
-# OUTPUT FORMAT
-
-For each visual, structure your response as:
-
-```
-═══════════════════════════════════════════════════════
-VISUAL: [NAME]
-═══════════════════════════════════════════════════════
-
-PURPOSE & CONTEXT
-[Details about where and how this visual will be used]
-
-DIMENSIONS & TECHNICAL SPECS
-- Primary: [size]
-- Variations: [other sizes needed]
-- Format: PNG/SVG/JPG
-- Resolution: [DPI if needed]
-
-DESIGN BRIEF
-[Detailed visual description for designer or AI tool]
-
-COLOR & STYLE REQUIREMENTS
-- Primary colors: [colors]
-- Secondary colors: [colors]
-- Gradients: [if applicable]
-- Effects: [if applicable]
-- Typography: [font style recommendations]
-
-KEY ELEMENTS TO INCLUDE
-- Element 1
-- Element 2
-- Element 3
-[...]
-
-MOOD & FEEL
-[Emotional tone and energy level]
-
-DON'T INCLUDE
-- [Things to avoid]
-- [Bad practices]
-- [Common mistakes]
-
-AI GENERATION PROMPT
-[A detailed, specific prompt for Midjourney, DALL-E, or similar]
-Example: "A sleek, modern logo of a [description]..."
-
-DESIGNER NOTES
-[Additional context or flexibility notes]
-
-═══════════════════════════════════════════════════════
-```
-
----
-
-# FINAL REQUIREMENTS
-- Be specific and concrete (avoid vague descriptions)
-- Each visual should be unique but cohesive
-- Think about how visuals will look together as a brand system
-- Consider practical use cases (how will these be deployed?)
-- Make briefs actionable for both AI tools AND human designers
-- Ensure brand consistency across all visuals
-- Use realistic hex color codes where possible
-- Include technical specs for file formats
-
-Generate the visual briefs for all requested assets now.
-
-# OUTPUT FORMAT
-
-- you will answer with this format EVERYTIME :
-{{
-	{{
-		"path": "filename",
-        "content": "<prompt>"
-	}},
-    {{
-		"path": "filename",
-        "content": "<prompt>"
-	}},
-    {{
-    	...
-	}},
-    ...
-}}
-
-YOU WILL ABSOLUTELY SEND ONLY THIS JSON IN RETURN, WITH AS MANY FIELDS AS THE PROMPT ASK FOR !
+Generate the {count} tweets now. Output ONLY the tweets, no explanations.
 """
 
     return prompt
 
 
 # -------------------------------------------------
-# TOOL 5: GENERATE LANDING PAGE
+# TOOL 4: GENERATE LOGO
 # -------------------------------------------------
 @mcp.tool()
-def generate_landing_page(
+def generate_logo(
+    project_name: str,
+    lore: str,
+    tone: str,
+    visual_vibe: str = "modern",
+    color_palette: List[str] = ["indigo", "lime"],
+    style_guide: str = ""
+) -> str:
+    """
+    Generate detailed logo design brief.
+    
+    Creates specifications for a designer or AI image generator.
+    
+    Args:
+        project_name: Project name
+        lore: Project narrative
+        tone: Brand tone
+        visual_vibe: Visual aesthetic (modern, minimal, bold, retro, cyberpunk)
+        color_palette: Primary and secondary colors
+        style_guide: Additional design guidelines
+    
+    Returns:
+        Prompt for LLM to generate logo brief
+    """
+
+    colors = " + ".join(color_palette)
+
+    prompt = f"""
+You are a professional brand designer specializing in Web3 projects.
+
+# PROJECT CONTEXT
+- Name: {project_name}
+- Tone: {tone}
+- Visual Vibe: {visual_vibe}
+- Colors: {colors}
+
+# PROJECT LORE
+{lore}
+
+---
+
+# TASK
+Create a detailed logo design brief (500-700 words) for a designer or AI tool.
+
+## SECTIONS
+
+### 1. PURPOSE & CONTEXT
+Where will this logo be used? (favicon, social avatars, documentation)
+
+### 2. DESIGN BRIEF
+Detailed visual description for a designer or AI tool like Midjourney/DALL-E
+
+### 3. TECHNICAL SPECIFICATIONS
+- Primary size: 1000x1000px
+- Icon-only version: needs to work at 16x16px to 1000x1000px
+- Favicon: 512x512px
+- App Icon: 1024x1024px
+- Formats: PNG, SVG, JPG
+
+### 4. COLOR & STYLE
+- Primary colors: {colors}
+- Must work in single-color (B&W)
+- Must work in full color
+- No gradients (keep it clean)
+- Modern, distinctive, memorable
+
+### 5. KEY REQUIREMENTS
+- Instantly recognizable
+- Scalable to any size
+- Reflects {tone} tone
+- Aligns with {visual_vibe} aesthetic
+- Unique and ownable
+- Professional yet approachable
+
+### 6. VARIATIONS NEEDED
+- Full logo with text
+- Icon-only version
+- Black version (for dark backgrounds)
+- White version (for light backgrounds)
+- Single-color version
+
+### 7. MOOD & FEEL
+The emotional tone this logo should convey
+
+### 8. DON'T INCLUDE
+- Clichés
+- Generic Web3 symbols
+- Overused gradients
+- Too many elements
+
+### 9. AI GENERATION PROMPT
+A detailed Midjourney/DALL-E prompt for designers using AI
+
+---
+
+# OUTPUT FORMAT
+
+Structure your response with clear sections:
+
+## LOGO DESIGN BRIEF: {project_name}
+
+### Purpose & Context
+[Details]
+
+### Design Brief
+[Visual description]
+
+### Technical Specifications
+[Sizes and formats]
+
+### Color & Style Requirements
+[Specific colors and styling]
+
+### Key Requirements
+[Must-haves]
+
+### Variations Needed
+[List]
+
+### Mood & Feel
+[Emotional tone]
+
+### Elements to Avoid
+[Don'ts]
+
+### AI Prompt (for Midjourney/DALL-E)
+[Detailed prompt]
+
+---
+
+# ADDITIONAL GUIDELINES
+{style_guide if style_guide else "Follow the visual vibe and tone specified above"}
+
+Generate the logo brief now. Output ONLY the brief content.
+"""
+
+    return prompt
+
+
+# -------------------------------------------------
+# TOOL 5: GENERATE BANNER
+# -------------------------------------------------
+@mcp.tool()
+def generate_banner(
+    project_name: str,
+    lore: str,
+    tone: str,
+    visual_vibe: str = "modern",
+    color_palette: List[str] = ["indigo", "lime"],
+    tagline: str = "",
+    style_guide: str = ""
+) -> str:
+    """
+    Generate detailed banner design brief for social media headers.
+    
+    Creates specifications for Twitter, Telegram, Discord banners.
+    
+    Args:
+        project_name: Project name
+        lore: Project narrative
+        tone: Brand tone
+        visual_vibe: Visual aesthetic
+        color_palette: Primary and secondary colors
+        tagline: Project tagline (optional)
+        style_guide: Additional design guidelines
+    
+    Returns:
+        Prompt for LLM to generate banner brief
+    """
+
+    colors = " + ".join(color_palette)
+
+    prompt = f"""
+You are a professional brand designer specializing in Web3 social media assets.
+
+# PROJECT CONTEXT
+- Name: {project_name}
+- Tone: {tone}
+- Visual Vibe: {visual_vibe}
+- Colors: {colors}
+- Tagline: {tagline if tagline else "Create an appropriate tagline"}
+
+# PROJECT LORE
+{lore}
+
+---
+
+# TASK
+Create a detailed banner design brief (400-600 words) for a designer or AI tool.
+
+## SECTIONS
+
+### 1. PURPOSE & CONTEXT
+Used as header banner for:
+- Twitter profile (1500x500px)
+- Telegram channel (1590x400px)
+- Discord server (960x540px)
+- Website header
+
+### 2. DESIGN BRIEF
+Detailed visual description capturing the essence of {project_name}
+
+### 3. TECHNICAL SPECIFICATIONS
+- Twitter: 1500x500px
+- Telegram: 1590x400px
+- Discord: 960x540px (minimum 320x180px)
+- Format: PNG or JPG
+- Resolution: 72-300 DPI
+
+### 4. COLOR & STYLE
+- Primary colors: {colors}
+- Gradient direction and intensity
+- Effects: glow, shadow, blur
+- Typography: bold, modern, readable
+
+### 5. KEY ELEMENTS
+- Project name (large, readable)
+- Tagline or key message (optional)
+- Visual elements representing the project
+- Logo placement (top corner)
+- Safe zones for text overlays
+
+### 6. MOOD & FEEL
+- Dynamic and energetic
+- Premium yet approachable
+- Should feel current and professional
+- Reflects {tone} tone
+
+### 7. COMPOSITION
+- Hero visual that captures essence
+- Eye-catching and shareable
+- Balanced composition
+- Clear focal point
+
+### 8. DON'T INCLUDE
+- Overly busy backgrounds
+- Too many competing elements
+- Generic stock photos
+- Outdated designs
+
+### 9. AI GENERATION PROMPT
+Detailed Midjourney/DALL-E prompt for designers using AI
+
+---
+
+# OUTPUT FORMAT
+
+Structure clearly:
+
+## BANNER DESIGN BRIEF: {project_name}
+
+### Purpose & Context
+[Details]
+
+### Design Brief
+[Visual description]
+
+### Technical Specifications
+[Sizes and formats]
+
+### Color & Style
+[Colors, gradients, effects]
+
+### Key Elements
+[What must be included]
+
+### Mood & Feel
+[Emotional tone]
+
+### Composition Tips
+[Layout guidance]
+
+### Elements to Avoid
+[Don'ts]
+
+### AI Prompt (Midjourney/DALL-E)
+[Detailed prompt]
+
+---
+
+# ADDITIONAL GUIDELINES
+{style_guide if style_guide else "Follow the visual vibe and tone specified above"}
+
+Generate the banner brief now. Output ONLY the brief content.
+"""
+
+    return prompt
+
+
+# -------------------------------------------------
+# TOOL 6: GENERATE X ASSETS
+# -------------------------------------------------
+@mcp.tool()
+def generate_x_assets(
+    project_name: str,
+    lore: str,
+    tone: str,
+    visual_vibe: str = "modern",
+    color_palette: List[str] = ["indigo", "lime"],
+    include_assets: List[str] = ["pfp", "header", "meme", "buybot", "dexscreener"],
+    style_guide: str = ""
+) -> str:
+    """
+    Generate all X/Twitter visual asset design briefs.
+    
+    Creates detailed specifications for: PFP, Header, Meme, BuyBot, DEXScreener.
+    
+    Args:
+        project_name: Project name
+        lore: Project narrative
+        tone: Brand tone
+        visual_vibe: Visual aesthetic
+        color_palette: Primary and secondary colors
+        include_assets: Which assets to generate (all by default)
+        style_guide: Additional design guidelines
+    
+    Returns:
+        Prompt for LLM to generate asset briefs in JSON format
+    """
+
+    colors = " + ".join(color_palette)
+    
+    assets_list = "\n".join([f"- {a.upper()}" for a in include_assets])
+
+    prompt = f"""
+You are a creative art director for Web3 projects specializing in X/Twitter assets.
+
+# PROJECT CONTEXT
+- Name: {project_name}
+- Tone: {tone}
+- Visual Vibe: {visual_vibe}
+- Colors: {colors}
+
+# PROJECT LORE
+{lore}
+
+---
+
+# TASK
+Create detailed design briefs for ALL X/Twitter visual assets.
+
+## ASSETS TO CREATE
+{assets_list}
+
+---
+
+# ASSET SPECIFICATIONS
+
+### 1. PFP (PROFILE PICTURE)
+**Dimensions**: 400x400px (displayed at 48x48px, 200x200px, 400x400px)
+**Purpose**: Main profile avatar
+**Requirements**:
+- Simple and recognizable at small sizes
+- Works as a square
+- High contrast
+- Memorable and distinctive
+- Reflects brand identity
+
+### 2. HEADER (BANNER)
+**Dimensions**: 1500x500px
+**Purpose**: Twitter profile header
+**Requirements**:
+- Eye-catching and shareable
+- Includes project name/tagline
+- Space for logo (safe zone)
+- Dynamic composition
+- Reflects {tone} tone
+
+### 3. MEME
+**Dimensions**: 1080x1080px (square)
+**Purpose**: Viral engagement and community entertainment
+**Requirements**:
+- Funny, relatable, shareable
+- Resonates with Web3/crypto audience
+- Subtle {project_name} branding
+- High engagement potential
+- Can be time-sensitive or evergreen
+
+### 4. BUYBOT IMAGE
+**Dimensions**: 1200x800px (landscape)
+**Purpose**: Market the bot functionality and automation
+**Requirements**:
+- Showcase speed, ease, security
+- Modern and professional
+- Can include interface mockups
+- Inspire confidence and excitement
+- Clear value proposition
+
+### 5. DEXSCREENER IMAGE
+**Dimensions**: 1200x600px
+**Purpose**: DEX Screener listing thumbnail
+**Requirements**:
+- Professional and trustworthy
+- Data-focused aesthetic
+- Can include chart visualization
+- Positive visual cues
+- Conveys legitimacy and growth
+
+---
+
+# OUTPUT FORMAT (MANDATORY JSON)
+
+Return ONLY a valid JSON array. No explanations, no text outside JSON.
+
+[
+  {{
+    "asset": "PFP",
+    "brief": "<detailed brief for PFP>"
+  }},
+  {{
+    "asset": "HEADER",
+    "brief": "<detailed brief for Header>"
+  }},
+  {{
+    "asset": "MEME",
+    "brief": "<detailed brief for Meme>"
+  }},
+  {{
+    "asset": "BUYBOT",
+    "brief": "<detailed brief for BuyBot>"
+  }},
+  {{
+    "asset": "DEXSCREENER",
+    "brief": "<detailed brief for DEXScreener>"
+  }}
+]
+
+---
+
+# PER-ASSET BRIEF STRUCTURE
+
+For each asset, include:
+
+**Purpose & Context**: Where/how this will be used
+**Design Brief**: Detailed visual description
+**Dimensions**: Exact size requirements
+**Color & Style**: Specific colors, effects
+**Key Elements**: What must be included
+**Mood & Feel**: Emotional tone
+**Don'ts**: What to avoid
+**AI Prompt**: Detailed prompt for Midjourney/DALL-E
+
+---
+
+# GENERAL REQUIREMENTS
+- Be specific and concrete
+- All assets should be cohesive but unique
+- Consider practical use cases
+- Make briefs actionable for AI and human designers
+- Ensure brand consistency
+- Use hex color codes where possible
+
+# ADDITIONAL GUIDELINES
+{style_guide if style_guide else "Follow the visual vibe and tone specified above"}
+
+Generate the X assets briefs now. Output ONLY the JSON array.
+"""
+
+    return prompt
+
+
+# -------------------------------------------------
+# TOOL 7: GENERATE WEBSITE
+# -------------------------------------------------
+@mcp.tool()
+def generate_website(
     project_name: str,
     lore: str,
     tone: str,
     goal: str = "convert",
-    target_audience: str = "Web3 users",
     primary_cta: str = "Get Started",
     secondary_cta: str = "Learn More",
-    key_features: Optional[List[str]] = None,
-    sections: List[str] = ["hero", "problem", "solution", "features", "how_it_works", "social_proof", "faq", "final_cta", "footer"],
+    color_palette: List[str] = ["indigo", "lime"],
     include_seo: bool = True,
-    include_faq_count: int = 6,
-    color_palette: List[str] = ["indigo", "lime"]
+    include_faq: bool = True,
+    faq_count: int = 6
 ) -> str:
     """
-    Generate a production-ready HTML/CSS landing page for a Web3 project.
-
-    Creates a complete, single-file HTML landing page with embedded CSS,
-    ready to upload to Hostinger or any web host.
-
+    Generate production-ready HTML landing page.
+    
+    Single-file HTML with embedded CSS, ready to upload to any host.
+    
     Args:
-        project_name: Name of the project
-        lore: Project narrative and identity
-        tone: Brand tone (ex: premium, aggressive, funny, mysterious, clean, degen, serious)
-        goal: Landing page objective (convert, whitelist, waitlist, mint, presale, download, utility)
-        target_audience: Who this page is for
-        primary_cta: Main CTA button text
-        secondary_cta: Secondary CTA button text
-        key_features: List of key features/benefits (optional)
-        sections: Sections to include in the landing page
-        include_seo: Whether to generate SEO meta tags
-        include_faq_count: Number of FAQs to generate
-        color_palette: Color scheme for the design
+        project_name: Project name
+        lore: Project narrative
+        tone: Brand tone
+        goal: Page objective (convert, whitelist, waitlist, mint, presale)
+        primary_cta: Main button text
+        secondary_cta: Secondary button text
+        color_palette: Color scheme
+        include_seo: Include SEO meta tags
+        include_faq: Include FAQ section
+        faq_count: Number of FAQs
+    
+    Returns:
+        Prompt for LLM to generate complete HTML file
     """
 
-    if key_features is None:
-        key_features = [
-            "Fast onboarding",
-            "Real utility",
-            "Community-first design",
-            "Secure by default",
-            "Built for scale"
-        ]
-
-    section_specs = {
-        "hero": "Hero section with hook, subheadline, CTAs, and a quick credibility line",
-        "problem": "Problem statement: what sucks today and why users care",
-        "solution": "Your unique solution and the key promise",
-        "features": "3-6 feature cards with benefits (not just features)",
-        "how_it_works": "Step-by-step explanation (3 steps max, super clear)",
-        "tokenomics": "Token utility + distribution summary (only if relevant)",
-        "roadmap": "Short roadmap with milestones (Now / Next / Later)",
-        "social_proof": "Community, stats, testimonials placeholders, partners, logos",
-        "faq": "FAQs that remove friction and objections",
-        "final_cta": "A strong closing section that pushes action",
-        "footer": "Footer links: docs, socials, legal, contact"
+    colors = " + ".join(color_palette)
+    hex_colors = {
+        "indigo": "#4F46E5",
+        "lime": "#84CC16",
+        "blue": "#3B82F6",
+        "purple": "#A855F7",
+        "pink": "#EC4899"
     }
+    
+    primary_color = hex_colors.get(color_palette[0].lower(), "#4F46E5")
+    secondary_color = hex_colors.get(color_palette[1].lower(), "#84CC16")
 
-    sections_guidelines = "\n".join([
-        f"- **{s.upper()}**: {section_specs.get(s, 'Custom section')}"
-        for s in sections
-    ])
+    seo_section = """
+- Complete meta tags (title, description, keywords)
+- Open Graph tags (social sharing)
+- Twitter Card tags
+- Structured data (JSON-LD)
+- Proper heading hierarchy (H1, H2, H3)
+- Alt text for all images
+""" if include_seo else "- Basic meta tags"
 
-    features_guidelines = "\n".join([f"- {f}" for f in key_features])
-
-    color_scheme = " + ".join(color_palette)
+    faq_section = f"""
+## FAQ SECTION
+- {faq_count} frequently asked questions
+- Accordion-style layout (expandable)
+- Questions: "Is it safe?", "How do I start?", "What makes you different?", etc.
+- Simple JavaScript for toggle functionality
+""" if include_faq else ""
 
     prompt = f"""
 You are a senior Web3 frontend developer and conversion expert.
 
-Your mission: create a PRODUCTION-READY, SINGLE-FILE HTML landing page that can be uploaded directly to Hostinger.
-
 # PROJECT CONTEXT
-**Name**: {project_name}
-**Tone**: {tone}
-**Goal**: {goal}
-**Target audience**: {target_audience}
-**Color Palette**: {color_scheme}
+- Name: {project_name}
+- Tone: {tone}
+- Goal: {goal}
+- Primary CTA: {primary_cta}
+- Secondary CTA: {secondary_cta}
+- Colors: {colors}
 
-# PROJECT LORE (IDENTITY / STORY)
+# PROJECT LORE
 {lore}
-
-# KEY FEATURES / BENEFITS
-{features_guidelines}
-
-# SECTIONS TO GENERATE
-{sections_guidelines}
 
 ---
 
-# YOUR TASK
-Generate a COMPLETE, PRODUCTION-READY HTML file with embedded CSS.
+# TASK
+Generate a COMPLETE, PRODUCTION-READY HTML landing page.
+
+Single file, all CSS embedded, ready to upload to Hostinger or any web host.
 
 ## TECHNICAL REQUIREMENTS
-- Single HTML file with all CSS in <style> tags
-- Fully responsive (mobile-first design)
-- Modern, clean design using the {color_scheme} color palette
-- No external dependencies (no Bootstrap, no frameworks)
-- Optimized for fast loading
+- Single HTML file (no external files)
+- Fully responsive (mobile-first)
+- No external dependencies (no Bootstrap)
 - Cross-browser compatible
+- Fast loading
 - Semantic HTML5
-- Accessible (ARIA labels where needed)
+- Accessible (ARIA labels)
 
 ## DESIGN REQUIREMENTS
 - Modern Web3 aesthetic
-- Clean, professional layout
-- Smooth scrolling
+- Colors: {colors}
+- Primary: {primary_color}
+- Secondary: {secondary_color}
+- Smooth scrolling and animations
 - Hover effects on interactive elements
 - Mobile hamburger menu
-- Gradient backgrounds using {color_scheme} colors
-- Professional typography (use Google Fonts via CDN)
-- Card-based layouts for features
+- Professional typography (Google Fonts via CDN)
+- Card-based layouts
 - Proper spacing and white space
-- Call-to-action buttons that stand out
 
-## COPYWRITING RULES
-- Hook must be strong (first line should hit hard)
-- Speak benefits > features
-- Minimal fluff, max clarity
-- Use short sentences
-- Keep the tone **{tone}** consistently
-- Include trust signals (security, transparency, community)
-- Avoid vague claims unless backed by specifics
-- Make it skimmable: headings, bullets, blocks
+## COPYWRITING REQUIREMENTS
+- Strong hook (first line hits hard)
+- Speak benefits, not just features
+- Short sentences, minimal fluff
+- Tone: {tone}
+- Include trust signals
+- Make it skimmable (headings, bullets, blocks)
 
-## CTA RULES
-- Primary CTA text: **{primary_cta}**
-- Secondary CTA text: **{secondary_cta}**
-- CTA should appear multiple times (hero + middle + final)
-- CTAs should be prominent and use contrasting colors
+## CTA REQUIREMENTS
+- Primary text: "{primary_cta}"
+- Secondary text: "{secondary_cta}"
+- CTAs appear: hero + middle + final section
+- Prominent, contrasting colors
 
 ## SEO REQUIREMENTS
-{"- Include complete meta tags (title, description, keywords, Open Graph, Twitter Card)" if include_seo else "- Include basic meta tags"}
-- Proper heading hierarchy (H1, H2, H3)
-- Alt text for all images (use placeholder descriptions)
-- Semantic HTML structure
+{seo_section}
 
-## FAQ REQUIREMENTS
-- Generate {include_faq_count} FAQs
-- Must include: "Is it safe?", "How do I start?", "What makes you different?"
-- Use accordion-style layout (expandable/collapsible)
-- Add simple JavaScript for accordion functionality
+{faq_section}
+
+## SECTIONS TO INCLUDE
+1. Navigation bar (sticky)
+2. Hero section (hook + CTAs)
+3. Problem statement
+4. Solution/unique value
+5. Features (3-5 feature cards)
+6. How it works (3 steps max)
+7. Social proof / stats
+{f"8. FAQ (accordion style)" if include_faq else "8. Testimonials"}
+9. Final CTA section
+10. Footer (links, socials, legal)
 
 ---
 
 # OUTPUT FORMAT
 
-Return ONLY the complete HTML code, starting with <!DOCTYPE html> and ending with </html>.
+Return ONLY complete HTML code. No markdown, no explanations.
 
-The HTML must include:
-1. Complete <!DOCTYPE html> declaration
-2. <head> section with:
-   - Meta tags (charset, viewport, SEO)
-   - Title tag
-   - Google Fonts link
-   - Embedded CSS in <style> tags
-3. <body> section with:
-   - Navigation bar (sticky)
-   - All requested sections in order
-   - Footer
-4. Embedded JavaScript for:
-   - Mobile menu toggle
-   - FAQ accordion
-   - Smooth scrolling
-   - Any interactive elements
+MUST start with: <!DOCTYPE html>
+MUST end with: </html>
 
-## IMPORTANT
-- No markdown like ```html, the file should ABSOLUTELY start by <!DOCTYPE html> and finish by </html>
-- Return ONLY the HTML code, no explanations
-- Use placeholder images from https://via.placeholder.com/
-- Make it ready to save as index.html and upload immediately
-- Ensure all links are placeholder hrefs (#)
-- Add HTML comments to mark each section clearly
-- Use proper indentation for readability
+Structure:
+- <!DOCTYPE html>
+- <head> with meta tags, title, Google Fonts link, embedded CSS in <style>
+- <body> with navbar, all sections, footer
+- Embedded JavaScript for: mobile menu, FAQ accordion, smooth scroll
+
+---
+
+# IMPORTANT NOTES
+- NO markdown formatting (not ```html)
+- NO external stylesheets or scripts
+- NO placeholder links (use # for now)
+- Use https://via.placeholder.com/ for images
+- Add HTML comments marking each section
+- Proper indentation for readability
+- Ready to save as index.html immediately
 
 Generate the complete HTML file now.
 """
 
     return prompt
+
+
+# -------------------------------------------------
+# TOOL 8: GENERATE COMPLETE PACKAGE (BONUS)
+# -------------------------------------------------
+@mcp.tool()
+def generate_complete_package(
+    project_name: str,
+    project_type: str,
+    goal: str,
+    tone: str = "professional",
+    has_mascot: bool = False,
+    user_input: str = "",
+    color_palette: List[str] = ["indigo", "lime"]
+) -> str:
+    """
+    Orchestrate ALL tools in sequence (optional convenience function).
+    
+    Generates: Lore → Documentation → Tweets → Logo → Banner → X Assets → Website
+    
+    This tool returns instructions for using all other tools in order.
+    
+    Args:
+        project_name: Project name
+        project_type: Project type
+        goal: Primary goal
+        tone: Brand tone
+        has_mascot: Include mascot
+        user_input: Additional context
+        color_palette: Color scheme
+    
+    Returns:
+        Orchestration guide for using all tools in order
+    """
+
+    colors = " + ".join(color_palette)
+
+    orchestration_guide = f"""
+# COMPLETE PACKAGE ORCHESTRATION GUIDE
+
+## Project: {project_name}
+- Type: {project_type}
+- Goal: {goal}
+- Tone: {tone}
+- Colors: {colors}
+- Mascot: {"Yes" if has_mascot else "No"}
+
+---
+
+## STEP 1: GENERATE LORE (Foundation)
+Use: generate_lore()
+- project_name: "{project_name}"
+- project_type: "{project_type}"
+- goal: "{goal}"
+- tone: "{tone}"
+- has_mascot: {has_mascot}
+- user_input: "{user_input}"
+
+**Output**: Project narrative (save this as `lore.txt`)
+
+---
+
+## STEP 2: GENERATE DOCUMENTATION
+Use: generate_documentation()
+- project_name: "{project_name}"
+- lore: [output from Step 1]
+- tone: "{tone}"
+- project_type: "{project_type}"
+- goal: "{goal}"
+
+**Output**: JSON array of 5 markdown files
+**Save**: Create /docs/step1/ directory with these files:
+- 01_introduction.md
+- 02_vision.md
+- 03_roadmap.md
+- 04_tokenomics.md
+- 05_faq.md
+
+---
+
+## STEP 3: GENERATE TWEETS
+Use: generate_tweets()
+- project_name: "{project_name}"
+- lore: [output from Step 1]
+- tone: "{tone}"
+- count: 20
+- include_threads: True
+
+**Output**: 20 ready-to-post tweets + 3 thread ideas
+**Save**: Create `tweets.txt` or tweet scheduler document
+
+---
+
+## STEP 4: GENERATE LOGO
+Use: generate_logo()
+- project_name: "{project_name}"
+- lore: [output from Step 1]
+- tone: "{tone}"
+- visual_vibe: "modern"
+- color_palette: {color_palette}
+
+**Output**: Logo design brief
+**Save**: Create `logo_brief.md`
+**Next**: Share with designer or use Midjourney prompt
+
+---
+
+## STEP 5: GENERATE BANNER
+Use: generate_banner()
+- project_name: "{project_name}"
+- lore: [output from Step 1]
+- tone: "{tone}"
+- visual_vibe: "modern"
+- color_palette: {color_palette}
+
+**Output**: Banner design brief
+**Save**: Create `banner_brief.md`
+**Next**: Share with designer or use AI image generator
+
+---
+
+## STEP 6: GENERATE X ASSETS
+Use: generate_x_assets()
+- project_name: "{project_name}"
+- lore: [output from Step 1]
+- tone: "{tone}"
+- visual_vibe: "modern"
+- color_palette: {color_palette}
+- include_assets: ["pfp", "header", "meme", "buybot", "dexscreener"]
+
+**Output**: JSON array of 5 asset design briefs
+**Save**: Create `x_assets.json` or individual brief files
+**Next**: Share briefs with designer or use AI tools
+
+---
+
+## STEP 7: GENERATE WEBSITE
+Use: generate_website()
+- project_name: "{project_name}"
+- lore: [output from Step 1]
+- tone: "{tone}"
+- goal: "{goal}"
+- primary_cta: "Get Started"
+- secondary_cta: "Learn More"
+- color_palette: {color_palette}
+- include_seo: True
+- include_faq: True
+
+**Output**: Complete HTML landing page
+**Save**: Create `index.html`
+**Deploy**: Upload to Hostinger or any web host
+
+---
+
+## FINAL CHECKLIST
+
+After completing all steps, you should have:
+
+✅ Lore (brand narrative)
+✅ Documentation (5 markdown files)
+✅ Social content (20 tweets + 3 threads)
+✅ Logo brief (ready for designer/AI)
+✅ Banner brief (ready for designer/AI)
+✅ X assets briefs (5 assets, ready for designer/AI)
+✅ Website (production-ready HTML)
+
+## FILE STRUCTURE
+```
+project-{project_name}/
+├── docs/
+│   ├── 01_introduction.md
+│   ├── 02_vision.md
+│   ├── 03_roadmap.md
+│   ├── 04_tokenomics.md
+│   └── 05_faq.md
+├── design-briefs/
+│   ├── logo_brief.md
+│   ├── banner_brief.md
+│   └── x_assets.json
+├── content/
+│   └── tweets.txt
+├── website/
+│   └── index.html
+└── lore.txt
+```
+
+---
+
+## NEXT STEPS
+
+1. **Share design briefs** with designer or use AI image generators
+2. **Customize website** with actual links and contact forms
+3. **Schedule tweets** using Twitter scheduler or Buffer
+4. **Deploy website** to Hostinger, Vercel, or Netlify
+5. **Implement** documentation in GitBook or Docs
+6. **Monitor engagement** and iterate based on feedback
+
+---
+
+Good luck with {project_name}! 🚀
+"""
+
+    return orchestration_guide
 
 
 # -------------------------------------------------

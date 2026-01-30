@@ -81,7 +81,7 @@
         <CheckboxCard
           label="Website"
           desc="Structured, publish ready "
-          v-model="store.outputs.documentation.markdown"
+          v-model="store.outputs.website.landingPage"
         />
       </div>
     </div>

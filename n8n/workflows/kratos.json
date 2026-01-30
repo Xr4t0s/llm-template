@@ -1,0 +1,3325 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "a78c2256-c123-4280-b22d-b375ff664f36",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -4464,
+        -5360
+      ],
+      "id": "be866bf7-78b7-439d-862e-aa356a11017f",
+      "name": "Webhook",
+      "webhookId": "a78c2256-c123-4280-b22d-b375ff664f36"
+    },
+    {
+      "parameters": {
+        "jsCode": "return $input.first().json.body;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -4288,
+        -5360
+      ],
+      "id": "df486163-d634-4b72-8a01-4ac140748b40",
+      "name": "Code in JavaScript14"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.prompt }}\n{\n  lore: {{ $json.lore }},\n  hasMascot: {{ $json.hasMascot }},\n  tone: {{ $json.tone }},\n  projectType: {{ $json.projectType }},\n  goal: {{ $json.goal }},\n  visualVibe: {{ $json.visualVibe }},\n  palettes: [\n    {{ $json.palettes }}\n  ],\n  outputs: {\n    documentation: {\n      markdown: {{ $json.data.outputs.documentation.markdown }},\n      tweets: {{ $json.data.outputs.documentation.tweets }},\n    },\n    visuals: {\n      logo: {{ $json.data.outputs.visuals.logo }},\n      banners: {{ $json.data.outputs.visuals.banners }},\n      x_assets: {{ $json.data.outputs.visuals.x_assets }},\n    },\n    website: {\n      langingPage: {{ $json.data.outputs.website.landingPage }},\n    }\n}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -3872,
+        -5360
+      ],
+      "id": "b259557f-c85b-4dbc-8136-da9028cb959c",
+      "name": "AI Agent3"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "builtInTools": {},
+        "options": {
+          "timeout": 360000
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -4000,
+        -5136
+      ],
+      "id": "73114189-2fda-4c13-ab02-60f41f69c78b",
+      "name": "OpenAI Chat Model3",
+      "credentials": {
+        "openAiApi": {
+          "id": "OcgIdTpnAX0zmJz3",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -3840,
+        -5136
+      ],
+      "id": "99380118-4d26-465d-9f56-c5aae0d6f1d1",
+      "name": "Simple Memory3"
+    },
+    {
+      "parameters": {
+        "endpointUrl": "https://24ac74b61b86.ngrok-free.app/sse",
+        "serverTransport": "sse",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1.2,
+      "position": [
+        -3728,
+        -5136
+      ],
+      "id": "93fb0e64-5701-4cd1-a631-e2311ac3d352",
+      "name": "MCP Client3"
+    },
+    {
+      "parameters": {
+        "jsCode": "return {\n  sessionId: $input.first().json.sessionId,\n  prompt: \"STEP 0: use ONLY the generate_lore tool\",\n  lore: $input.first().json.data.lore,\n  hasMascot: $input.first().json.data.hasMascot,\n  tone: $input.first().json.data.tone,\n  projectType: $input.first().json.data.projectType,\n  goal: $input.first().json.data.goal,\n  visualVibe: $input.first().json.data.visualVibe,\n  palettes: $input.first().json.data.palettes\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -4080,
+        -5360
+      ],
+      "id": "523afa34-c729-42c5-84bd-1e06efcff213",
+      "name": "Code in JavaScript15"
+    },
+    {
+      "parameters": {
+        "jsCode": "return [{ publicKey: $input.first().json.data.address }]"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -4080,
+        -5504
+      ],
+      "id": "fd30e5c4-8c40-450d-901f-d48b94a98218",
+      "name": "Code in JavaScript16"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "profile",
+          "mode": "list",
+          "cachedResultName": "profile"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "address": "={{ $json.publicKey }}",
+            "running": true,
+            "step": 0,
+            "substep": 0
+          },
+          "matchingColumns": [
+            "address"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "address",
+              "displayName": "address",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "builds",
+              "displayName": "builds",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false,
+              "removed": true
+            },
+            {
+              "id": "running",
+              "displayName": "running",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "step",
+              "displayName": "step",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "substep",
+              "displayName": "substep",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -3888,
+        -5504
+      ],
+      "id": "c156c305-e248-4f14-b916-d9e418ecd6c3",
+      "name": "Insert or update rows in a table1",
+      "credentials": {
+        "postgres": {
+          "id": "58nCO7NSTnWRyNrs",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "f4a4c7cc-cb39-40aa-b966-10adb90997a3",
+              "leftValue": "={{ $('Code in JavaScript14').first().json.data.outputs.documentation.markdown }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -3520,
+        -5360
+      ],
+      "id": "3753f44b-6141-4d6d-bd2c-c39a557dfdf4",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "92d8315f-9d79-4f79-ab03-03884b3f0182",
+              "leftValue": "={{ $('Code in JavaScript14').first().json.data.outputs.documentation.tweets }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -3184,
+        -5168
+      ],
+      "id": "c0bccd66-0472-417a-ad90-55ae6645a15c",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.prompt }}\n\nLORE:\n{{ $json.lore }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -3056,
+        -5600
+      ],
+      "id": "13691c26-4ce2-4286-9e8d-be65aa082801",
+      "name": "AI Agent4",
+      "retryOnFail": true,
+      "waitBetweenTries": 3000
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -3184,
+        -5376
+      ],
+      "id": "478c6e8c-35f3-400e-b369-f03ceec6ed14",
+      "name": "OpenAI Chat Model4",
+      "credentials": {
+        "openAiApi": {
+          "id": "OcgIdTpnAX0zmJz3",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -3024,
+        -5376
+      ],
+      "id": "f0ea9055-79b7-4c43-a773-ff8fe3f2fc3f",
+      "name": "Simple Memory4"
+    },
+    {
+      "parameters": {
+        "endpointUrl": "https://24ac74b61b86.ngrok-free.app/sse",
+        "serverTransport": "sse",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1.2,
+      "position": [
+        -2912,
+        -5376
+      ],
+      "id": "e322379c-7f93-4666-b4fc-ac1dfd8974d5",
+      "name": "MCP Client4"
+    },
+    {
+      "parameters": {
+        "jsCode": "const fs = require('fs');\n\nconst folder = $('Code in JavaScript14').first().json.data.address;\n\nfs.mkdirSync(`/data/shared/${folder}/documentation`, { recursive: true });\n\nreturn {\n  sessionId: $('Code in JavaScript15').first().json.sessionId,\n  prompt: \"Use ONLY your generate_documentation tool to create the documentation with the lore provided\",\n  lore: $input.first().json.output\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -3264,
+        -5600
+      ],
+      "id": "fd2924c3-27db-4e26-aedc-39f7c4f99be4",
+      "name": "Code in JavaScript17"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Ton input = [{ output: \"JSON_STRING\" }]\n\nconst raw = items[0].json.output;\n\n// Parse la string JSON\nconst files = JSON.parse(raw);\n\nconst fs = require('fs');\n\nconst folder = $('Code in JavaScript14').first().json.data.address;\n\nfs.mkdirSync(`/data/shared/${folder}/documentation`, { recursive: true });\n\n// Retourne 1 item par fichier\nreturn files.map(file => ({\n  json: {\n    path: file.filename,\n    content: file.content\n  }\n}));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2784,
+        -5600
+      ],
+      "id": "abfb6fbe-43f6-425d-960f-af348b0abf93",
+      "name": "Code in JavaScript18"
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "content",
+        "binaryPropertyName": "=data",
+        "options": {
+          "encoding": "utf8",
+          "fileName": "={{ $json.path }}"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -2656,
+        -5600
+      ],
+      "id": "0a7b5a87-9c4a-4c1e-be3d-145c7b3b597c",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "=/data/shared/{{ $('Code in JavaScript14').item.json.data.address }}/documentation/{{ $binary.data.fileName }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        -2528,
+        -5600
+      ],
+      "id": "353f1c67-2677-47d1-b2cd-14ab15fe4e5e",
+      "name": "Read/Write Files from Disk4",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "profile",
+          "mode": "list",
+          "cachedResultName": "profile"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "address": "={{ $('Code in JavaScript14').item.json.data.address }}",
+            "running": true,
+            "step": 1,
+            "substep": 0
+          },
+          "matchingColumns": [
+            "address"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "address",
+              "displayName": "address",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "builds",
+              "displayName": "builds",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false,
+              "removed": true
+            },
+            {
+              "id": "running",
+              "displayName": "running",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "step",
+              "displayName": "step",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "substep",
+              "displayName": "substep",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -3056,
+        -5792
+      ],
+      "id": "49804a32-5039-4e88-8b8f-c8dfb939e0c9",
+      "name": "Insert or update rows in a table2",
+      "credentials": {
+        "postgres": {
+          "id": "58nCO7NSTnWRyNrs",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "profile",
+          "mode": "list",
+          "cachedResultName": "profile"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "address": "={{ $('Code in JavaScript14').item.json.data.address }}",
+            "running": true,
+            "step": 1,
+            "substep": 1
+          },
+          "matchingColumns": [
+            "address"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "address",
+              "displayName": "address",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "builds",
+              "displayName": "builds",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false,
+              "removed": true
+            },
+            {
+              "id": "running",
+              "displayName": "running",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "step",
+              "displayName": "step",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "substep",
+              "displayName": "substep",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -2400,
+        -5600
+      ],
+      "id": "1f86b65d-df88-4833-9125-5d888c3cdfce",
+      "name": "Insert or update rows in a table3",
+      "credentials": {
+        "postgres": {
+          "id": "58nCO7NSTnWRyNrs",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.prompt }}\n\nLORE:\n{{ $json.lore }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -2528,
+        -5184
+      ],
+      "id": "8470f677-2376-4933-8645-9dcac94a43d0",
+      "name": "AI Agent5",
+      "retryOnFail": true,
+      "waitBetweenTries": 3000
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -2656,
+        -4960
+      ],
+      "id": "e6cbfe7a-559f-449b-b5c2-93ece245b14a",
+      "name": "OpenAI Chat Model5",
+      "credentials": {
+        "openAiApi": {
+          "id": "OcgIdTpnAX0zmJz3",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -2496,
+        -4960
+      ],
+      "id": "0af5cd52-6d74-4299-9513-ef4014a766e3",
+      "name": "Simple Memory5"
+    },
+    {
+      "parameters": {
+        "endpointUrl": "https://24ac74b61b86.ngrok-free.app/sse",
+        "serverTransport": "sse",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1.2,
+      "position": [
+        -2384,
+        -4960
+      ],
+      "id": "c52a4479-ed48-455d-9832-e6ddafcf134a",
+      "name": "MCP Client5"
+    },
+    {
+      "parameters": {
+        "jsCode": "const fs = require('fs');\n\nconst folder = $('Code in JavaScript14').first().json.data.address;\n\nfs.mkdirSync(`/data/shared/${folder}/documentation`, { recursive: true });\n\n\nreturn {\n  address: $('Code in JavaScript14').first().json.data.address,\n  sessionId: $('Code in JavaScript15').first().json.sessionId,\n  prompt: \"Use ONLY your generate_tweets tool to create the 20 tweets with the lore provided\",\n  lore: $input.first().json.output\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2736,
+        -5184
+      ],
+      "id": "3b1fc49e-682e-40b9-9636-aca1d12331a7",
+      "name": "Code in JavaScript19"
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "content",
+        "binaryPropertyName": "=data",
+        "options": {
+          "encoding": "utf8",
+          "fileName": "={{ $json.path }}"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -2128,
+        -5184
+      ],
+      "id": "a5e33877-928d-4b96-868b-6b1fa8a836a9",
+      "name": "Convert to File1"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "=/data/shared/{{ $('Code in JavaScript20').item.json.address }}/documentation/{{ $binary.data.fileName }}",
+        "dataPropertyName": "=data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        -2000,
+        -5184
+      ],
+      "id": "82c396a3-619b-4c53-983a-a4fcc8067e04",
+      "name": "Read/Write Files from Disk5",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "profile",
+          "mode": "list",
+          "cachedResultName": "profile"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "address": "={{ $json.address }}",
+            "running": true,
+            "step": 1,
+            "substep": 2
+          },
+          "matchingColumns": [
+            "address"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "address",
+              "displayName": "address",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "builds",
+              "displayName": "builds",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false,
+              "removed": true
+            },
+            {
+              "id": "running",
+              "displayName": "running",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "step",
+              "displayName": "step",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "substep",
+              "displayName": "substep",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -2512,
+        -5360
+      ],
+      "id": "3e41d96d-a84a-43b0-9ee3-f213c89100ad",
+      "name": "Insert or update rows in a table4",
+      "credentials": {
+        "postgres": {
+          "id": "58nCO7NSTnWRyNrs",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "profile",
+          "mode": "list",
+          "cachedResultName": "profile"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "address": "={{ $('Code in JavaScript20').item.json.address }}",
+            "running": true,
+            "step": 1,
+            "substep": 3
+          },
+          "matchingColumns": [
+            "address"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "address",
+              "displayName": "address",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "builds",
+              "displayName": "builds",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false,
+              "removed": true
+            },
+            {
+              "id": "running",
+              "displayName": "running",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "step",
+              "displayName": "step",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "substep",
+              "displayName": "substep",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -1808,
+        -5184
+      ],
+      "id": "d9da4c33-4750-4b5f-a3ef-607c67392755",
+      "name": "Insert or update rows in a table5",
+      "credentials": {
+        "postgres": {
+          "id": "58nCO7NSTnWRyNrs",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "9a7c945f-5834-4d28-a7be-18e03670d85a",
+              "leftValue": "={{ $('Code in JavaScript14').first().json.data.outputs.visuals.logo }}",
+              "rightValue": false,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -2640,
+        -4544
+      ],
+      "id": "0084029e-a275-4792-af68-38f965db43c8",
+      "name": "If3"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.kie.ai/api/v1/jobs/createTask",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "httpBearerAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"nano-banana-pro\",\n  \"input\": {\n    \"prompt\": \"{{ $json.prompt }}\",\n    \"aspect_ratio\": \"1:1\",\n    \"resolution\": \"1K\",\n    \"output_format\": \"png\"\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -1616,
+        -4736
+      ],
+      "id": "870667f3-e1b5-47dd-8f5c-c0d864e19070",
+      "name": "HTTP Request9",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "snoBC8vQ8BaxhjQo",
+          "name": "Bearer Auth account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 10
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -1392,
+        -4736
+      ],
+      "id": "9de68d83-60cc-429e-8be9-9ff8a6445b77",
+      "name": "Wait1",
+      "webhookId": "5501a757-3be4-41ba-ab83-d09204d33f3f"
+    },
+    {
+      "parameters": {
+        "url": "https://api.kie.ai/api/v1/jobs/recordInfo",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "httpBearerAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "taskId",
+              "value": "={{ $json.data.taskId }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -1248,
+        -4736
+      ],
+      "id": "f63b5546-d956-4350-a7eb-ab42fa11ebb5",
+      "name": "HTTP Request10",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "dxsdR6hADXOohESP",
+          "name": "Bearer Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "ee4902c2-6636-4ef4-90a0-a5f1084afd60",
+              "leftValue": "={{ $json.data.state}}",
+              "rightValue": "success",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -1120,
+        -4736
+      ],
+      "id": "e1d57b40-9b89-4b79-bfef-f5ae6ca1213e",
+      "name": "If4"
+    },
+    {
+      "parameters": {
+        "url": "={{ JSON.parse($json.data.resultJson).resultUrls[0] }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -832,
+        -4752
+      ],
+      "id": "c0ff2119-083d-4398-8767-de11bb4863e3",
+      "name": "HTTP Request11"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -2064,
+        -4736
+      ],
+      "id": "658a928d-d6b7-4abd-bfd8-d32ad6541706",
+      "name": "AI Agent6",
+      "retryOnFail": true,
+      "waitBetweenTries": 3000
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "builtInTools": {},
+        "options": {
+          "timeout": 360000
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -2096,
+        -4544
+      ],
+      "id": "bbcb238c-7cdd-48bb-a460-b22281dff108",
+      "name": "OpenAI Chat Model6",
+      "credentials": {
+        "openAiApi": {
+          "id": "OcgIdTpnAX0zmJz3",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -1984,
+        -4544
+      ],
+      "id": "2c0e4648-4948-4db9-94cb-f9ed3dc83e0b",
+      "name": "Simple Memory6"
+    },
+    {
+      "parameters": {
+        "endpointUrl": "https://24ac74b61b86.ngrok-free.app/sse",
+        "serverTransport": "sse",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1.2,
+      "position": [
+        -1872,
+        -4544
+      ],
+      "id": "15a2a1b3-3038-49b7-84cc-e89b721f4a20",
+      "name": "MCP Client6"
+    },
+    {
+      "parameters": {
+        "jsCode": "\n\n// Sortie: 1 seul item n8n (donc array avec 1 élément)\nconst fs = require('fs');\n\nconst folder = $('Code in JavaScript14').first().json.data.address;\n\nfs.mkdirSync(`/data/shared/${folder}/assets`, { recursive: true });\n\nreturn [{\n  json: {\n    sessionId: $('Code in JavaScript14').first().json.sessionId,\n    chatInput: {\n      prompt: \"Use ONLY your generate_logo tool, even if you have other parameter !\",\n      data: $('Code in JavaScript14').first().json.data,\n    },\n  },\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2272,
+        -4560
+      ],
+      "id": "5b6f295a-44cc-4da7-8c95-0d213e9aaaae",
+      "name": "Code in JavaScript22"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "profile",
+          "mode": "list",
+          "cachedResultName": "profile"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "running": true,
+            "address": "={{ $('Code in JavaScript14').first().json.data.address }}",
+            "step": 2,
+            "substep": 0
+          },
+          "matchingColumns": [
+            "address"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "address",
+              "displayName": "address",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "builds",
+              "displayName": "builds",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "running",
+              "displayName": "running",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "step",
+              "displayName": "step",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "substep",
+              "displayName": "substep",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -2064,
+        -4896
+      ],
+      "id": "5da2048d-8940-4bfc-84bc-e4635e0bad73",
+      "name": "Update rows in a table",
+      "credentials": {
+        "postgres": {
+          "id": "58nCO7NSTnWRyNrs",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "691e8a08-778e-4e27-87a1-6c9079cc9ad3",
+              "leftValue": "={{ $('Code in JavaScript14').first().json.data.outputs.visuals.banners }}}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "7ba252e7-45eb-4f5f-8190-08297f345633",
+              "leftValue": "=",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -2208,
+        -4000
+      ],
+      "id": "efddce54-99ee-49c8-8ce8-d1bf14818c73",
+      "name": "If5"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.kie.ai/api/v1/jobs/createTask",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "httpBearerAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "nano-banana-pro"
+            },
+            {
+              "name": "input",
+              "value": "={\n  \"prompt\": \"{{ $json.prompt }}\",\n  \"aspect_ratio\": \"1:1\",\n  \"resolution\": \"1K\",\n  \"output_format\": \"png\"\n}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -1280,
+        -4192
+      ],
+      "id": "2d2207fb-312d-4734-acf1-b341b4566872",
+      "name": "HTTP Request12",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "snoBC8vQ8BaxhjQo",
+          "name": "Bearer Auth account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 10
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -1056,
+        -4192
+      ],
+      "id": "20bef76c-9941-42a8-85be-974ca76e6239",
+      "name": "Wait2",
+      "webhookId": "5501a757-3be4-41ba-ab83-d09204d33f3f"
+    },
+    {
+      "parameters": {
+        "url": "https://api.kie.ai/api/v1/jobs/recordInfo",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "httpBearerAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "taskId",
+              "value": "={{ $json.data.taskId }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -912,
+        -4192
+      ],
+      "id": "33ae6e7b-d4b3-4164-b964-8841f1209434",
+      "name": "HTTP Request13",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "dxsdR6hADXOohESP",
+          "name": "Bearer Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "ee4902c2-6636-4ef4-90a0-a5f1084afd60",
+              "leftValue": "={{ $json.data.state}}",
+              "rightValue": "success",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -784,
+        -4192
+      ],
+      "id": "46f61f96-d5ae-4d4e-82a2-b111b8373baf",
+      "name": "If6"
+    },
+    {
+      "parameters": {
+        "url": "={{ JSON.parse($json.data.resultJson).resultUrls[0] }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -560,
+        -4208
+      ],
+      "id": "c68db645-b05a-403c-a358-0683709a76b1",
+      "name": "HTTP Request14"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "=/data/shared/{{ $('Code in JavaScript14').first().json.data.address }}/assets/{{ $json.data.taskId }}.png",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        -544,
+        -4048
+      ],
+      "id": "917487f9-2897-4800-9705-7024e2f26889",
+      "name": "Read/Write Files from Disk6",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -1728,
+        -4192
+      ],
+      "id": "a67046db-7754-4277-b506-f10477e374b5",
+      "name": "AI Agent7",
+      "retryOnFail": true,
+      "waitBetweenTries": 3000
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -1760,
+        -4000
+      ],
+      "id": "5338a886-a9ab-415f-bfb6-39ea71ba5a1e",
+      "name": "OpenAI Chat Model7",
+      "credentials": {
+        "openAiApi": {
+          "id": "OcgIdTpnAX0zmJz3",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -1648,
+        -4000
+      ],
+      "id": "72fd7c6f-b541-4c04-adb1-7d787e6d961e",
+      "name": "Simple Memory7"
+    },
+    {
+      "parameters": {
+        "endpointUrl": "https://24ac74b61b86.ngrok-free.app/sse",
+        "serverTransport": "sse",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1.2,
+      "position": [
+        -1536,
+        -4000
+      ],
+      "id": "4c831e86-ae28-401e-ae26-af9df89de816",
+      "name": "MCP Client7"
+    },
+    {
+      "parameters": {
+        "jsCode": "const fs = require('fs');\n\nconst folder = $('Code in JavaScript14').first().json.data.address;\n\nfs.mkdirSync(`/data/shared/${folder}/assets`, { recursive: true });\n\n// Sortie: 1 seul item n8n (donc array avec 1 élément)\nreturn [{\n  json: {\n    sessionId: $('Code in JavaScript14').first().json.sessionId,\n    chatInput: {\n      prompt:  \"Use ONLY your generate_banner mcp tool using this data\",\n      data: $('Code in JavaScript14').first().json.data,\n    },\n  },\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1936,
+        -4016
+      ],
+      "id": "98d006b8-2924-4d0a-892c-a1824761b462",
+      "name": "Code in JavaScript26"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "profile",
+          "mode": "list",
+          "cachedResultName": "profile"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "running": true,
+            "address": "={{ $('Code in JavaScript14').first().json.data.address }}",
+            "step": 2,
+            "substep": 0
+          },
+          "matchingColumns": [
+            "address"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "address",
+              "displayName": "address",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "builds",
+              "displayName": "builds",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "running",
+              "displayName": "running",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "step",
+              "displayName": "step",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "substep",
+              "displayName": "substep",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -1712,
+        -4352
+      ],
+      "id": "3a196325-3bbe-418d-827f-4c1b1408c14f",
+      "name": "Update rows in a table4",
+      "credentials": {
+        "postgres": {
+          "id": "58nCO7NSTnWRyNrs",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $input.first().json.output;\n\nfunction nuke(text) {\n  return String(text ?? '')\n    // virer markdown\n    .replace(/#{1,6}\\s*/g, ' ')\n    .replace(/\\*\\*/g, ' ')\n    .replace(/_/g, ' ')\n\n    // virer sections entières connues\n    .replace(/purpose[\\s\\S]*?brief/gi, ' ')\n    .replace(/technical[\\s\\S]*?requirements/gi, ' ')\n    .replace(/color[\\s\\S]*?requirements/gi, ' ')\n    .replace(/key[\\s\\S]*?needed/gi, ' ')\n    .replace(/variations[\\s\\S]*?feel/gi, ' ')\n    .replace(/elements to avoid[\\s\\S]*?prompt/gi, ' ')\n    .replace(/ai prompt[\\s\\S]*$/gi, ' ')\n\n    // virer listes\n    .replace(/-\\s+/g, ' ')\n\n    // virer tailles, specs, plateformes\n    .replace(/\\b\\d+x\\d+px?\\b/gi, ' ')\n    .replace(/\\b\\d{2,4}px\\b/gi, ' ')\n    .replace(/\\b(png|svg|jpg|jpeg|favicon|icon|twitter|discord|app)\\b/gi, ' ')\n\n    // virer guillemets\n    .replace(/[\"']/g, '')\n\n    // virer parenthèses\n    .replace(/\\([^)]*\\)/g, ' ')\n\n    // virer séparateurs\n    .replace(/═+/g, ' ')\n\n    // lignes -> espaces\n    .replace(/\\r?\\n+/g, ' ')\n\n    // nettoyer répétitions\n    .replace(/\\s+/g, ' ')\n    .trim();\n}\n\n// EXTRACTION AGRESSIVE : on garde uniquement les phrases descriptives\nconst cleaned = nuke(raw);\n\n// OPTION : limiter la longueur (recommandé pour image models)\nconst finalPrompt = cleaned.split('. ').slice(0, 2).join(', ');\n\nreturn [\n  {\n    json: {\n      prompt: finalPrompt\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1424,
+        -4192
+      ],
+      "id": "f8408cc7-6199-4da6-975c-c310a5d76298",
+      "name": "Code in JavaScript28"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "profile",
+          "mode": "list",
+          "cachedResultName": "profile"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "running": true,
+            "address": "={{ $('Code in JavaScript14').first().json.data.address }}",
+            "step": 2,
+            "substep": 1
+          },
+          "matchingColumns": [
+            "address"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "address",
+              "displayName": "address",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "builds",
+              "displayName": "builds",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "running",
+              "displayName": "running",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "step",
+              "displayName": "step",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "substep",
+              "displayName": "substep",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -656,
+        -4608
+      ],
+      "id": "527cd2be-96f1-45b9-879c-e20769aac5c2",
+      "name": "Update rows in a table5",
+      "credentials": {
+        "postgres": {
+          "id": "58nCO7NSTnWRyNrs",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "profile",
+          "mode": "list",
+          "cachedResultName": "profile"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "running": true,
+            "address": "={{ $('Code in JavaScript14').first().json.data.address }}",
+            "step": 2,
+            "substep": 1
+          },
+          "matchingColumns": [
+            "address"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "address",
+              "displayName": "address",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "builds",
+              "displayName": "builds",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "running",
+              "displayName": "running",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "step",
+              "displayName": "step",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "substep",
+              "displayName": "substep",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -400,
+        -4048
+      ],
+      "id": "8eaa08fd-7823-41c2-ba30-468307d3f6e3",
+      "name": "Update rows in a table6",
+      "credentials": {
+        "postgres": {
+          "id": "58nCO7NSTnWRyNrs",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "691e8a08-778e-4e27-87a1-6c9079cc9ad3",
+              "leftValue": "={{ $('Code in JavaScript14').first().json.data.outputs.website.landingPage }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "7ba252e7-45eb-4f5f-8190-08297f345633",
+              "leftValue": "",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -1776,
+        -3424
+      ],
+      "id": "f0c19610-fc0f-4b65-b222-e19bfac3ca44",
+      "name": "If7"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.kie.ai/api/v1/jobs/createTask",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "httpBearerAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "nano-banana-pro"
+            },
+            {
+              "name": "input",
+              "value": "={\n  \"prompt\": \"{{ $json.prompt }}\",\n  \"aspect_ratio\": \"1:1\",\n  \"resolution\": \"1K\",\n  \"output_format\": \"png\"\n}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -864,
+        -3616
+      ],
+      "id": "3a9e90f7-e87d-46b3-b610-acf8ceb993fb",
+      "name": "HTTP Request15",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "snoBC8vQ8BaxhjQo",
+          "name": "Bearer Auth account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 10
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -624,
+        -3616
+      ],
+      "id": "0c394e36-192e-4b72-b789-9b957eb17cab",
+      "name": "Wait3",
+      "webhookId": "5501a757-3be4-41ba-ab83-d09204d33f3f"
+    },
+    {
+      "parameters": {
+        "url": "https://api.kie.ai/api/v1/jobs/recordInfo",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "httpBearerAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "taskId",
+              "value": "={{ $json.data.taskId }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -416,
+        -3616
+      ],
+      "id": "207adc66-85e4-4c6e-8261-e2cced8bc8ac",
+      "name": "HTTP Request16",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "dxsdR6hADXOohESP",
+          "name": "Bearer Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "ee4902c2-6636-4ef4-90a0-a5f1084afd60",
+              "leftValue": "={{ $json.data.state}}",
+              "rightValue": "success",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -208,
+        -3616
+      ],
+      "id": "10dcf4ed-6bfb-47d2-821c-79654414b029",
+      "name": "If8"
+    },
+    {
+      "parameters": {
+        "url": "={{ JSON.parse($json.data.resultJson).resultUrls[0] }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        0,
+        -3632
+      ],
+      "id": "8edbffb2-b5b4-4e9a-b779-5140fdfc1277",
+      "name": "HTTP Request17"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "=/data/shared/{{ $('HTTP Request16').item.json.data.taskId }}.png",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        16,
+        -3472
+      ],
+      "id": "c6c2cf36-1e8e-4d0f-9143-33e40d382420",
+      "name": "Read/Write Files from Disk7",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -1296,
+        -3616
+      ],
+      "id": "11d976b1-d41a-4f4f-8062-733c2cf02490",
+      "name": "AI Agent8",
+      "retryOnFail": true,
+      "waitBetweenTries": 3000
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -1328,
+        -3424
+      ],
+      "id": "64825ff1-c5ec-412b-a376-3576ba3d18ef",
+      "name": "OpenAI Chat Model8",
+      "credentials": {
+        "openAiApi": {
+          "id": "OcgIdTpnAX0zmJz3",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -1216,
+        -3424
+      ],
+      "id": "a0208313-12d1-4186-9ec5-1f4c18bacf11",
+      "name": "Simple Memory8"
+    },
+    {
+      "parameters": {
+        "endpointUrl": "https://24ac74b61b86.ngrok-free.app/sse",
+        "serverTransport": "sse",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1.2,
+      "position": [
+        -1104,
+        -3424
+      ],
+      "id": "40c39c80-76e8-40e9-9c81-56cb7397a2eb",
+      "name": "MCP Client8"
+    },
+    {
+      "parameters": {
+        "jsCode": "const fs = require('fs');\n\nconst folder = $('Code in JavaScript14').first().json.data.address;\n\nfs.mkdirSync(`/data/shared/${folder}/assets`, { recursive: true });\n\n// Sortie: 1 seul item n8n (donc array avec 1 élément)\nreturn [{\n  json: {\n    sessionId: $('Code in JavaScript14').first().json.sessionId,\n    chatInput: {\n      prompt:  \"Use ONLY your generate_x_assets mcp tool using this data\",\n      data: $('Code in JavaScript14').first().json.data,\n    },\n  },\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1504,
+        -3440
+      ],
+      "id": "747bbbf1-d5df-4bd9-89d3-19f9a93cd44d",
+      "name": "Code in JavaScript34"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "profile",
+          "mode": "list",
+          "cachedResultName": "profile"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "running": true,
+            "address": "={{ $('Code in JavaScript14').first().json.data.address }}",
+            "step": 2,
+            "substep": 0
+          },
+          "matchingColumns": [
+            "address"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "address",
+              "displayName": "address",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "builds",
+              "displayName": "builds",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "running",
+              "displayName": "running",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "step",
+              "displayName": "step",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "substep",
+              "displayName": "substep",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -1296,
+        -3776
+      ],
+      "id": "b296b544-3c29-4246-8ffb-9f1cc629f2cb",
+      "name": "Update rows in a table7",
+      "credentials": {
+        "postgres": {
+          "id": "58nCO7NSTnWRyNrs",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Ton input = [{ output: \"JSON_STRING\" }]\n\nconst raw = items[0].json.output;\n\n// Parse la string JSON\n\nconst fs = require('fs');\n\nconst folder = $('Code in JavaScript14').first().json.sessionId;\n\nfs.mkdirSync(`/data/shared/${folder}/assets`, { recursive: true });\n\n// Retourne 1 item par fichier\nreturn {\n    path: \"/data/shared/${folder}/assets/\",\n    content: JSON.parse($input.first().json.output)\n  };\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -992,
+        -3616
+      ],
+      "id": "46218e31-3ecd-4389-981c-34229d80f8cc",
+      "name": "Code in JavaScript36"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "profile",
+          "mode": "list",
+          "cachedResultName": "profile"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "running": true,
+            "address": "={{ $('Code in JavaScript14').first().json.data.address }}",
+            "step": 2,
+            "substep": 1
+          },
+          "matchingColumns": [
+            "address"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "address",
+              "displayName": "address",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "builds",
+              "displayName": "builds",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "running",
+              "displayName": "running",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "step",
+              "displayName": "step",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "substep",
+              "displayName": "substep",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        192,
+        -3472
+      ],
+      "id": "cd8b25f9-2c30-423b-9707-44679e1f2256",
+      "name": "Update rows in a table8",
+      "credentials": {
+        "postgres": {
+          "id": "58nCO7NSTnWRyNrs",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -3920,
+        -4768
+      ],
+      "id": "6fa4bc4c-17e7-4337-bd73-6598182c50d4",
+      "name": "Code in JavaScript30"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Ton input = [{ output: \"JSON_STRING\" }]\n\nconst raw = $input.first().json.output;\n\n// Retourne 1 item par fichier\nreturn {\n  path: \"tweets.md\",\n  content: raw,\n  address: $('Code in JavaScript14').first().json.data.address\n}\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2256,
+        -5184
+      ],
+      "id": "0cb2326c-a10f-4737-a4e1-36bd42f715ca",
+      "name": "Code in JavaScript20"
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $input.first().json.output;\n\nfunction nuke(text) {\n  return String(text ?? '')\n    // virer markdown\n    .replace(/#{1,6}\\s*/g, ' ')\n    .replace(/\\*\\*/g, ' ')\n    .replace(/_/g, ' ')\n\n    // virer sections entières connues\n    .replace(/purpose[\\s\\S]*?brief/gi, ' ')\n    .replace(/technical[\\s\\S]*?requirements/gi, ' ')\n    .replace(/color[\\s\\S]*?requirements/gi, ' ')\n    .replace(/key[\\s\\S]*?needed/gi, ' ')\n    .replace(/variations[\\s\\S]*?feel/gi, ' ')\n    .replace(/elements to avoid[\\s\\S]*?prompt/gi, ' ')\n    .replace(/ai prompt[\\s\\S]*$/gi, ' ')\n\n    // virer listes\n    .replace(/-\\s+/g, ' ')\n\n    // virer tailles, specs, plateformes\n    .replace(/\\b\\d+x\\d+px?\\b/gi, ' ')\n    .replace(/\\b\\d{2,4}px\\b/gi, ' ')\n    .replace(/\\b(png|svg|jpg|jpeg|favicon|icon|twitter|discord|app)\\b/gi, ' ')\n\n    // virer guillemets\n    .replace(/[\"']/g, '')\n\n    // virer parenthèses\n    .replace(/\\([^)]*\\)/g, ' ')\n\n    // virer séparateurs\n    .replace(/═+/g, ' ')\n\n    // lignes -> espaces\n    .replace(/\\r?\\n+/g, ' ')\n\n    // nettoyer répétitions\n    .replace(/\\s+/g, ' ')\n    .trim();\n}\n\n// EXTRACTION AGRESSIVE : on garde uniquement les phrases descriptives\nconst cleaned = nuke(raw);\n\n// OPTION : limiter la longueur (recommandé pour image models)\nconst finalPrompt = cleaned.split('. ').slice(0, 2).join(', ');\n\nreturn [\n  {\n    json: {\n      prompt: finalPrompt\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1728,
+        -4736
+      ],
+      "id": "880eeaeb-cccc-4e74-8f2d-7a5ab150d130",
+      "name": "Code in JavaScript21"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "=/data/shared/{{ $('Code in JavaScript14').first().json.data.address }}/assets/{{ $('HTTP Request9').item.json.data.taskId }}.png",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        -800,
+        -4608
+      ],
+      "id": "a899e704-49f2-4b93-a712-f632dfd22e59",
+      "name": "Read/Write Files from Disk1",
+      "alwaysOutputData": false
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript14",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript14": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript15",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Code in JavaScript16",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Code in JavaScript30",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent3": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent3",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory3": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent3",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MCP Client3": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent3",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript15": {
+      "main": [
+        [
+          {
+            "node": "AI Agent3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript16": {
+      "main": [
+        [
+          {
+            "node": "Insert or update rows in a table1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript17",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript19",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent4": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript18",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent4",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory4": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent4",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MCP Client4": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent4",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript17": {
+      "main": [
+        [
+          {
+            "node": "AI Agent4",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Insert or update rows in a table2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript18": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read/Write Files from Disk4": {
+      "main": [
+        [
+          {
+            "node": "Insert or update rows in a table3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert or update rows in a table3": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent5": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript20",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model5": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent5",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory5": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent5",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MCP Client5": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent5",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript19": {
+      "main": [
+        [
+          {
+            "node": "AI Agent5",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Insert or update rows in a table4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File1": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read/Write Files from Disk5": {
+      "main": [
+        [
+          {
+            "node": "Insert or update rows in a table5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert or update rows in a table5": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript22",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request9": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request10",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request10": {
+      "main": [
+        [
+          {
+            "node": "If4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If4": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request11",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request11": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent6": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript21",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model6": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent6",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory6": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent6",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MCP Client6": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent6",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript22": {
+      "main": [
+        [
+          {
+            "node": "AI Agent6",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Update rows in a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If5": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript26",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request12": {
+      "main": [
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request13",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request13": {
+      "main": [
+        [
+          {
+            "node": "If6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If6": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request14",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request14": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read/Write Files from Disk6": {
+      "main": [
+        [
+          {
+            "node": "Update rows in a table6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent7": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript28",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model7": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent7",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory7": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent7",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MCP Client7": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent7",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript26": {
+      "main": [
+        [
+          {
+            "node": "AI Agent7",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Update rows in a table4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript28": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request12",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update rows in a table5": {
+      "main": [
+        [
+          {
+            "node": "If5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update rows in a table6": {
+      "main": [
+        [
+          {
+            "node": "If7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If7": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript34",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request15": {
+      "main": [
+        [
+          {
+            "node": "Wait3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait3": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request16",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request16": {
+      "main": [
+        [
+          {
+            "node": "If8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If8": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request17",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request17": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read/Write Files from Disk7": {
+      "main": [
+        [
+          {
+            "node": "Update rows in a table8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent8": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript36",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model8": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent8",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory8": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent8",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MCP Client8": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent8",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript34": {
+      "main": [
+        [
+          {
+            "node": "AI Agent8",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Update rows in a table7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript36": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request15",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update rows in a table8": {
+      "main": [
+        []
+      ]
+    },
+    "Code in JavaScript30": {
+      "main": [
+        []
+      ]
+    },
+    "Code in JavaScript20": {
+      "main": [
+        [
+          {
+            "node": "Convert to File1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript21": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request9",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read/Write Files from Disk1": {
+      "main": [
+        [
+          {
+            "node": "Update rows in a table5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "687525e662e08c5ad52e2a0b8e9a9a8f0fca252f661bd30873173d3eba1f0987"
+  }
+}

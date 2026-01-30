@@ -1,4 +1,7 @@
 // types/phantom.d.ts
+
+export {};
+
 declare global {
   interface Window {
     phantom?: {
@@ -13,5 +16,3 @@ declare global {
     };
   }
 }
-
-export {};
