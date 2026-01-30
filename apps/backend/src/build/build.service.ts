@@ -13,8 +13,9 @@ export class BuildService {
         this.N8N_WEBHOOK_URL,
 		payload={
 			sessionId: "2b6390ca51ec4a7eb3f9e65ed9536684",
-			step: 1,
-			prompt: "Use only the generate_documentation tool to perform the step mentionned, STEP 1: Documentation generation.",
+			prompt1: "Use only your generate_lore and generate_documentation tool to perform the step mentioned. STEP 1: Documentation in markdown format ready to GitBook",
+        	prompt2: "Use only your generate_image_prompts tool to perform the step mentioned. STEP 2: Visual Assets prompts (AI image prompts for branding)",
+        	prompt3: "Use only your generate_landing_page tool to perform the step mentioned. STEP 3: One page for the project in html/css format",
 			data: payload,
 		},
         {

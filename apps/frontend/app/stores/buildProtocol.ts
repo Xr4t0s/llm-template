@@ -8,7 +8,7 @@ export const useBuildProtocol = defineStore('buildProtocol', {
 
 	lore: '',
 	hasMascot: true,
-	tone: 'Meme', // ✅ FIX
+	tone: '',
 	taglineStyle: 'Short & punchy',
 
 	projectType: '' as ProjectType,
@@ -57,3 +57,4 @@ export const useBuildProtocol = defineStore('buildProtocol', {
     },
   },
 })
+
