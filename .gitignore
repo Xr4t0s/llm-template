@@ -1,6 +1,6 @@
 pnpm-lock.yaml
 package-lock.json
 node_modules/
-n8n/data
+n8n/data/*
 dist/
 .nuxt/shared/*
