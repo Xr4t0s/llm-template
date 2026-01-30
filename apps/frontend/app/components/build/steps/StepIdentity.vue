@@ -94,7 +94,9 @@
           <button
             v-for="tone in tones"
             :key="tone"
-            @click="store.tone = tone"
+            @click="store.tone === tone
+			? store.tone = ''
+			: store.tone = tone"
             class="relative group px-4 py-3 rounded-lg font-medium text-sm transition-all duration-300"
             :class="[
               store.tone === tone

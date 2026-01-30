@@ -21,7 +21,9 @@
         <button
           v-for="t in types"
           :key="t.value"
-          @click="store.projectType = t.value"
+		  @click="store.projectType === t.value
+		  	? store.projectType = ''
+			: store.projectType = t.value"
           class="group relative text-left"
         >
           <!-- Glow background -->
@@ -79,7 +81,9 @@
         <button
           v-for="g in goals"
           :key="g.value"
-          @click="store.goal = g.value"
+          @click="store.goal === g.value
+		  	? store.goal = ''
+			: store.goal = g.value"
           class="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300"
           :class="[
             store.goal === g.value

@@ -26,32 +26,17 @@
         <CheckboxCard
           label="Logos"
           desc="3–5 variants, light & dark, SVG / PNG"
-          v-model="store.outputs.logo"
+          v-model="store.outputs.visuals.logo"
         />
         <CheckboxCard
           label="Profile pictures (PFP)"
           desc="Square avatars aligned with the DA"
-          v-model="store.outputs.pfp"
+          v-model="store.outputs.visuals.banners"
         />
         <CheckboxCard
           label="Banners"
           desc="Twitter / X headers with tagline"
-          v-model="store.outputs.banner"
-        />
-        <CheckboxCard
-          label="Announcement cards"
-          desc="Launch, milestones, partnerships"
-          v-model="store.outputs.announcements"
-        />
-        <CheckboxCard
-          label="Memes"
-          desc="Templates for viral content"
-          v-model="store.outputs.memes"
-        />
-        <CheckboxCard
-          label="Stickers"
-          desc="Telegram sticker pack"
-          v-model="store.outputs.stickers"
+          v-model="store.outputs.visuals.x_assets"
         />
       </div>
     </div>
@@ -71,22 +56,32 @@
         <CheckboxCard
           label="Documentation"
           desc="Structured, GitBook-ready docs"
-          v-model="store.outputs.documentation"
+          v-model="store.outputs.documentation.markdown"
         />
         <CheckboxCard
-          label="One-pager"
-          desc="Short overview of the project"
-          v-model="store.outputs.onepager"
+          label="X Posts"
+          desc="20 post-ready X Posts"
+          v-model="store.outputs.documentation.tweets"
         />
+      </div>
+    </div>
+    
+	<!-- Website section -->
+    <div class="space-y-4">
+      <div>
+        <h3 class="text-sm font-semibold text-white mb-1">
+          🌐 Website
+        </h3>
+        <p class="text-xs text-white/50">
+          Landing page for your project
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
         <CheckboxCard
-          label="Roadmap"
-          desc="Phases, milestones, future plans"
-          v-model="store.outputs.roadmap"
-        />
-        <CheckboxCard
-          label="FAQ"
-          desc="Common questions and disclaimers"
-          v-model="store.outputs.faq"
+          label="Website"
+          desc="Structured, publish ready "
+          v-model="store.outputs.documentation.markdown"
         />
       </div>
     </div>

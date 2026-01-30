@@ -18,16 +18,18 @@ export const useBuildProtocol = defineStore('buildProtocol', {
 	palettes: [] as string[],
 
 	outputs: {
-		logo: true,
-		banner: true,
-		pfp: true,
-		announcements: true,
-		memes: false,
-		stickers: false,
-		documentation: true,
-		onepager: false,
-		roadmap: true,
-		faq: true,
+		documentation: {
+			markdown: false,
+			tweets: false
+		},
+		visuals: {
+			logo: false,
+			banners: false,
+			x_assets: false
+		},
+		website: {
+			landingPage: false
+		}
 	},
 	}),
 

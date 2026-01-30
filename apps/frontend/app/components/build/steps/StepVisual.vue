@@ -24,7 +24,9 @@
         <button
           v-for="v in vibes"
           :key="v.value"
-          @click="store.visualVibe = v.value"
+          @click="store.visualVibe === v.value
+		  ? store.visualVibe = ''
+		  : store.visualVibe = v.value"
           class="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300"
           :class="[
             store.visualVibe === v.value
