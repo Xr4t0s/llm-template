@@ -97,7 +97,7 @@
 
 <script setup lang="ts">
 import { ref, watch, computed } from 'vue'
-import { useAppKit, useAppKitAccount } from "@reown/appkit/vue"
+import { useAppKit, useAppKitAccount, useDisconnect } from "@reown/appkit/vue"
 import { useAppKitProvider } from "@reown/appkit/vue"
 import type { Provider } from "@reown/appkit-adapter-solana/vue"
 import { useAuthStore } from '~/stores/auth'
@@ -150,7 +150,7 @@ async function copyAddress() {
  */
 async function handleDisconnect() {
   try {
-    await walletProvider?.disconnect()
+    useDisconnect()
     authStore.logout()
   } catch (err) {
     console.error('Erreur lors de la déconnexion:', err)

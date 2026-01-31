@@ -25,7 +25,7 @@ createAppKit({
   metadata: {
     name: 'AppKit Vue Example',
     description: 'AppKit Vue Example',
-    url: 'http://89.167.14.248',
+    url: 'http://reown.com/appkit',
     icons: ['https://avatars.githubusercontent.com/u/179229932?s=200&v=4']
   },
   themeVariables: {
