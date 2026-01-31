@@ -21,7 +21,15 @@ export default defineNuxtConfig({
   vite: {
 	plugins: [
 		tailwindcss(),
-	]
+	],
+	server: {
+      allowedHosts: [
+        'localhost',
+        '127.0.0.1',
+        'xmcp.pro',
+        'www.xmcp.pro',
+      ]
+    }
   },
   nitro: {
     devProxy: {

@@ -148,21 +148,21 @@
 
             <div class="space-y-4">
               <div class="flex items-start gap-4">
-                <span class="text-indigo-400 text-2xl flex-shrink-0">•</span>
+                <span class="text-indigo-400 text-2xl shrink-0">•</span>
                 <div>
                   <p class="text-white font-semibold">Projects, not conversations</p>
                   <p class="text-white/60 text-sm mt-1">Organize work by product, not by chat thread</p>
                 </div>
               </div>
               <div class="flex items-start gap-4">
-                <span class="text-cyan-400 text-2xl flex-shrink-0">•</span>
+                <span class="text-cyan-400 text-2xl shrink-0">•</span>
                 <div>
                   <p class="text-white font-semibold">State management built in</p>
                   <p class="text-white/60 text-sm mt-1">Track context and intent across every step</p>
                 </div>
               </div>
               <div class="flex items-start gap-4">
-                <span class="text-emerald-400 text-2xl flex-shrink-0">•</span>
+                <span class="text-emerald-400 text-2xl shrink-0">•</span>
                 <div>
                   <p class="text-white font-semibold">Ship artifacts, not screenshots</p>
                   <p class="text-white/60 text-sm mt-1">Go from idea to deployed code in one platform</p>

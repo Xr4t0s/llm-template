@@ -8,9 +8,9 @@
       class="group relative px-6 py-2.5 rounded-lg font-medium text-sm text-white overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed transition-all"
     >
       <!-- Gradient background -->
-      <div class="absolute inset-0 bg-gradient-to-r from-indigo-600 to-cyan-500 opacity-100 group-hover:opacity-90 group-disabled:opacity-70 transition-opacity" />
+      <div class="absolute inset-0 bg-linear-to-r from-indigo-600 to-cyan-500 opacity-100 group-hover:opacity-90 group-disabled:opacity-70 transition-opacity" />
       <!-- Shimmer effect -->
-      <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full group-disabled:translate-x-full transition-transform duration-500" />
+      <div class="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full group-disabled:translate-x-full transition-transform duration-500" />
       <!-- Content -->
       <span class="relative flex items-center gap-2">
         <svg
@@ -37,7 +37,7 @@
       <!-- Address Display with Copy -->
       <div class="group relative">
         <!-- Background glow -->
-        <div class="absolute inset-0 bg-gradient-to-r from-indigo-600/20 to-cyan-500/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div class="absolute inset-0 bg-linear-to-r from-indigo-600/20 to-cyan-500/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         <!-- Card -->
         <button
           @click="copyAddress"
@@ -46,7 +46,7 @@
         >
           <!-- Online indicator -->
           <div class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-gradient-to-r from-green-400 to-emerald-500 animate-pulse" />
+            <span class="w-2 h-2 rounded-full bg-linear-to-r from-green-400 to-emerald-500 animate-pulse" />
             <span class="font-mono text-xs text-white/80">
               {{ shortenAddress(account.address!) }}
             </span>

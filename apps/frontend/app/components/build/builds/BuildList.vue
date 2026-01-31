@@ -159,7 +159,7 @@ onMounted(() => {
       </div>
       <button
         @click="$emit('back')"
-        class="px-6 py-2.5 rounded-lg bg-gradient-to-r from-indigo-600 to-cyan-600 hover:opacity-90 text-white font-medium transition-opacity mt-4"
+        class="px-6 py-2.5 rounded-lg bg-linear-to-r from-indigo-600 to-cyan-600 hover:opacity-90 text-white font-medium transition-opacity mt-4"
       >
         Create a build
       </button>

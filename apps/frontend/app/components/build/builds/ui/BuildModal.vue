@@ -143,10 +143,10 @@ const deleteBuild = async () => {
     >
       <div
         @click.stop
-        class="relative w-full max-w-2xl bg-gradient-to-br from-white/10 via-white/5 to-white/0 backdrop-blur-xl rounded-2xl border border-white/20 overflow-hidden pointer-events-auto"
+        class="relative w-full max-w-2xl bg-linear-to-br from-white/10 via-white/5 to-white/0 backdrop-blur-xl rounded-2xl border border-white/20 overflow-hidden pointer-events-auto"
       >
         <!-- Background -->
-        <div class="absolute inset-0 bg-gradient-to-br from-indigo-600/20 via-purple-600/10 to-cyan-500/20 opacity-40" />
+        <div class="absolute inset-0 bg-linear-to-br from-indigo-600/20 via-purple-600/10 to-cyan-500/20 opacity-40" />
         <div class="absolute top-0 right-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
         <div class="absolute bottom-0 left-0 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl" />
 
@@ -155,7 +155,7 @@ const deleteBuild = async () => {
           <!-- Header -->
           <div class="space-y-4">
             <div class="flex items-center gap-4">
-              <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-indigo-600 to-cyan-500 flex items-center justify-center flex-shrink-0">
+              <div class="w-20 h-20 rounded-2xl bg-linear-to-br from-indigo-600 to-cyan-500 flex items-center justify-center shrink-0">
                 <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -200,7 +200,7 @@ const deleteBuild = async () => {
             <button
               @click="downloadBuild"
               :disabled="isDownloading || isDeleting"
-              class="flex-1 px-6 py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-indigo-600 to-cyan-600 hover:opacity-90 disabled:opacity-50 transition-all flex items-center justify-center gap-2"
+              class="flex-1 px-6 py-3 rounded-lg font-semibold text-white bg-linear-to-r from-indigo-600 to-cyan-600 hover:opacity-90 disabled:opacity-50 transition-all flex items-center justify-center gap-2"
             >
               <svg v-if="!isDownloading" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -246,7 +246,7 @@ const deleteBuild = async () => {
         </div>
 
         <!-- Bottom border -->
-        <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent" />
+        <div class="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-indigo-500/50 to-transparent" />
       </div>
     </div>
   </Transition>
@@ -267,10 +267,10 @@ const deleteBuild = async () => {
     >
       <div
         @click.stop
-        class="relative w-full max-w-sm bg-gradient-to-br from-white/10 via-white/5 to-white/0 backdrop-blur-xl rounded-2xl border border-white/20 overflow-hidden pointer-events-auto p-8 space-y-6"
+        class="relative w-full max-w-sm bg-linear-to-br from-white/10 via-white/5 to-white/0 backdrop-blur-xl rounded-2xl border border-white/20 overflow-hidden pointer-events-auto p-8 space-y-6"
       >
         <!-- Background -->
-        <div class="absolute inset-0 bg-gradient-to-br from-red-600/20 via-purple-600/10 to-transparent opacity-40" />
+        <div class="absolute inset-0 bg-linear-to-br from-red-600/20 via-purple-600/10 to-transparent opacity-40" />
 
         <!-- Content -->
         <div class="relative z-10 space-y-6">
