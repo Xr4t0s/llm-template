@@ -18,10 +18,10 @@
               <div class="relative">
                 <div class="absolute inset-0 bg-linear-to-br from-indigo-500 to-cyan-400 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div class="relative w-10 h-10 rounded-lg bg-linear-to-br from-indigo-500 to-cyan-400 flex items-center justify-center">
-                  <span class="text-white font-black text-lg">⚡</span>
+                  <span class="text-white font-thin text-lg">⚡</span>
                 </div>
               </div>
-              <span class="text-white font-black text-lg tracking-tight group-hover:text-transparent group-hover:bg-linear-to-r group-hover:from-indigo-300 group-hover:to-cyan-300 group-hover:bg-clip-text transition-all duration-300">
+              <span class="text-white font-thin text-lg tracking-tight group-hover:text-transparent group-hover:bg-linear-to-r group-hover:from-indigo-300 group-hover:to-cyan-300 group-hover:bg-clip-text transition-all duration-300">
                 Studio
               </span>
             </NuxtLink>

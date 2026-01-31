@@ -33,7 +33,7 @@
           </div>
           
           <!-- Title -->
-          <h1 class="text-6xl sm:text-7xl lg:text-8xl font-black leading-tight text-white">
+          <h1 class="text-6xl sm:text-7xl lg:text-8xl font-thin leading-tight text-white">
             Learn to
             <br />
             <span class="bg-linear-to-r from-indigo-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent animate-gradient">
@@ -51,7 +51,7 @@
       <!-- Core Concepts Section -->
       <section class="space-y-12 mb-24 sm:mb-32">
         <div class="space-y-4">
-          <h2 class="text-4xl sm:text-5xl font-black text-white">Core Concepts</h2>
+          <h2 class="text-4xl sm:text-5xl font-thin text-white">Core Concepts</h2>
           <p class="text-lg text-white/50 font-light">The foundation that makes everything possible</p>
         </div>
 
@@ -169,7 +169,7 @@
       <!-- Architecture Section -->
       <section class="space-y-12 mb-24 sm:mb-32">
         <div class="space-y-4">
-          <h2 class="text-4xl sm:text-5xl font-black text-white">Architecture</h2>
+          <h2 class="text-4xl sm:text-5xl font-thin text-white">Architecture</h2>
           <p class="text-lg text-white/50 font-light">Built for performance and reliability at scale</p>
         </div>
 
@@ -263,7 +263,7 @@
       <!-- Getting Started Section -->
       <section class="space-y-12">
         <div class="space-y-4">
-          <h2 class="text-4xl sm:text-5xl font-black text-white">Getting Started</h2>
+          <h2 class="text-4xl sm:text-5xl font-thin text-white">Getting Started</h2>
           <p class="text-lg text-white/50 font-light">Your journey begins in three steps</p>
         </div>
 
@@ -274,7 +274,7 @@
             <div class="relative bg-linear-to-br from-indigo-500/15 to-indigo-500/5 backdrop-blur-xl border border-indigo-500/20 rounded-3xl p-8 sm:p-10 space-y-6 group-hover:border-indigo-400/40 transition-all duration-300 h-full flex flex-col">
               <!-- Step indicator -->
               <div class="inline-flex w-12 h-12 rounded-full bg-linear-to-r from-indigo-500 to-cyan-500 items-center justify-center">
-                <span class="text-white font-black text-lg">1</span>
+                <span class="text-white font-thin text-lg">1</span>
               </div>
               
               <!-- Content -->
@@ -298,7 +298,7 @@
             <div class="relative bg-linear-to-br from-cyan-500/15 to-cyan-500/5 backdrop-blur-xl border border-cyan-500/20 rounded-3xl p-8 sm:p-10 space-y-6 group-hover:border-cyan-400/40 transition-all duration-300 h-full flex flex-col">
               <!-- Step indicator -->
               <div class="inline-flex w-12 h-12 rounded-full bg-linear-to-r from-cyan-500 to-emerald-500 items-center justify-center">
-                <span class="text-white font-black text-lg">2</span>
+                <span class="text-white font-thin text-lg">2</span>
               </div>
               
               <!-- Content -->
@@ -322,7 +322,7 @@
             <div class="relative bg-linear-to-br from-emerald-500/15 to-emerald-500/5 backdrop-blur-xl border border-emerald-500/20 rounded-3xl p-8 sm:p-10 space-y-6 group-hover:border-emerald-400/40 transition-all duration-300 h-full flex flex-col">
               <!-- Step indicator -->
               <div class="inline-flex w-12 h-12 rounded-full bg-linear-to-r from-emerald-500 to-cyan-500 items-center justify-center">
-                <span class="text-white font-black text-lg">3</span>
+                <span class="text-white font-thin text-lg">3</span>
               </div>
               
               <!-- Content -->

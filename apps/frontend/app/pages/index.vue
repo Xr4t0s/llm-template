@@ -23,86 +23,98 @@
       </div>
 
       <!-- Content -->
-      <div class="max-w-6xl mx-auto px-6 w-full relative z-10">
-        <div class="max-w-4xl space-y-10 mx-auto lg:mx-0 lg:max-w-3xl">
+      <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          
+          <!-- Left side content -->
+          <div class="max-w-4xl space-y-10 mx-auto lg:mx-0 lg:max-w-3xl">
 
-          <!-- Accent label -->
-          <div class="inline-block animate-fade-in" style="animation-delay: 0s;">
-            <span class="text-sm font-mono text-transparent bg-clip-text bg-linear-to-r from-indigo-400 to-cyan-400 tracking-widest uppercase">
-              ✨ The future of building assets
-            </span>
-          </div>
-
-          <!-- Main Heading -->
-          <div class="space-y-6 animate-fade-in" style="animation-delay: 0.1s;">
-            <h1 class="text-6xl sm:text-7xl lg:text-7xl font-black leading-tight text-white">
-              Build your product
-              <br />
-              <span class="bg-linear-to-r from-indigo-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent animate-gradient">
-                with ease
+            <!-- Accent label -->
+            <div class="inline-block animate-fade-in" style="animation-delay: 0s;">
+              <span class="text-sm font-mono text-transparent bg-clip-text bg-linear-to-r from-indigo-400 to-cyan-400 tracking-widest uppercase">
+                ✨ The future of building assets
               </span>
-            </h1>
-          </div>
-
-          <!-- Subheading -->
-          <p class="text-lg sm:text-xl text-white/70 max-w-2xl leading-relaxed animate-fade-in font-light" style="animation-delay: 0.2s;">
-            A Web3-native workspace to orchestrate your builds using custom MCP services and multi-LLM orchestration. Manage state, maintain context, and ship real artifacts—
-            <span class="text-white font-semibold bg-linear-to-r from-indigo-200 to-cyan-200 bg-clip-text">from idea to production.</span>
-          </p>
-
-          <!-- CTA Buttons -->
-          <div class="flex flex-col sm:flex-row items-start gap-4 pt-4 animate-fade-in" style="animation-delay: 0.3s;">
-            <NuxtLink
-              to="/build"
-              class="group relative px-8 py-4 rounded-xl font-bold text-white overflow-hidden w-full sm:w-auto text-center sm:text-left"
-            >
-              <!-- Gradient background -->
-              <div class="absolute inset-0 bg-linear-to-r from-indigo-600 via-indigo-500 to-cyan-500 opacity-100 group-hover:opacity-90 transition-opacity duration-300" />
-              <!-- Animated border -->
-              <div class="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 border border-white/20 transition-opacity duration-300" />
-              <!-- Shimmer effect -->
-              <div class="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-              <!-- Text -->
-              <span class="relative flex items-center gap-3 justify-center sm:justify-start">
-                Start building
-                <svg class="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </span>
-            </NuxtLink>
-
-            <NuxtLink
-              to="/docs"
-              class="group relative px-8 py-4 rounded-xl font-bold text-white border-2 border-white/30 hover:border-white/60 transition-all duration-300 backdrop-blur-sm w-full sm:w-auto text-center sm:text-left hover:bg-white/5"
-            >
-              <span class="relative flex items-center gap-3 justify-center sm:justify-start">
-                Read the docs
-                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
-                </svg>
-              </span>
-            </NuxtLink>
-          </div>
-
-          <!-- Stats row -->
-          <div class="flex flex-wrap gap-8 animate-fade-in border-t border-white/10 pt-8" style="animation-delay: 0.4s;">
-            <div class="space-y-2">
-              <div class="text-3xl font-bold text-transparent bg-clip-text bg-linear-to-r from-indigo-400 to-cyan-400">
-                3<span class="text-sm text-white/40">+</span>
-              </div>
-              <p class="text-sm text-white/60 font-light">LLM Orchestration</p>
             </div>
-            <div class="space-y-2">
-              <div class="text-3xl font-bold text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-emerald-400">
-                ∞
-              </div>
-              <p class="text-sm text-white/60 font-light">Stateful Context</p>
+
+            <!-- Main Heading -->
+            <div class="space-y-6 animate-fade-in" style="animation-delay: 0.1s;">
+              <h1 class="text-6xl sm:text-7xl lg:text-6xl font-thin leading-tight text-white">
+                Build your product
+                <br />
+                <span class="bg-linear-to-r from-indigo-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent animate-gradient">
+                  with ease
+                </span>
+              </h1>
             </div>
-            <div class="space-y-2">
-              <div class="text-3xl font-bold text-transparent bg-clip-text bg-linear-to-r from-emerald-400 to-indigo-400">
-                1<span class="text-sm text-white/40">-click</span>
+
+            <!-- Subheading -->
+            <p class="text-lg sm:text-xl text-white/70 max-w-2xl leading-relaxed animate-fade-in font-light" style="animation-delay: 0.2s;">
+              A Web3-native workspace to orchestrate your builds using custom MCP services and multi-LLM orchestration. Manage state, maintain context, and ship real artifacts—
+              <span class="text-white font-semibold bg-linear-to-r from-indigo-200 to-cyan-200 bg-clip-text">from idea to production.</span>
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row items-start gap-4 pt-4 animate-fade-in" style="animation-delay: 0.3s;">
+              <NuxtLink
+                to="/build"
+                class="group relative px-8 py-4 rounded-xl font-bold text-white overflow-hidden w-full sm:w-auto text-center sm:text-left"
+              >
+                <!-- Gradient background -->
+                <div class="absolute inset-0 bg-linear-to-r from-indigo-600 via-indigo-500 to-cyan-500 opacity-100 group-hover:opacity-90 transition-opacity duration-300" />
+                <!-- Animated border -->
+                <div class="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 border border-white/20 transition-opacity duration-300" />
+                <!-- Shimmer effect -->
+                <div class="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                <!-- Text -->
+                <span class="relative flex items-center gap-3 justify-center sm:justify-start">
+                  Start building
+                  <svg class="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </span>
+              </NuxtLink>
+
+              <NuxtLink
+                to="/docs"
+                class="group relative px-8 py-4 rounded-xl font-bold text-white border-2 border-white/30 hover:border-white/60 transition-all duration-300 backdrop-blur-sm w-full sm:w-auto text-center sm:text-left hover:bg-white/5"
+              >
+                <span class="relative flex items-center gap-3 justify-center sm:justify-start">
+                  Read the docs
+                  <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+                  </svg>
+                </span>
+              </NuxtLink>
+            </div>
+
+            <!-- Stats row -->
+            <div class="flex flex-wrap gap-8 animate-fade-in border-t border-white/10 pt-8" style="animation-delay: 0.4s;">
+              <div class="space-y-2">
+                <div class="text-3xl font-bold text-transparent bg-clip-text bg-linear-to-r from-indigo-400 to-cyan-400">
+                  3<span class="text-sm text-white/40">+</span>
+                </div>
+                <p class="text-sm text-white/60 font-light">LLM Orchestration</p>
               </div>
-              <p class="text-sm text-white/60 font-light">Production Deploy</p>
+              <div class="space-y-2">
+                <div class="text-3xl font-bold text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-emerald-400">
+                  ∞
+                </div>
+                <p class="text-sm text-white/60 font-light">Stateful Context</p>
+              </div>
+              <div class="space-y-2">
+                <div class="text-3xl font-bold text-transparent bg-clip-text bg-linear-to-r from-emerald-400 to-indigo-400">
+                  1<span class="text-sm text-white/40">-click</span>
+                </div>
+                <p class="text-sm text-white/60 font-light">Production Deploy</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Visual -->
+          <div class="relative h-96 hidden lg:flex items-center justify-center">
+            <div class="absolute inset-0 bg-linear-to-br from-indigo-600/20 via-cyan-600/10 to-transparent rounded-3xl blur-2xl" />
+            <div class="flex items-center justify-center h-full">
+              <img src="/images/logo.png" alt="Logo" class="w-5xl h-256 scale-120 object-contain animate-spin" style="animation-duration: 24s;" />
             </div>
           </div>
 
@@ -121,7 +133,7 @@
           <div class="space-y-8 max-w-2xl">
             <div class="space-y-4">
               <p class="text-lg text-indigo-400 font-semibold uppercase tracking-wide">Why RunMCP</p>
-              <h2 class="text-5xl sm:text-6xl font-black leading-tight">
+              <h2 class="text-5xl sm:text-6xl font-thin leading-tight">
                 Build AI-generated products,
                 <br />
                 <span class="bg-linear-to-r from-indigo-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">
@@ -158,13 +170,7 @@
               </div>
             </div>
           </div>
-<!-- Right: Visual -->
-<div class="relative h-96 hidden lg:block">
-  <div class="absolute inset-0 bg-linear-to-br from-indigo-600/20 via-cyan-600/10 to-transparent rounded-3xl blur-2xl" />
-  <div class="flex items-center justify-center h-full">
-    <img src="/images/logo.png" alt="Logo" class="w-lg h-lg object-contain animate-spin" style="animation-duration: 24s;" />
-  </div>
-</div>
+
 
         </div>
       </div>
@@ -189,7 +195,7 @@
       <div class="max-w-6xl mx-auto px-6 relative z-10">
         <!-- Section header -->
         <div class="text-center mb-20 space-y-4">
-          <h2 class="text-5xl sm:text-6xl font-black text-white leading-tight">
+          <h2 class="text-5xl sm:text-6xl font-thin text-white leading-tight">
             Everything you need
           </h2>
           <p class="text-xl text-white/60 max-w-2xl mx-auto leading-relaxed font-light">
@@ -355,7 +361,7 @@
           <div class="relative bg-linear-to-br from-white/10 to-white/5 backdrop-blur-2xl border border-white/20 rounded-4xl px-8 sm:px-16 py-16 sm:py-24 space-y-10 group-hover:border-white/30 transition duration-300">
             
             <div class="space-y-6 max-w-3xl">
-              <h2 class="text-6xl sm:text-7xl font-black text-white leading-tight">
+              <h2 class="text-6xl sm:text-7xl font-thin text-white leading-tight">
                 Build optimistically.
               </h2>
               <p class="text-2xl text-white/70 leading-relaxed font-light">

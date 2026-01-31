@@ -80,7 +80,7 @@ onMounted(() => {
     <div class="space-y-4">
       <div class="flex items-center justify-between">
         <div>
-          <h1 class="text-5xl font-black text-white">Your Builds</h1>
+          <h1 class="text-5xl font-thin text-white">Your Builds</h1>
           <p class="text-white/60 mt-2">
             {{ hasBuilds ? `${builds.length} build${builds.length !== 1 ? 's' : ''} available` : 'No builds yet' }}
           </p>

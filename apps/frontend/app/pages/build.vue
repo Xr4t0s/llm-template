@@ -69,7 +69,7 @@ function backToHome() {
     <Transition name="main-fade" mode="out-in">
       <!-- Wallet Required State -->
       <div
-        v-if="!authStore.isConnected"
+        v-if="!authStore.isConnected && false"
         key="wallet"
         class="relative z-10 min-h-screen flex items-center justify-center p-4 sm:px-6"
       >
@@ -96,7 +96,7 @@ function backToHome() {
                     🔑 Wallet Connection
                   </span>
                 </div>
-                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black leading-tight text-white">
+                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-thin leading-tight text-white">
                   Connect your
                   <br />
                   <span class="bg-linear-to-r from-indigo-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">
@@ -193,7 +193,7 @@ function backToHome() {
               <div class="space-y-8">
                 <div class="text-9xl animate-bounce" style="animation-delay: 0s">✨</div>
                 <div class="space-y-6">
-                  <h1 class="text-6xl sm:text-7xl lg:text-8xl font-black leading-tight text-white opacity-0 animate-fade-in" style="animation-delay: 0.1s">
+                  <h1 class="text-6xl sm:text-7xl lg:text-8xl font-thin leading-tight text-white opacity-0 animate-fade-in" style="animation-delay: 0.1s">
                     Welcome to
                     <br />
                     <span class="bg-linear-to-r from-indigo-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent animate-gradient">
@@ -222,7 +222,7 @@ function backToHome() {
                     
                     <!-- Content -->
                     <div class="space-y-3 flex-1 text-left">
-                      <h2 class="text-3xl font-black text-white group-hover:text-transparent group-hover:bg-linear-to-r group-hover:from-indigo-400 group-hover:to-cyan-400 group-hover:bg-clip-text transition-all duration-300">
+                      <h2 class="text-3xl font-thin text-white group-hover:text-transparent group-hover:bg-linear-to-r group-hover:from-indigo-400 group-hover:to-cyan-400 group-hover:bg-clip-text transition-all duration-300">
                         Create Build
                       </h2>
                       <p class="text-base text-white/60 group-hover:text-white/80 transition-colors leading-relaxed">
@@ -254,7 +254,7 @@ function backToHome() {
                     
                     <!-- Content -->
                     <div class="space-y-3 flex-1 text-left">
-                      <h2 class="text-3xl font-black text-white group-hover:text-transparent group-hover:bg-linear-to-r group-hover:from-emerald-400 group-hover:to-cyan-400 group-hover:bg-clip-text transition-all duration-300">
+                      <h2 class="text-3xl font-thin text-white group-hover:text-transparent group-hover:bg-linear-to-r group-hover:from-emerald-400 group-hover:to-cyan-400 group-hover:bg-clip-text transition-all duration-300">
                         View Builds
                       </h2>
                       <p class="text-base text-white/60 group-hover:text-white/80 transition-colors leading-relaxed">

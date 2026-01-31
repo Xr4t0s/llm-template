@@ -20,7 +20,7 @@
           <!-- Logo box with glow -->
           <div class="relative">
             <div class="absolute inset-0 bg-linear-to-br from-indigo-500 via-indigo-400 to-cyan-400 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="filter: blur(8px)" />
-            <div class="relative w-10 h-10 rounded-xl flex items-center justify-center shadow-lg  group-hover:shadow-2xl group-hover:shadow-indigo-500/60 transition-all scale-120 duration-300">
+            <div class="relative w-10 h-10 rounded-xl flex items-center justify-center shadow-lg  group-hover:shadow-2xl group-hover:shadow-indigo-500/60 transition-all scale-120 duration-300 animate-spin" style="animation-duration: 24s;">
               <img src="/images/logo.png" alt="Logo" class="w-full h-full object-cover rounded-xl" />
             </div>
           </div>

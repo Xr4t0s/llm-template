@@ -33,7 +33,7 @@
           </div>
           
           <!-- Title -->
-          <h1 class="text-6xl sm:text-7xl lg:text-8xl font-black leading-tight text-white">
+          <h1 class="text-6xl sm:text-7xl lg:text-8xl font-thin leading-tight text-white">
             Built by
             <br />
             <span class="bg-linear-to-r from-indigo-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">
@@ -51,7 +51,7 @@
       <!-- Mission Section -->
       <section class="space-y-10 mb-24 sm:mb-32">
         <div class="space-y-4">
-          <h2 class="text-4xl sm:text-5xl font-black text-white">Our Mission</h2>
+          <h2 class="text-4xl sm:text-5xl font-thin text-white">Our Mission</h2>
         </div>
 
         <div class="group relative">
@@ -84,7 +84,7 @@
       <!-- Philosophy Section -->
       <section class="space-y-12 mb-24 sm:mb-32">
         <div class="space-y-4">
-          <h2 class="text-4xl sm:text-5xl font-black text-white">Our Philosophy</h2>
+          <h2 class="text-4xl sm:text-5xl font-thin text-white">Our Philosophy</h2>
           <p class="text-lg text-white/50 font-light">Core principles guiding everything we build</p>
         </div>
 
@@ -182,7 +182,7 @@
       <!-- Team Section -->
       <section class="space-y-10 mb-24 sm:mb-32">
         <div class="space-y-4">
-          <h2 class="text-4xl sm:text-5xl font-black text-white">Who We Are</h2>
+          <h2 class="text-4xl sm:text-5xl font-thin text-white">Who We Are</h2>
           <p class="text-lg text-white/50 font-light">The people behind this mission</p>
         </div>
 
@@ -216,7 +216,7 @@
       <!-- Values Section -->
       <section class="space-y-12 mb-24 sm:mb-32">
         <div class="space-y-4">
-          <h2 class="text-4xl sm:text-5xl font-black text-white">Our Values</h2>
+          <h2 class="text-4xl sm:text-5xl font-thin text-white">Our Values</h2>
           <p class="text-lg text-white/50 font-light">What drives our decisions</p>
         </div>
 
@@ -315,7 +315,7 @@
         <!-- Card -->
         <div class="relative bg-linear-to-br from-indigo-500/20 via-cyan-500/15 to-emerald-500/10 backdrop-blur-2xl border border-white/20 rounded-4xl p-12 sm:p-16 text-center space-y-8 hover:border-white/30 transition-all duration-300">
           <div class="space-y-4">
-            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight">
+            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-thin text-white leading-tight">
               Ready to build
               <br />
               <span class="bg-linear-to-r from-indigo-300 to-cyan-300 bg-clip-text text-transparent">
