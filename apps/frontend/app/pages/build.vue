@@ -69,7 +69,7 @@ function backToHome() {
     <Transition name="main-fade" mode="out-in">
       <!-- Wallet Required State -->
       <div
-        v-if="!authStore.isConnected && false"
+        v-if="!authStore.isConnected"
         key="wallet"
         class="relative z-10 min-h-screen flex items-center justify-center p-4 sm:px-6"
       >
@@ -147,28 +147,6 @@ function backToHome() {
                 </div>
               </div>
 
-              <!-- Connect button -->
-              <button
-                @click="authStore.connect"
-                :disabled="authStore.isLoading"
-                class="w-full group relative px-8 py-5 rounded-xl font-bold text-white text-lg overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-              >
-                <!-- Gradient background -->
-                <div class="absolute inset-0 bg-linear-to-r from-indigo-600 via-indigo-500 to-cyan-500 opacity-100 group-hover:opacity-90 transition-opacity duration-300" />
-                <!-- Shimmer -->
-                <div class="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-                <!-- Text -->
-                <span class="relative flex items-center justify-center gap-3">
-                  <svg v-if="authStore.isLoading" class="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
-                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                  </svg>
-                  <span v-if="!authStore.isLoading">
-                    Connect Phantom Wallet
-                  </span>
-                  <span v-else>Connecting…</span>
-                </span>
-              </button>
 
               <div class="text-center text-white/50 text-sm">
                 🛡️ We never store your private keys or secret phrases

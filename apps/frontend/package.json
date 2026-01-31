@@ -12,8 +12,10 @@
   "dependencies": {
     "@nuxtjs/tailwindcss": "latest",
     "@pinia/nuxt": "^0.11.3",
+    "@reown/appkit": "^1.8.17",
+    "@reown/appkit-adapter-solana": "^1.8.17",
     "@solana/web3.js": "^1.98.4",
-    "@tailwindcss/vite": "^4.1.18",	
+    "@tailwindcss/vite": "^4.1.18",
     "nuxt": "^4.2.2",
     "pinia": "^3.0.4",
     "tailwindcss": "^4.1.18",
