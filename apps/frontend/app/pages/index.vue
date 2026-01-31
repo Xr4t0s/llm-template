@@ -29,24 +29,24 @@
           <!-- Accent label -->
           <div class="inline-block animate-fade-in" style="animation-delay: 0s;">
             <span class="text-sm font-mono text-transparent bg-clip-text bg-linear-to-r from-indigo-400 to-cyan-400 tracking-widest uppercase">
-              ✨ The future of building
+              ✨ The future of building assets
             </span>
           </div>
 
           <!-- Main Heading -->
           <div class="space-y-6 animate-fade-in" style="animation-delay: 0.1s;">
-            <h1 class="text-6xl sm:text-7xl lg:text-8xl font-black leading-tight text-white">
-              Build products
+            <h1 class="text-6xl sm:text-7xl lg:text-7xl font-black leading-tight text-white">
+              Build your product
               <br />
               <span class="bg-linear-to-r from-indigo-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent animate-gradient">
-                with intention
+                with ease
               </span>
             </h1>
           </div>
 
           <!-- Subheading -->
           <p class="text-lg sm:text-xl text-white/70 max-w-2xl leading-relaxed animate-fade-in font-light" style="animation-delay: 0.2s;">
-            A Web3-native workspace to orchestrate LLMs using custom MCP services. Manage state, maintain context, and ship real artifacts—
+            A Web3-native workspace to orchestrate your builds using custom MCP services and multi-LLM orchestration. Manage state, maintain context, and ship real artifacts—
             <span class="text-white font-semibold bg-linear-to-r from-indigo-200 to-cyan-200 bg-clip-text">from idea to production.</span>
           </p>
 
@@ -118,50 +118,53 @@
         <div class="grid lg:grid-cols-2 gap-16 items-center">
           
           <!-- Left: Text -->
-          <div class="space-y-6 max-w-2xl">
-            <h2 class="text-5xl sm:text-6xl font-black leading-tight">
-              How do we prevent you
-              <br />
-              <span class="bg-linear-to-r from-indigo-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">
-                from prompting.
-              </span>
-            </h2>
+          <div class="space-y-8 max-w-2xl">
+            <div class="space-y-4">
+              <p class="text-lg text-indigo-400 font-semibold uppercase tracking-wide">Why RunMCP</p>
+              <h2 class="text-5xl sm:text-6xl font-black leading-tight">
+                Build AI-generated products,
+                <br />
+                <span class="bg-linear-to-r from-indigo-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">
+                  without prompting.
+                </span>
+              </h2>
+            </div>
 
-            <p class="text-xl text-white/70 leading-relaxed font-light">
-              Most AI tools are optimized for <span class="text-white">conversation</span>. LLM Studio is optimized for <span class="text-white font-bold">construction.</span>
+            <p class="text-lg text-white/70 leading-relaxed">
+              Most AI tools are built for exploration. RunMCP is built for production. We give you persistent context, explicit intent, and structured flows so you can ship real products—not endless prompt iterations.
             </p>
 
-            <p class="text-lg text-white/60 leading-relaxed">
-              Persistent context, explicit intent, structured flows—everything you need to ship real products instead of fine-tuning prompts.
-            </p>
-
-            <div class="pt-4 space-y-3">
-              <div class="flex items-start gap-3 text-white/70">
-                <span class="text-indigo-400 text-xl mt-1">▸</span>
-                <span>Projects, not conversations</span>
+            <div class="space-y-4">
+              <div class="flex items-start gap-4">
+                <span class="text-indigo-400 text-2xl flex-shrink-0">•</span>
+                <div>
+                  <p class="text-white font-semibold">Projects, not conversations</p>
+                  <p class="text-white/60 text-sm mt-1">Organize work by product, not by chat thread</p>
+                </div>
               </div>
-              <div class="flex items-start gap-3 text-white/70">
-                <span class="text-cyan-400 text-xl mt-1">▸</span>
-                <span>State management, not chat history</span>
+              <div class="flex items-start gap-4">
+                <span class="text-cyan-400 text-2xl flex-shrink-0">•</span>
+                <div>
+                  <p class="text-white font-semibold">State management built in</p>
+                  <p class="text-white/60 text-sm mt-1">Track context and intent across every step</p>
+                </div>
               </div>
-              <div class="flex items-start gap-3 text-white/70">
-                <span class="text-emerald-400 text-xl mt-1">▸</span>
-                <span>Artifacts, not screenshots</span>
+              <div class="flex items-start gap-4">
+                <span class="text-emerald-400 text-2xl flex-shrink-0">•</span>
+                <div>
+                  <p class="text-white font-semibold">Ship artifacts, not screenshots</p>
+                  <p class="text-white/60 text-sm mt-1">Go from idea to deployed code in one platform</p>
+                </div>
               </div>
             </div>
           </div>
-
-          <!-- Right: Visual -->
-          <div class="relative h-96 hidden lg:block">
-            <div class="absolute inset-0 bg-linear-to-br from-indigo-600/20 via-cyan-600/10 to-transparent rounded-3xl blur-2xl" />
-            <div class="absolute inset-8 border border-white/10 rounded-2xl backdrop-blur-md bg-white/5 flex items-center justify-center overflow-hidden">
-              <div class="absolute inset-0 bg-linear-to-br from-indigo-600/10 to-transparent" />
-              <div class="relative text-center space-y-4">
-                <div class="text-6xl">🏗️</div>
-                <p class="text-white/60 text-sm max-w-xs">Built for shipping, not chatting</p>
-              </div>
-            </div>
-          </div>
+<!-- Right: Visual -->
+<div class="relative h-96 hidden lg:block">
+  <div class="absolute inset-0 bg-linear-to-br from-indigo-600/20 via-cyan-600/10 to-transparent rounded-3xl blur-2xl" />
+  <div class="flex items-center justify-center h-full">
+    <img src="/images/logo.png" alt="Logo" class="w-lg h-lg object-contain animate-spin" style="animation-duration: 24s;" />
+  </div>
+</div>
 
         </div>
       </div>
@@ -390,7 +393,7 @@ import { ref } from 'vue'
 const activeFeature = ref<number | null>(null)
 
 useHead({
-  title: 'LLM Studio - Build Web3 Products with Intention',
+  title: 'RunMCP - Build Web3 Products with Intention',
   meta: [
     {
       name: 'description',

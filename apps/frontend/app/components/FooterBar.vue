@@ -157,7 +157,7 @@
         <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
           <!-- Copyright -->
           <div class="text-xs text-white/40 font-light">
-            © {{ year }} LLM Studio. Built with intention.
+            © {{ year }} RunMCP. Built with intention.
           </div>
 
           <!-- Social icons -->

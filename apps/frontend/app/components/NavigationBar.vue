@@ -20,14 +20,14 @@
           <!-- Logo box with glow -->
           <div class="relative">
             <div class="absolute inset-0 bg-linear-to-br from-indigo-500 via-indigo-400 to-cyan-400 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="filter: blur(8px)" />
-            <div class="relative w-10 h-10 rounded-xl bg-linear-to-br from-indigo-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/40 group-hover:shadow-2xl group-hover:shadow-indigo-500/60 transition-all duration-300">
-              <span class="text-white font-black text-lg">⚡</span>
+            <div class="relative w-10 h-10 rounded-xl flex items-center justify-center shadow-lg  group-hover:shadow-2xl group-hover:shadow-indigo-500/60 transition-all scale-120 duration-300">
+              <img src="/images/logo.png" alt="Logo" class="w-full h-full object-cover rounded-xl" />
             </div>
           </div>
           
           <!-- Logo text with gradient on hover -->
-          <span class="text-white font-black text-xl tracking-tight group-hover:text-transparent group-hover:bg-linear-to-r group-hover:from-indigo-300 group-hover:via-cyan-300 group-hover:to-emerald-300 group-hover:bg-clip-text transition-all duration-300">
-            Studio
+          <span class="text-white font-thin  text-2xl tracking-tight group-hover:text-transparent group-hover:bg-linear-to-r group-hover:from-indigo-300 group-hover:via-cyan-300 group-hover:to-emerald-300 group-hover:bg-clip-text transition-all duration-700">
+            RunMCP
           </span>
         </NuxtLink>
 

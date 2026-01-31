@@ -52,7 +52,6 @@
       <section class="space-y-10 mb-24 sm:mb-32">
         <div class="space-y-4">
           <h2 class="text-4xl sm:text-5xl font-black text-white">Our Mission</h2>
-          <p class="text-lg text-white/50 font-light">Why we're building this</p>
         </div>
 
         <div class="group relative">
@@ -75,7 +74,7 @@
               <div class="h-px bg-linear-to-r from-white/0 via-white/20 to-white/0" />
               
               <p class="text-xl text-white/80 leading-relaxed font-light">
-                <span class="font-bold text-white">LLM Studio is that workspace.</span> Built by people who've shipped products. For people who care about craft and clarity.
+                <span class="font-bold text-white">RunMCP is that workspace.</span> Built by people who've shipped products. For people who care about craft and clarity.
               </p>
             </div>
           </div>
@@ -207,7 +206,7 @@
               <div class="h-px bg-linear-to-r from-white/0 via-white/20 to-white/0" />
               
               <p class="text-lg text-white/80 leading-relaxed font-light">
-                LLM Studio is born from years of frustration with bloated AI tools and scattered workflows. It's built with deep empathy for the builder's journey—the chaos, the iteration, the moments of clarity.
+                RunMCP is born from years of frustration with bloated AI tools and scattered workflows. It's built with deep empathy for the builder's journey—the chaos, the iteration, the moments of clarity.
               </p>
             </div>
           </div>

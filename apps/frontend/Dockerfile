@@ -1,10 +1,11 @@
-FROM node:20-alpine
+FROM node:20-slim
 
 WORKDIR /app
 
-RUN corepack enable && corepack prepare pnpm@latest --activate
+RUN curl -fsSL https://get.pnpm.io/install.sh | sh
+RUN corepack enable pnpm
 
-COPY package.json pnpm-lock.yaml* ./
+COPY package.json ./
 RUN pnpm install
 RUN pnpm add @pinia/nuxt
 

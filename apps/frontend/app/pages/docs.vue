@@ -43,7 +43,7 @@
           
           <!-- Subtitle -->
           <p class="text-xl sm:text-2xl text-white/70 leading-relaxed font-light max-w-2xl">
-            Master LLM Studio from fundamentals to advanced workflows. Everything you need to orchestrate AI and ship products that matter.
+            Master RunMCP from fundamentals to advanced workflows. Everything you need to orchestrate AI and ship products that matter.
           </p>
         </div>
       </section>

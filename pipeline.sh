@@ -14,7 +14,7 @@ curl -s -X POST "$WEBHOOK_URL" \
     \"step\": 1,
     \"prompt\": \"Use only the generate_documentation tool to perform the step mentionned, STEP 1: Documentation generation.\",
     \"data\": {
-      \"lore\": \"LLM Studio can make your life easier by doing everything you need for you web3 project\",
+      \"lore\": \"RunMCP can make your life easier by doing everything you need for you web3 project\",
       \"hasMascot\": false,
       \"tone\": \"Serious\",
       \"taglineStyle\": \"Short & punchy\",
@@ -49,7 +49,7 @@ curl -s -X POST "$WEBHOOK_URL" \
     \"step\": 2,
     \"prompt\": \"Use only generate_landing_page tool to perform the step mentionned, STEP 2: Website static generation.\",
     \"data\": {
-      \"lore\": \"LLM Studio can make your life easier by doing everything you need for you web3 project\",
+      \"lore\": \"RunMCP can make your life easier by doing everything you need for you web3 project\",
       \"hasMascot\": false,
       \"tone\": \"Serious\",
       \"taglineStyle\": \"Short & punchy\",
@@ -84,7 +84,7 @@ curl -s -X POST "$WEBHOOK_URL" \
     \"step\": 3,
     \"prompt\": \"Use only generate_visuals tool to perform the step mentionned, STEP 3: Multi-assets generation.\",
     \"data\": {
-      \"lore\": \"LLM Studio can make your life easier by doing everything you need for you web3 project\",
+      \"lore\": \"RunMCP can make your life easier by doing everything you need for you web3 project\",
       \"hasMascot\": true,
       \"tone\": \"Serious\",
       \"taglineStyle\": \"Short & punchy\",
