@@ -55,7 +55,10 @@
         <div class="flex items-center gap-3 sm:gap-4 relative z-10">
           <!-- Wallet Button -->
           <div class="hidden sm:block">
-            <WalletButton />
+			<ClientOnly>
+				<WalletButton />
+			</ClientOnly>
+			
           </div>
 
 		  
