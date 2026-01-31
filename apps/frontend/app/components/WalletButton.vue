@@ -125,7 +125,7 @@ function shortenAddress(addr: string | null): string {
  * Ouvre le modal de connexion AppKit
  */
 function openAppKit() {
-//   open()
+  open()
 }
 
 /**
