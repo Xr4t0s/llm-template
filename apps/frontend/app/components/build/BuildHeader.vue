@@ -1,5 +1,5 @@
 <template>
-  <div class="space-y-6">
+  <div v-if="!store.buildDone" class="space-y-6">
 
     <!-- Progress Section -->
     <div class="space-y-2">

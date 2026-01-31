@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full max-w-2xl mx-auto py-20">
+  <div class="w-full max-w-2xl mx-auto py-2">
     <!-- Success animation -->
     <div class="space-y-8 text-center">
       <!-- Celebration emoji -->

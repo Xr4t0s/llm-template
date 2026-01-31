@@ -491,326 +491,659 @@ Generate the logo brief now. Output ONLY the brief content.
 
 
 # -------------------------------------------------
-# TOOL 5: GENERATE BANNER
+# TOOL 5: GENERATE BANNER (WEB3 MINIMALIST)
 # -------------------------------------------------
-@mcp.tool()
+
 def generate_banner(
     project_name: str,
     lore: str,
     tone: str,
     visual_vibe: str = "modern",
-    color_palette: List[str] = ["indigo", "lime"],
+    color_palette: list = None,
     tagline: str = "",
     style_guide: str = ""
 ) -> str:
     """
-    Generate detailed banner design brief for social media headers.
+    Generate minimal banner design brief for Web3 projects.
     
-    Creates specifications for Twitter, Telegram, Discord banners.
+    Philosophy: Typography + Color > Visual Noise
     
     Args:
         project_name: Project name
         lore: Project narrative
         tone: Brand tone
-        visual_vibe: Visual aesthetic
-        color_palette: Primary and secondary colors
-        tagline: Project tagline (optional)
-        style_guide: Additional design guidelines
+        visual_vibe: Visual aesthetic (minimal, geometric, gradient, dark, light)
+        color_palette: [primary_color, secondary_color]
+        tagline: Project tagline (required for impact)
+        style_guide: Additional guidelines
     
     Returns:
-        Prompt for LLM to generate banner brief
+        Banner design brief prompt
     """
+    
+    if color_palette is None:
+        color_palette = ["#6366f1", "#00ff88"]
+    
+    primary_color = color_palette[0]
+    secondary_color = color_palette[1] if len(color_palette) > 1 else primary_color
+    
+    if not tagline:
+        tagline = "The project tagline that captures essence in 3-5 words"
+    
+    prompt = f"""You are a Web3 brand designer with zero tolerance for visual noise.
 
-    colors = " + ".join(color_palette)
+# BANNER PHILOSOPHY
+**Less is more. Typography is the hero. Color creates mood. Subtlety wins.**
 
-    prompt = f"""
-You are a professional brand designer specializing in Web3 social media assets.
+The banner doesn't explain the project—it feels like the project.
 
-# PROJECT CONTEXT
-- Name: {project_name}
-- Tone: {tone}
-- Visual Vibe: {visual_vibe}
-- Colors: {colors}
-- Tagline: {tagline if tagline else "Create an appropriate tagline"}
+---
 
-# PROJECT LORE
+# PROJECT DNA
+- **Name:** {project_name}
+- **Tone:** {tone}
+- **Aesthetic:** {visual_vibe}
+- **Primary:** {primary_color}
+- **Secondary:** {secondary_color}
+- **Tagline:** "{tagline}"
+
+# LORE
 {lore}
 
 ---
 
-# TASK
-Create a detailed banner design brief (400-600 words) for a designer or AI tool.
+# CORE CONSTRAINT: MINIMAL DESIGN
 
-## SECTIONS
-
-### 1. PURPOSE & CONTEXT
-Used as header banner for:
-- Twitter profile (1500x500px)
-- Telegram channel (1590x400px)
-- Discord server (960x540px)
-- Website header
-
-### 2. DESIGN BRIEF
-Detailed visual description capturing the essence of {project_name}
-
-### 3. TECHNICAL SPECIFICATIONS
-- Twitter: 1500x500px
-- Telegram: 1590x400px
-- Discord: 960x540px (minimum 320x180px)
-- Format: PNG or JPG
-- Resolution: 72-300 DPI
-
-### 4. COLOR & STYLE
-- Primary colors: {colors}
-- Gradient direction and intensity
-- Effects: glow, shadow, blur
-- Typography: bold, modern, readable
-
-### 5. KEY ELEMENTS
-- Project name (large, readable)
-- Tagline or key message (optional)
-- Visual elements representing the project
-- Logo placement (top corner)
-- Safe zones for text overlays
-
-### 6. MOOD & FEEL
-- Dynamic and energetic
-- Premium yet approachable
-- Should feel current and professional
-- Reflects {tone} tone
-
-### 7. COMPOSITION
-- Hero visual that captures essence
-- Eye-catching and shareable
-- Balanced composition
-- Clear focal point
-
-### 8. DON'T INCLUDE
-- Overly busy backgrounds
-- Too many competing elements
-- Generic stock photos
-- Outdated designs
-
-### 9. AI GENERATION PROMPT
-Detailed Midjourney/DALL-E prompt for designers using AI
+✓ Bold typography as primary element
+✓ Intentional color play (primary + secondary interaction)
+✓ Subtle background texture or gradient (not the focus)
+✓ Strategic negative space
+✓ Readable at ANY scale
+✓ Works in dark mode AND light mode
+✗ Stock imagery
+✗ Photographic elements
+✗ Decorative patterns
+✗ Multiple visual elements competing
+✗ Busy backgrounds
+✗ Gradients that distract from text
 
 ---
 
-# OUTPUT FORMAT
+# DESIGN BRIEF
 
-Structure clearly:
+## 1. LAYOUT HIERARCHY
+**Tier 1 (Hero):** {project_name} (largest, boldest)
+**Tier 2 (Impact):** "{tagline}" (supporting, elegant)
+**Tier 3 (Balance):** Subtle background + color interplay
 
-## BANNER DESIGN BRIEF: {project_name}
+**Composition:** Asymmetrical balance. Text occupies 60-70% visual weight.
 
-### Purpose & Context
-[Details]
+## 2. TYPOGRAPHY STRATEGY
+- **Primary Font:** Modern, geometric sans-serif (Helvetica Neue, Inter, Montserrat Bold)
+- **Project Name:** 
+  - Size: Dominant, fills 40-50% of banner width
+  - Weight: 700-900 (extra bold)
+  - Color: {primary_color} OR white/black with {primary_color} accent
+  - Tracking: -2 to 0 (tight, powerful)
 
-### Design Brief
-[Visual description]
+- **Tagline:**
+  - Size: 30-40% of name size
+  - Weight: 400-500 (elegant, readable)
+  - Color: {secondary_color} OR neutral (white/gray)
+  - Line height: 1.3-1.4 (breathing room)
 
-### Technical Specifications
-[Sizes and formats]
+## 3. COLOR COMPOSITION
+**Primary Color Strategy:**
+- {primary_color} dominates: text, accents, or background
+- Fills 60-70% of visual space
+- Creates instant brand recognition
 
-### Color & Style
-[Colors, gradients, effects]
+**Secondary Color Strategy:**
+- {secondary_color} acts as rhythm
+- Used for: tagline, accent lines, or subtle background elements
+- Never fights for attention
+- Creates depth without complexity
 
-### Key Elements
-[What must be included]
+**Background:**
+- Solid color (preferred) OR minimal gradient
+- Gradient angle: Subtle (if used)
+- Ensure 3:1 contrast ratio minimum for text readability
 
-### Mood & Feel
-[Emotional tone]
+## 4. BACKGROUND OPTIONS (pick ONE)
 
-### Composition Tips
-[Layout guidance]
+### Option A: Solid Primary + Text Secondary
+- Full background: {primary_color}
+- Text: White/light with {secondary_color} accent word
+- Simple. Bold. Unmistakable.
 
-### Elements to Avoid
-[Don'ts]
+### Option B: Solid Secondary + Text Primary
+- Full background: {secondary_color}
+- Text: {primary_color} (strong contrast)
+- Creates energy through color opposition
 
-### AI Prompt (Midjourney/DALL-E)
-[Detailed prompt]
+### Option C: Dark/Light Base + Color Accent
+- Background: Black or white (depending on tone)
+- Text: {primary_color} for project name
+- Tagline: {secondary_color}
+- Most minimal. Most professional.
+
+### Option D: Subtle Gradient
+- From primary to darker version
+- Direction: Top-left to bottom-right OR top to bottom
+- Gradient stop: 20-30% transition (subtle, not flashy)
+- Preserves minimalist feel
+
+## 5. ACCENT ELEMENTS (OPTIONAL, use sparingly)
+
+**Allowed:**
+- Single horizontal/vertical line in secondary color (geometric divider)
+- Subtle opacity shape (10-20% opacity) in corner (triangle, circle)
+- Minimal icon reference (if it relates directly to essence)
+- Dots or dashes (rhythm element, max 3 total)
+
+**Forbidden:**
+- Patterns or textures
+- Photography
+- Multiple competing shapes
+- Decorative elements that don't serve purpose
+- Blurs, glows, or effects (except single accent line)
+
+## 6. SAFE ZONES & SPECIFICATIONS
+
+**Twitter Header (1500x500px):**
+- Text center: Safe zone 200-1300px horizontal
+- Vertical: Center at 250px
+- Logo: Top-left corner (if included, 80x80px max)
+
+**Telegram Channel (1590x400px):**
+- Same horizontal safety
+- Vertical: Center at 200px
+- Tight composition (height constraint)
+
+**Discord Server (960x540px):**
+- Minimum safe zone for text: 100-860px
+- Vertical: 100-440px
+- Works at thumbnail size (320x180px)
+
+**Website Banner (flexible):**
+- Adapt to container width
+- Maintain aspect ratio minimum 16:9 or 21:9
+- Responsive: text scales proportionally
+
+## 7. MOOD ARCHITECTURE
+
+The banner should communicate:
+- **Instantly:** What is this? (from logo + name)
+- **In 2 seconds:** What's the vibe? (from colors + tagline)
+- **In 5 seconds:** Why should I care? (from tone conveyed through design)
+
+Not from words. From **visual language alone.**
+
+## 8. CONTRAST & READABILITY
+- Text color vs background: 4.5:1 minimum (WCAG AA standard)
+- Test on mobile (Twitter thumbnail size)
+- Test in grayscale (check if it still reads)
+- Test on both light and dark contexts
+
+## 9. VARIATIONS REQUIRED
+
+1. **Primary orientation** (designed above)
+2. **Dark mode variant** (if background is light, flip)
+3. **Logo-left version** (if logo needs repositioning)
+4. **Tagline-only version** (project name + tagline centered)
+
+## 10. DESIGN RULES (NON-NEGOTIABLE)
+
+✓ Typography is 70%+ of the design
+✓ Color creates emotion, text creates meaning
+✓ Every element has a job (no decoration)
+✓ Negative space is intentional
+✓ Readable at 50% size (mobile)
+✓ Works in single color (B&W test)
+✓ Professional yet bold
+✓ Memorable in 3 seconds
 
 ---
 
-# ADDITIONAL GUIDELINES
-{style_guide if style_guide else "Follow the visual vibe and tone specified above"}
+# MIDJOURNEY / AI GENERATION PROMPT
 
-Generate the banner brief now. Output ONLY the brief content.
-"""
+"Minimal Web3 banner for {project_name}. 
+Bold typography center-stage: '{project_name}' and '{tagline}'. 
+Background: {visual_vibe} composition in {primary_color} and {secondary_color}.
+Zero clutter. {tone} aesthetic.
+Emphasis on readability and color contrast.
+Modern sans-serif font, geometric and clean.
+No photography, no patterns, no visual noise.
+Color-driven design, text-first composition.
+Professional, bold, minimal.
+Aspect ratio 3:1 (social media standard)."
+
+---
+
+# DELIVERABLES CHECKLIST
+- [ ] Main banner (1500x500px for Twitter)
+- [ ] Telegram variant (1590x400px)
+- [ ] Discord variant (960x540px)
+- [ ] Dark mode version
+- [ ] Light mode version
+- [ ] High-res export (300 DPI)
+- [ ] Web-optimized (72 DPI)
+- [ ] PNG + JPG formats
+
+---
+
+# COLOR INTERACTION EXAMPLES
+
+**If primary = Indigo, secondary = Lime:**
+- Option A: Full indigo background, lime accent word in tagline
+- Option B: Full lime background, indigo bold text
+- Option C: Black background, indigo project name, lime tagline
+
+Choose ONE. Don't layer both heavily.
+
+---
+
+# FINAL PHILOSOPHY
+
+"A great banner doesn't need explanation. The viewer understands instantly through color and type. Anything else is noise. Kill the noise."
+
+{style_guide if style_guide else ""}
+
+Generate only the final design brief. Be direct. Be visual. Be ruthlessly minimal."""
 
     return prompt
 
 
 # -------------------------------------------------
-# TOOL 6: GENERATE X ASSETS
+# TOOL 6: GENERATE X ASSETS (WEB3 MINIMALIST)
 # -------------------------------------------------
-@mcp.tool()
+
 def generate_x_assets(
     project_name: str,
     lore: str,
     tone: str,
     visual_vibe: str = "modern",
-    color_palette: List[str] = ["indigo", "lime"],
-    include_assets: List[str] = ["pfp", "header", "meme", "buybot", "dexscreener"],
+    color_palette: list = None,
+    include_assets: list = None,
     style_guide: str = ""
 ) -> str:
     """
-    Generate all X/Twitter visual asset design briefs.
+    Generate minimal X/Twitter asset design briefs for Web3.
     
-    Creates detailed specifications for: PFP, Header, Meme, BuyBot, DEXScreener.
+    Philosophy: Design Consistency > Noise. Each asset is a variation on one theme.
     
     Args:
         project_name: Project name
         lore: Project narrative
         tone: Brand tone
-        visual_vibe: Visual aesthetic
-        color_palette: Primary and secondary colors
-        include_assets: Which assets to generate (all by default)
-        style_guide: Additional design guidelines
+        visual_vibe: Visual aesthetic (minimal, geometric, gradient, bold, dark)
+        color_palette: [primary_color, secondary_color]
+        include_assets: Which assets to generate (default: all)
+        style_guide: Additional guidelines
     
     Returns:
-        Prompt for LLM to generate asset briefs in JSON format
+        JSON string with asset briefs
     """
-
-    colors = " + ".join(color_palette)
     
-    assets_list = "\n".join([f"- {a.upper()}" for a in include_assets])
+    if color_palette is None:
+        color_palette = ["#6366f1", "#00ff88"]
+    
+    if include_assets is None:
+        include_assets = ["pfp", "header", "meme", "buybot", "dexscreener"]
+    
+    primary = color_palette[0]
+    secondary = color_palette[1] if len(color_palette) > 1 else primary
+    
+    prompt = f"""You are a Web3 art director obsessed with visual consistency and minimal design.
 
-    prompt = f"""
-You are a creative art director for Web3 projects specializing in X/Twitter assets.
+# PHILOSOPHY
+**One DNA. Multiple expressions. Zero visual noise.**
 
-# PROJECT CONTEXT
-- Name: {project_name}
-- Tone: {tone}
-- Visual Vibe: {visual_vibe}
-- Colors: {colors}
+Each asset echoes the same brand language—typography, color interaction, geometric precision. No decoration. No photographic elements. Pure design.
 
-# PROJECT LORE
+---
+
+# PROJECT DNA
+- **Name:** {project_name}
+- **Tone:** {tone}
+- **Aesthetic:** {visual_vibe}
+- **Primary:** {primary}
+- **Secondary:** {secondary}
+
+# LORE
 {lore}
 
 ---
 
-# TASK
-Create detailed design briefs for ALL X/Twitter visual assets.
+# CORE PRINCIPLE: DESIGN LANGUAGE
 
-## ASSETS TO CREATE
-{assets_list}
-
----
-
-# ASSET SPECIFICATIONS
-
-### 1. PFP (PROFILE PICTURE)
-**Dimensions**: 400x400px (displayed at 48x48px, 200x200px, 400x400px)
-**Purpose**: Main profile avatar
-**Requirements**:
-- Simple and recognizable at small sizes
-- Works as a square
-- High contrast
-- Memorable and distinctive
-- Reflects brand identity
-
-### 2. HEADER (BANNER)
-**Dimensions**: 1500x500px
-**Purpose**: Twitter profile header
-**Requirements**:
-- Eye-catching and shareable
-- Includes project name/tagline
-- Space for logo (safe zone)
-- Dynamic composition
-- Reflects {tone} tone
-
-### 3. MEME
-**Dimensions**: 1080x1080px (square)
-**Purpose**: Viral engagement and community entertainment
-**Requirements**:
-- Funny, relatable, shareable
-- Resonates with Web3/crypto audience
-- Subtle {project_name} branding
-- High engagement potential
-- Can be time-sensitive or evergreen
-
-### 4. BUYBOT IMAGE
-**Dimensions**: 1200x800px (landscape)
-**Purpose**: Market the bot functionality and automation
-**Requirements**:
-- Showcase speed, ease, security
-- Modern and professional
-- Can include interface mockups
-- Inspire confidence and excitement
-- Clear value proposition
-
-### 5. DEXSCREENER IMAGE
-**Dimensions**: 1200x600px
-**Purpose**: DEX Screener listing thumbnail
-**Requirements**:
-- Professional and trustworthy
-- Data-focused aesthetic
-- Can include chart visualization
-- Positive visual cues
-- Conveys legitimacy and growth
+All assets share:
+✓ Same typography family (geometric sans-serif)
+✓ Same color philosophy ({primary} + {secondary})
+✓ Same spacing/alignment rules
+✓ Minimal, geometric approach
+✓ No clutter, no decoration
+✓ Instant brand recognition
 
 ---
 
-# OUTPUT FORMAT (MANDATORY JSON)
+# OUTPUT FORMAT: VALID JSON ONLY
 
-Return ONLY a valid JSON array. No explanations, no text outside JSON.
+Return ONLY this JSON structure (no other text):
 
-[
-  {{
-    "asset": "PFP",
-    "brief": "<detailed brief for PFP>"
+{{
+  "project": "{project_name}",
+  "color_system": {{
+    "primary": "{primary}",
+    "secondary": "{secondary}"
   }},
-  {{
-    "asset": "HEADER",
-    "brief": "<detailed brief for Header>"
-  }},
-  {{
-    "asset": "MEME",
-    "brief": "<detailed brief for Meme>"
-  }},
-  {{
-    "asset": "BUYBOT",
-    "brief": "<detailed brief for BuyBot>"
-  }},
-  {{
-    "asset": "DEXSCREENER",
-    "brief": "<detailed brief for DEXScreener>"
-  }}
-]
+  "design_language": "Minimal geometric Web3 aesthetic. Typography-driven. Color-focused. Zero visual noise.",
+  "assets": [
+    {{
+      "asset": "PFP",
+      "dimensions": "400x400px",
+      "brief": "..."
+    }},
+    {{
+      "asset": "HEADER",
+      "dimensions": "1500x500px",
+      "brief": "..."
+    }},
+    {{
+      "asset": "MEME",
+      "dimensions": "1080x1080px",
+      "brief": "..."
+    }},
+    {{
+      "asset": "BUYBOT",
+      "dimensions": "1200x800px",
+      "brief": "..."
+    }},
+    {{
+      "asset": "DEXSCREENER",
+      "dimensions": "1200x600px",
+      "brief": "..."
+    }}
+  ]
+}}
 
 ---
 
-# PER-ASSET BRIEF STRUCTURE
+# ASSET BRIEFS (DETAILED)
 
-For each asset, include:
+## 1. PFP (Profile Picture)
+**Dimensions:** 400x400px (displays at 48x48, 200x200, 400x400)
+**Purpose:** Avatar. Instant brand recognition at any scale.
 
-**Purpose & Context**: Where/how this will be used
-**Design Brief**: Detailed visual description
-**Dimensions**: Exact size requirements
-**Color & Style**: Specific colors, effects
-**Key Elements**: What must be included
-**Mood & Feel**: Emotional tone
-**Don'ts**: What to avoid
-**AI Prompt**: Detailed prompt for Midjourney/DALL-E
+**Design Philosophy:**
+- **Core Element:** A single geometric mark derived from your logo/brand symbol
+- **Execution:** Clean, bold, 1:1 square
+- **Color:** Primary color fills the mark. Secondary as accent (optional, minimal)
+- **Background:** Solid color (either primary, secondary, or neutral dark/light)
+- **Typography:** ZERO text in PFP. Icon only.
+- **Scalability:** Must read perfectly at 48px (Twitter thumbnail)
+
+**Key Requirements:**
+✓ Logo evolution or variation (not the same as main logo)
+✓ High contrast
+✓ Works at tiny scales
+✓ Memorable silhouette
+✓ No inner detail below 48px
+✓ No gradients, no effects
+
+**Mood:** Bold, confident, ownable
+
+**AI Prompt:**
+"Minimal Web3 profile avatar for {project_name}. Geometric symbol, {tone} aesthetic. Primary color {primary}. Single mark, no text. Perfect at 48px and 400px. Clean, sharp, iconic. No gradients, no effects. Professional yet bold."
+
+**Variations:**
+1. Primary on white background
+2. White on primary background
+3. Secondary accent version (if multi-color needed)
 
 ---
 
-# GENERAL REQUIREMENTS
-- Be specific and concrete
-- All assets should be cohesive but unique
-- Consider practical use cases
-- Make briefs actionable for AI and human designers
-- Ensure brand consistency
-- Use hex color codes where possible
+## 2. HEADER (Banner)
+**Dimensions:** 1500x500px
+**Purpose:** Twitter profile visual statement
 
-# ADDITIONAL GUIDELINES
-{style_guide if style_guide else "Follow the visual vibe and tone specified above"}
+**Design Philosophy:**
+- **Text:** {project_name} + tagline/descriptor
+- **Typography:** Large, bold, geometric sans-serif (same as PFP)
+- **Color Strategy:** Primary dominates (60%+). Secondary for accent.
+- **Background:** Solid or minimal gradient (option to choose one)
+- **Additional Elements:** Subtle geometric shape OR accent line (1 only)
 
-Generate the X assets briefs now. Output ONLY the JSON array.
-"""
+**Layout Options:**
+A) Text left-aligned, color-blocked background right
+B) Text centered, full primary background, secondary accent line
+C) Text offset, secondary background with primary text overlay
+(Designer chooses best fit for {tone})
+
+**Key Requirements:**
+✓ {project_name} occupies 40% width minimum
+✓ Readable at 300px width (Twitter mobile)
+✓ One color interaction ({primary} + {secondary})
+✓ Consistent typography with PFP
+✓ Safe zones for logo (if needed)
+✓ No photography, no patterns
+
+**Mood:** {tone}. Professional. Memorable.
+
+**AI Prompt:**
+"Web3 Twitter header for {project_name}. Dimensions 1500x500px. Bold typography: project name large. {visual_vibe} composition. Primary {primary}, secondary {secondary}. Minimal background, color-driven. {tone} aesthetic. No photos, no patterns. Emphasis on text and color contrast. Readable at mobile size."
+
+**Variations:**
+1. Light mode (dark text, light background)
+2. Dark mode (light text, dark background)
+3. Logo-left variant
+4. Centered composition
+
+---
+
+## 3. MEME
+**Dimensions:** 1080x1080px (square)
+**Purpose:** Community engagement, viral potential, personality
+
+**Design Philosophy:**
+- **Approach:** Minimal text-based OR geometric visual humor
+- **Brand Integration:** {project_name} branding subtle but present
+- **Tone:** Reflects {tone} (if serious → dry humor; if playful → bold humor)
+- **Color:** Uses {primary} and {secondary} (not full palette)
+- **Style:** Clean layout, readable fonts, high contrast
+
+**Content Types (choose 1 per meme):**
+A) **Text-based:** Bold statement + {project_name} watermark
+   - Typography: Large, geometric sans-serif
+   - Text: 2-4 words max
+   - Color: Primary text on secondary OR white on primary background
+   
+B) **Geometric humor:** Abstract shapes with layered meaning
+   - Shapes: Circles, triangles, lines
+   - Colors: Primary + secondary interplay
+   - Concept: Subtle, clever, Web3-native
+   
+C) **Data visual:** Chart/graph element + humorous caption
+   - Background: Primary or secondary
+   - Text: Witty observation about crypto/Web3
+   - Brand: Subtle corner watermark
+
+**Key Requirements:**
+✓ Readable at mobile scroll speed
+✓ Clear focal point
+✓ On-brand color + typography
+✓ Memorable in 1 second
+✓ Encourages sharing/engagement
+✓ No photography, no complex patterns
+✓ {project_name} watermark (small, strategic)
+
+**Mood:** Engaging. Clever. On-brand.
+
+**AI Prompt:**
+"Minimal Web3 meme asset for {project_name}. Square 1080x1080px. {tone} humor. Bold typography. Primary {primary}, secondary {secondary}. Geometric or text-based composition. High contrast, readable at scroll speed. Clean, clever, shareable. No photos. {project_name} watermark. Modern sans-serif font."
+
+**Variations:**
+- Quarterly rotation (5-10 templates for community to use)
+- Different humor styles (technical, absurdist, motivational)
+
+---
+
+## 4. BUYBOT (Product Showcase)
+**Dimensions:** 1200x800px (landscape)
+**Purpose:** Product feature highlight, trust-building, action CTA
+
+**Design Philosophy:**
+- **Focus:** Speed, automation, security
+- **Layout:** Left-heavy (text/benefit), right visual (bot concept)
+- **Typography:** {project_name} + 3-4 key benefits (maximum)
+- **Color:** Primary accent on secondary OR inverse
+- **Visual:** Minimal bot representation (geometric/abstract, NOT realistic)
+
+**Content Hierarchy:**
+1. **Project name** (top, large, {primary} color)
+2. **Core benefit** (1 line, {secondary} color)
+3. **3 Feature bullets:** Speed • Security • Automation (small, clean)
+4. **Visual element:** Geometric bot icon OR abstract flow diagram (right side, 40% space)
+
+**Visual Approach:**
+- **Option A:** Abstract flowing lines representing automation (geometric, minimal)
+- **Option B:** Stylized bot silhouette (geometric, not cute or cartoony)
+- **Option C:** Data points/nodes with connecting lines (network aesthetic)
+
+**Key Requirements:**
+✓ Clear, scannable layout
+✓ Communicates value instantly
+✓ Professional + approachable
+✓ Uses brand colors strategically
+✓ Typography matches header/PFP
+✓ Minimal visual elements
+✓ No photorealism, no clutter
+
+**Mood:** Confident. Trustworthy. Innovative.
+
+**AI Prompt:**
+"Web3 product showcase image for {project_name} buybot. Landscape 1200x800px. Bold typography on left (project name + 1 benefit). Right side: minimal geometric bot visualization. Primary {primary}, secondary {secondary}. Clean, modern, professional. Emphasizes speed and automation through design. No photos. Geometric aesthetic only. {tone} feeling. High contrast text."
+
+**Variations:**
+1. "Buy automation" focus
+2. "Security & speed" focus
+3. "Easy integration" focus
+
+---
+
+## 5. DEXSCREENER (DEX Listing Thumbnail)
+**Dimensions:** 1200x600px (16:9 landscape)
+**Purpose:** Token listing showcase, legitimacy, growth signal
+
+**Design Philosophy:**
+- **Data-focused:** Suggests growth, stability, trust
+- **Layout:** Professional, minimal clutter
+- **Color:** Primary + secondary used strategically
+- **Typography:** {project_name} prominent, secondary metric/tagline
+- **Visual:** Subtle uptrend indicator OR abstract growth visualization
+
+**Content Elements:**
+1. **Project name** (large, {primary}, top-left area)
+2. **Contract/Ticker** (small, secondary, supporting text)
+3. **One key metric** (volume, liquidity, holders—optional, minimal)
+4. **Visual accent:** Subtle uptrend line OR geometric growth symbol (right/bottom)
+5. **Tagline or differentiator** (1 line, secondary color)
+
+**Visual Approach:**
+- **Option A:** Minimal uptrend line ({secondary} color, subtle, not flashy)
+- **Option B:** Abstract ascending shapes/dots (geometric, representing growth)
+- **Option C:** Geometric patterns suggesting stability (grids, lines, balanced)
+
+**Background:** 
+- Solid {primary} OR solid {secondary} OR gradient (minimal, subtle transition)
+- Must ensure 4.5:1 contrast for all text
+
+**Key Requirements:**
+✓ Professional, trustworthy aesthetic
+✓ Readable in thumbnail (300px width)
+✓ Clear hierarchy: Name > Metric > Visual
+✓ Suggests legitimacy and growth
+✓ Uses brand colors as markers
+✓ Minimal, not cluttered
+✓ No photorealism
+
+**Mood:** Professional. Stable. Trustworthy. Growth-oriented.
+
+**AI Prompt:**
+"DEX Screener token listing thumbnail for {project_name}. Landscape 1200x600px. Professional, minimal design. Bold {project_name} on primary {primary} or secondary {secondary} background. Subtle growth indicator (uptrend line or ascending shapes). Clean, data-focused aesthetic. {tone} tone. No photos, no clutter. High contrast. Communicates trust and growth through minimal design."
+
+**Variations:**
+1. High volume version
+2. High liquidity version
+3. Community-driven version
+
+---
+
+# DESIGN SYSTEM RULES (ACROSS ALL ASSETS)
+
+**Typography:**
+- Font: Modern geometric sans-serif (Inter, Montserrat, Helvetica Neue)
+- Weight: 700+ for headers, 400-500 for secondary
+- Spacing: Generous, never cramped
+- Alignment: Clean alignment grid
+
+**Color Application:**
+- Primary: 60-70% of visual weight
+- Secondary: 20-30% accent or contrast
+- Neutral: 10-20% (white/black/gray)
+- Never blend colors (keep them distinct)
+
+**Spacing & Grids:**
+- 8px grid system (all elements align to 8px)
+- Generous padding (min 20px from edges)
+- Never tight or cramped
+
+**Effects (FORBIDDEN):**
+✗ Gradients (except minimal, subtle background transitions)
+✗ Shadows or blur
+✗ Textures or patterns
+✗ Photographic elements
+✗ Decorative flourishes
+✓ Simple lines (1-2px only)
+✓ Geometric shapes (solid fills)
+✓ Intentional negative space
+
+**Scalability Test:**
+- All assets readable at 50% size
+- All text legible at thumbnail
+- Logo/mark works in B&W
+
+---
+
+# DELIVERABLES CHECKLIST
+
+**For Each Asset:**
+- [ ] Main file (exact dimensions)
+- [ ] Dark mode variant (if applicable)
+- [ ] Light mode variant (if applicable)
+- [ ] High-res export (300 DPI)
+- [ ] Web-optimized (72 DPI)
+- [ ] PNG + JPG formats
+
+**Quality Checks:**
+- [ ] Color accuracy across formats
+- [ ] Text contrast ratio 4.5:1 minimum
+- [ ] Readable at 50% scale
+- [ ] Brand consistency across all 5 assets
+- [ ] Zero visual noise
+- [ ] Professional finish
+
+---
+
+# FINAL PHILOSOPHY
+
+"A Web3 brand identity lives in consistency, not variety. Each asset reflects the same DNA: clean typography, purposeful color, geometric precision. The sum is stronger than individual parts. Every pixel earns its place."
+
+{style_guide if style_guide else ""}
+
+Generate the JSON now. Output ONLY the valid JSON structure above. No explanations, no additional text."""
 
     return prompt
-
 
 # -------------------------------------------------
 # TOOL 7: GENERATE WEBSITE
