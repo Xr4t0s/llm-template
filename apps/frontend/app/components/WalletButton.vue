@@ -2,7 +2,7 @@
   <div class="flex items-center gap-3">
     <!-- Not Connected State -->
     <button
-      v-if="!isConnected"
+      v-if="!authStore.isConnected"
       @click="openAppKit"
       :disabled="isLoading"
       class="group relative px-6 py-2.5 rounded-lg font-medium text-sm text-white overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed transition-all"
@@ -150,7 +150,6 @@ async function copyAddress() {
  */
 async function handleDisconnect() {
   try {
-    useDisconnect()
     authStore.logout()
   } catch (err) {
     console.error('Erreur lors de la déconnexion:', err)
