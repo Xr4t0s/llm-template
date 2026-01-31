@@ -30,7 +30,8 @@ createAppKit({
   },
   themeVariables: {
     '--w3m-accent': '#000000',
-  }
+  },
+
 })
 
 export default {
