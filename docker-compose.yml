@@ -16,6 +16,7 @@ services:
     build: ./apps/backend
     volumes:
       - ./apps/backend:/app
+      - ./shared:/data/shared
     ports:
       - "3001:3001" # Remap for testing api
     environment:

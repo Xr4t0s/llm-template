@@ -1,49 +1,40 @@
-# MCP Roadmap
+# OrbitDAO Roadmap
 
-## Project Phases & Timeline
-### Phase 1: Research & Development (Months 1–3)
-- Market research and user feedback collection
-- Architecture planning and technology stack selection
-- Initial MVP development focusing on website and tweet generation
+## Project Phases
 
-### Phase 2: Beta Launch (Months 4–6)
-- Launch of beta version with core asset generation features
-- Community onboarding and feedback collection
-- Refinement of UI/UX based on user input
+### Phase 1: Conceptualization and Research (Q1–Q2 2023)
+- Identifying challenges in decentralized treasury and governance.
+- Finalizing design principles prioritizing sovereignty and cross-chain compatibility.
+- Creating early technical architecture for secure multi-chain interaction.
 
-### Phase 3: Full Release & Expansion (Months 7–12)
-- Official release with full website, tweets, and visuals generator
-- Integration with major social media platforms and crypto wallets
-- Introduction of mascot Bolt for guided experiences
+### Phase 2: Development and Alpha Release (Q3 2023)
+- Development of core smart contracts enabling non-custodial treasury management.
+- Basic multi-chain interface implementation.
+- Internal alpha testing and security audits.
 
-### Phase 4: Advanced Features & Partnerships (Months 13–18)
-- AI-enhanced customization tools
-- API development for third-party integrations
-- Strategic partnerships with DAO platforms and NFT marketplaces
+### Phase 3: Beta Launch and Community Onboarding (Q4 2023)
+- Public beta release with governance and treasury management tools.
+- Launch of onboarding programs for DAOs.
+- Expand relayer infrastructure for enhanced decentralization.
 
-### Phase 5: Community Growth & Sustainability (Months 19+)
-- Ongoing community engagement initiatives
-- Regular feature updates and enhancements
-- Exploring DAO governance for MCP development
+### Phase 4: Feature Expansion (Q1–Q2 2024)
+- Advanced fund automation via programmable smart contracts.
+- Enhanced voting mechanisms with privacy and scalability improvements.
+- Integration with additional Layer-1 and Layer-2 blockchains.
+
+### Phase 5: Community Governance and DAO Transition (Q3 2024+)
+- Transition protocol ownership to community DAO.
+- Continuous upgrades adhering to user feedback and ecosystem needs.
+- Exploration of AI-driven governance assistance tools.
 
 ## Key Milestones
-- Successful MVP completion and internal testing
-- Beta launch with 500+ active users
-- Full platform launch with seamless integration
-- AI-powered customization rollout
-- Launch of community-driven initiatives and governance models
 
-## Short-Term Goals
-- Stabilize platform performance and user experience
-- Grow user base through targeted outreach
-- Establish key partnerships with blockchain projects
+- Mainnet Beta Launch: Q4 2023
+- Cross-Chain Management Expansion: Q2 2024
+- DAO Governance Transition: Q3 2024
 
-## Long-Term Goals
-- Become the go-to platform for Web3 project asset creation
-- Expand features with AI-driven solutions
-- Foster a decentralized community around MCP development
+## Goals
 
-## Future Expansion Plans
-- Incorporate multi-language support
-- Launch mobile applications
-- Offer on-chain verification of assets and brand authenticity
+- Establish OrbitDAO as the premier multi-chain governance hub.
+- Foster a resilient and engaged community of decentralized organizations.
+- Continuously innovate security measures and governance UX.

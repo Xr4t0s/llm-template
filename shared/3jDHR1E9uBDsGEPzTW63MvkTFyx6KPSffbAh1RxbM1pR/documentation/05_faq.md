@@ -1,46 +1,46 @@
 # Frequently Asked Questions (FAQ)
 
-## 1. What is MCP?
-MCP is an all-in-one Web3 tool that generates essential project assets like websites, tweets, and visuals with a single click.
+### 1. What is OrbitDAO?
+OrbitDAO is a community-owned DeFi protocol that enables DAOs to manage treasuries and governance across multiple blockchains securely and transparently, without custodians.
 
-## 2. Who is MCP designed for?
-MCP is tailored for blockchain developers, DAO founders, NFT project teams, crypto marketers, and community managers.
+### 2. How does OrbitDAO ensure security?
+The protocol utilizes cryptographic proofs and permissionless smart contracts to validate all transactions and governance actions on-chain.
 
-## 3. How does the one-click asset generation work?
-Users input their project details and preferences; MCP then instantly builds consistent, high-quality digital assets aligned with your brand.
+### 3. What blockchains does OrbitDAO support?
+OrbitDAO currently supports Ethereum and select Layer-2 networks, with plans to expand to additional blockchains.
 
-## 4. Can I customize the generated assets?
-Yes, MCP offers options to review and tweak content to ensure alignment with your project’s vision.
+### 4. Is OrbitDAO custodial?
+No, OrbitDAO is fully non-custodial, allowing DAOs to retain absolute control over their assets.
 
-## 5. Is there a free trial available?
-Details about trial availability will be announced on the official MCP platform.
+### 5. How are governance votes conducted?
+Governance is executed on-chain via auditable voting mechanisms that are permissionless and immutable.
 
-## 6. How do I get started with MCP?
-Sign up on the MCP platform, set up your project, and start generating assets immediately.
+### 6. Can DAOs automate fund allocation?
+Yes, OrbitDAO supports smart contract-driven automation for treasury budgeting and fund distribution aligned with governance decisions.
 
-## 7. What platforms does MCP support for social media posting?
-MCP currently supports major platforms like Twitter and is expanding integrations.
+### 7. What is the role of the mascot Eclipse?
+Eclipse symbolizes OrbitDAO’s vigilant and enigmatic guardian persona, representing security and sovereignty.
 
-## 8. Who is Bolt, the MCP mascot?
-Bolt is MCP’s mascot, representing speed, reliability, and precision in asset creation.
+### 8. How do I get started with OrbitDAO?
+Connect your DAO’s wallets to the protocol interface, set up governance workflows, and engage your community in secure voting.
 
-## 9. How secure is MCP?
-MCP employs industry-standard security protocols to protect your data and intellectual property.
+### 9. What makes OrbitDAO different from other DAO tools?
+Unlike most tools limited to single chains or custodial models, OrbitDAO offers unified multi-chain management, a dark immersive UI, and full sovereign control.
 
-## 10. Does MCP support multiple languages?
-Multi-language support is planned for future updates.
+### 10. Is the code open source?
+Yes, transparency is core to OrbitDAO, and all smart contracts are publicly auditable.
 
-## 11. Can MCP integrate with existing project tools?
-API integrations are planned to allow seamless integration with your current toolchain.
+### 11. How does OrbitDAO handle multi-chain treasury?
+OrbitDAO aggregates DAO funds across compatible chains into a single interface, enabling unified governance and fund control.
 
-## 12. What are the costs associated with MCP?
-Pricing details will be available on our website; the goal is to offer competitive plans suitable for projects of all sizes.
+### 12. What are relayers and how are they incentivized?
+Relayers submit proofs and transactions on behalf of DAOs across chains and are rewarded via protocol tokens.
 
-## 13. How can I provide feedback or request features?
-Feedback channels will be accessible via the MCP community and official support.
+### 13. Can I propose changes to OrbitDAO?
+Token holders can initiate governance proposals for changes, upgrades, or funding through the platform.
 
-## 14. Is there governance or community involvement in MCP’s development?
-MCP aims to evolve through community-driven governance, fostering decentralized decision-making.
+### 14. How does OrbitDAO protect user privacy?
+While governance and treasury data are transparent and auditable, cryptographic techniques safeguard user keys and voting identities.
 
-## 15. What kind of support is available?
-Dedicated support and documentation will be provided to assist onboarding and usage.
+### 15. What is the future roadmap?
+Expanding blockchain support, introducing AI governance tools, enhancing automation, and transitioning to community DAO ownership.

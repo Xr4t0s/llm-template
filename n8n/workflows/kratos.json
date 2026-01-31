@@ -9,10 +9,10 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        -4464,
-        -5360
+        -1408,
+        432
       ],
-      "id": "be866bf7-78b7-439d-862e-aa356a11017f",
+      "id": "12ca321c-3167-48b5-8c07-9ed127f96958",
       "name": "Webhook",
       "webhookId": "a78c2256-c123-4280-b22d-b375ff664f36"
     },
@@ -23,10 +23,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -4288,
-        -5360
+        -1232,
+        432
       ],
-      "id": "df486163-d634-4b72-8a01-4ac140748b40",
+      "id": "e15ea13f-50a6-4c25-bc85-f663ad6640a1",
       "name": "Code in JavaScript14"
     },
     {
@@ -38,10 +38,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        -3872,
-        -5360
+        -816,
+        432
       ],
-      "id": "b259557f-c85b-4dbc-8136-da9028cb959c",
+      "id": "40560212-8550-4d28-b0f7-7fb38b6692d8",
       "name": "AI Agent3"
     },
     {
@@ -59,14 +59,14 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.3,
       "position": [
-        -4000,
-        -5136
+        -944,
+        656
       ],
-      "id": "73114189-2fda-4c13-ab02-60f41f69c78b",
+      "id": "a1ce223c-2547-472f-ab26-2f2f8e6cd87a",
       "name": "OpenAI Chat Model3",
       "credentials": {
         "openAiApi": {
-          "id": "OcgIdTpnAX0zmJz3",
+          "id": "wCXpkEOh6gKdzoB9",
           "name": "OpenAi account"
         }
       }
@@ -78,25 +78,25 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        -3840,
-        -5136
+        -784,
+        656
       ],
-      "id": "99380118-4d26-465d-9f56-c5aae0d6f1d1",
+      "id": "5b9e8665-9b75-4ea7-87c7-9bc309c9b1fe",
       "name": "Simple Memory3"
     },
     {
       "parameters": {
-        "endpointUrl": "https://24ac74b61b86.ngrok-free.app/sse",
+        "endpointUrl": "https://f938354b789f.ngrok-free.app/sse",
         "serverTransport": "sse",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
       "typeVersion": 1.2,
       "position": [
-        -3728,
-        -5136
+        -672,
+        656
       ],
-      "id": "93fb0e64-5701-4cd1-a631-e2311ac3d352",
+      "id": "a200ebd1-60b0-4af6-b1db-d3b41794c53c",
       "name": "MCP Client3"
     },
     {
@@ -106,24 +106,11 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -4080,
-        -5360
+        -928,
+        432
       ],
-      "id": "523afa34-c729-42c5-84bd-1e06efcff213",
+      "id": "0e75110f-3510-4f03-9527-1b708e383947",
       "name": "Code in JavaScript15"
-    },
-    {
-      "parameters": {
-        "jsCode": "return [{ publicKey: $input.first().json.data.address }]"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        -4080,
-        -5504
-      ],
-      "id": "fd30e5c4-8c40-450d-901f-d48b94a98218",
-      "name": "Code in JavaScript16"
     },
     {
       "parameters": {
@@ -142,7 +129,7 @@
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
-            "address": "={{ $json.publicKey }}",
+            "address": "={{ $json.data.address }}",
             "running": true,
             "step": 0,
             "substep": 0
@@ -220,15 +207,15 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        -3888,
-        -5504
+        -912,
+        112
       ],
-      "id": "c156c305-e248-4f14-b916-d9e418ecd6c3",
+      "id": "899c08e7-ec3c-4f9d-8997-cc145d055301",
       "name": "Insert or update rows in a table1",
       "credentials": {
         "postgres": {
-          "id": "58nCO7NSTnWRyNrs",
-          "name": "Postgres account 2"
+          "id": "Eb14Mhsf3mSrkrpT",
+          "name": "Postgres account"
         }
       }
     },
@@ -260,10 +247,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        -3520,
-        -5360
+        -464,
+        432
       ],
-      "id": "3753f44b-6141-4d6d-bd2c-c39a557dfdf4",
+      "id": "7e6df369-8743-4ac0-a38d-f47a1027dbca",
       "name": "If1"
     },
     {
@@ -294,10 +281,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        -3184,
-        -5168
+        -128,
+        624
       ],
-      "id": "c0bccd66-0472-417a-ad90-55ae6645a15c",
+      "id": "61e0ca97-26e1-4100-b031-fd1fa2ac8e8f",
       "name": "If2"
     },
     {
@@ -309,10 +296,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        -3056,
-        -5600
+        0,
+        192
       ],
-      "id": "13691c26-4ce2-4286-9e8d-be65aa082801",
+      "id": "00f2ef8c-cdde-4831-9676-05f3b8f7a120",
       "name": "AI Agent4",
       "retryOnFail": true,
       "waitBetweenTries": 3000
@@ -330,14 +317,14 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.3,
       "position": [
-        -3184,
-        -5376
+        -128,
+        416
       ],
-      "id": "478c6e8c-35f3-400e-b369-f03ceec6ed14",
+      "id": "95321bbe-7f5b-44c8-9182-dc1d430ccfc8",
       "name": "OpenAI Chat Model4",
       "credentials": {
         "openAiApi": {
-          "id": "OcgIdTpnAX0zmJz3",
+          "id": "wCXpkEOh6gKdzoB9",
           "name": "OpenAi account"
         }
       }
@@ -349,38 +336,38 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        -3024,
-        -5376
+        32,
+        416
       ],
-      "id": "f0ea9055-79b7-4c43-a773-ff8fe3f2fc3f",
+      "id": "ad3bb47a-46c6-47a3-b088-15ab643c5d6e",
       "name": "Simple Memory4"
     },
     {
       "parameters": {
-        "endpointUrl": "https://24ac74b61b86.ngrok-free.app/sse",
+        "endpointUrl": "https://f938354b789f.ngrok-free.app/sse",
         "serverTransport": "sse",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
       "typeVersion": 1.2,
       "position": [
-        -2912,
-        -5376
+        144,
+        416
       ],
-      "id": "e322379c-7f93-4666-b4fc-ac1dfd8974d5",
+      "id": "48464d2c-fba8-47ff-846e-add47153c358",
       "name": "MCP Client4"
     },
     {
       "parameters": {
-        "jsCode": "const fs = require('fs');\n\nconst folder = $('Code in JavaScript14').first().json.data.address;\n\nfs.mkdirSync(`/data/shared/${folder}/documentation`, { recursive: true });\n\nreturn {\n  sessionId: $('Code in JavaScript15').first().json.sessionId,\n  prompt: \"Use ONLY your generate_documentation tool to create the documentation with the lore provided\",\n  lore: $input.first().json.output\n}"
+        "jsCode": "const fs = require('fs');\n\nconst folder = $('Code in JavaScript14').first().json.data.address;\nconst build_id = $('Select rows from a table').first().json.id;\n\nfs.mkdirSync(`/data/shared/${folder}/${build_id}/documentation`, { recursive: true });\n\nreturn {\n  sessionId: $('Code in JavaScript15').first().json.sessionId,\n  prompt: \"Use ONLY your generate_documentation tool to create the documentation with the lore provided\",\n  lore: $input.first().json.output\n}"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -3264,
-        -5600
+        -208,
+        192
       ],
-      "id": "fd2924c3-27db-4e26-aedc-39f7c4f99be4",
+      "id": "165e94fa-4578-43b4-ac27-c53585ba6d79",
       "name": "Code in JavaScript17"
     },
     {
@@ -390,10 +377,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -2784,
-        -5600
+        272,
+        192
       ],
-      "id": "abfb6fbe-43f6-425d-960f-af348b0abf93",
+      "id": "8cdff8d8-329b-4551-8329-0346ca4c3fb1",
       "name": "Code in JavaScript18"
     },
     {
@@ -409,25 +396,25 @@
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        -2656,
-        -5600
+        400,
+        192
       ],
-      "id": "0a7b5a87-9c4a-4c1e-be3d-145c7b3b597c",
+      "id": "11fab238-74da-49d0-9609-19a6004d1cf8",
       "name": "Convert to File"
     },
     {
       "parameters": {
         "operation": "write",
-        "fileName": "=/data/shared/{{ $('Code in JavaScript14').item.json.data.address }}/documentation/{{ $binary.data.fileName }}",
+        "fileName": "=/data/shared/{{ $('Code in JavaScript14').item.json.data.address }}/{{ $('Select rows from a table').first().json.id }}/documentation/{{ $binary.data.fileName }}",
         "options": {}
       },
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1.1,
       "position": [
-        -2528,
-        -5600
+        528,
+        192
       ],
-      "id": "353f1c67-2677-47d1-b2cd-14ab15fe4e5e",
+      "id": "6d8ff7b2-8059-4127-9eae-a48cad58f6bb",
       "name": "Read/Write Files from Disk4",
       "alwaysOutputData": false
     },
@@ -526,15 +513,15 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        -3056,
-        -5792
+        0,
+        0
       ],
-      "id": "49804a32-5039-4e88-8b8f-c8dfb939e0c9",
+      "id": "92a7f8e2-75e7-4cd1-98a5-5a8f0263ba35",
       "name": "Insert or update rows in a table2",
       "credentials": {
         "postgres": {
-          "id": "58nCO7NSTnWRyNrs",
-          "name": "Postgres account 2"
+          "id": "Eb14Mhsf3mSrkrpT",
+          "name": "Postgres account"
         }
       }
     },
@@ -633,15 +620,15 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        -2400,
-        -5600
+        656,
+        192
       ],
-      "id": "1f86b65d-df88-4833-9125-5d888c3cdfce",
+      "id": "6d523cb9-9666-40dd-b5e3-80b21d13b41f",
       "name": "Insert or update rows in a table3",
       "credentials": {
         "postgres": {
-          "id": "58nCO7NSTnWRyNrs",
-          "name": "Postgres account 2"
+          "id": "Eb14Mhsf3mSrkrpT",
+          "name": "Postgres account"
         }
       }
     },
@@ -654,10 +641,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        -2528,
-        -5184
+        528,
+        608
       ],
-      "id": "8470f677-2376-4933-8645-9dcac94a43d0",
+      "id": "14fb1304-5337-4232-91da-dcd96e7849df",
       "name": "AI Agent5",
       "retryOnFail": true,
       "waitBetweenTries": 3000
@@ -675,14 +662,14 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.3,
       "position": [
-        -2656,
-        -4960
+        400,
+        832
       ],
-      "id": "e6cbfe7a-559f-449b-b5c2-93ece245b14a",
+      "id": "5f5689a8-a965-40e6-a87a-e41cab465f78",
       "name": "OpenAI Chat Model5",
       "credentials": {
         "openAiApi": {
-          "id": "OcgIdTpnAX0zmJz3",
+          "id": "wCXpkEOh6gKdzoB9",
           "name": "OpenAi account"
         }
       }
@@ -694,38 +681,38 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        -2496,
-        -4960
+        560,
+        832
       ],
-      "id": "0af5cd52-6d74-4299-9513-ef4014a766e3",
+      "id": "e0ac36b3-2641-4b11-a182-3f1c11229df3",
       "name": "Simple Memory5"
     },
     {
       "parameters": {
-        "endpointUrl": "https://24ac74b61b86.ngrok-free.app/sse",
+        "endpointUrl": "https://f938354b789f.ngrok-free.app/sse",
         "serverTransport": "sse",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
       "typeVersion": 1.2,
       "position": [
-        -2384,
-        -4960
+        672,
+        832
       ],
-      "id": "c52a4479-ed48-455d-9832-e6ddafcf134a",
+      "id": "76029f45-852a-4c6c-adb1-51410a69ecde",
       "name": "MCP Client5"
     },
     {
       "parameters": {
-        "jsCode": "const fs = require('fs');\n\nconst folder = $('Code in JavaScript14').first().json.data.address;\n\nfs.mkdirSync(`/data/shared/${folder}/documentation`, { recursive: true });\n\n\nreturn {\n  address: $('Code in JavaScript14').first().json.data.address,\n  sessionId: $('Code in JavaScript15').first().json.sessionId,\n  prompt: \"Use ONLY your generate_tweets tool to create the 20 tweets with the lore provided\",\n  lore: $input.first().json.output\n}"
+        "jsCode": "const fs = require('fs');\n\nconst folder = $('Code in JavaScript14').first().json.data.address;\nconst build_id = $('Select rows from a table').first().json.id;\n\nfs.mkdirSync(`/data/shared/${folder}/${build_id}/documentation`, { recursive: true });\n\n\nreturn {\n  address: $('Code in JavaScript14').first().json.data.address,\n  sessionId: $('Code in JavaScript15').first().json.sessionId,\n  prompt: \"Use ONLY your generate_tweets tool to create the 20 tweets with the lore provided\",\n  lore: $input.first().json.output\n}"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -2736,
-        -5184
+        320,
+        608
       ],
-      "id": "3b1fc49e-682e-40b9-9636-aca1d12331a7",
+      "id": "4c3c6954-b1db-45d6-8357-2e0014d68c9c",
       "name": "Code in JavaScript19"
     },
     {
@@ -741,26 +728,26 @@
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        -2128,
-        -5184
+        928,
+        608
       ],
-      "id": "a5e33877-928d-4b96-868b-6b1fa8a836a9",
+      "id": "ea4fb978-bbb2-49b5-903c-23e562bdd016",
       "name": "Convert to File1"
     },
     {
       "parameters": {
         "operation": "write",
-        "fileName": "=/data/shared/{{ $('Code in JavaScript20').item.json.address }}/documentation/{{ $binary.data.fileName }}",
+        "fileName": "=/data/shared/{{ $('Code in JavaScript20').item.json.address }}/{{ $('Select rows from a table').first().json.id }}/documentation/{{ $binary.data.fileName }}",
         "dataPropertyName": "=data",
         "options": {}
       },
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1.1,
       "position": [
-        -2000,
-        -5184
+        1056,
+        608
       ],
-      "id": "82c396a3-619b-4c53-983a-a4fcc8067e04",
+      "id": "cfb2b011-f5f2-46cd-b2fe-72ee3dd5660a",
       "name": "Read/Write Files from Disk5",
       "alwaysOutputData": false
     },
@@ -859,15 +846,15 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        -2512,
-        -5360
+        544,
+        432
       ],
-      "id": "3e41d96d-a84a-43b0-9ee3-f213c89100ad",
+      "id": "c4bba2bf-41c1-4c26-bd59-53773759da7e",
       "name": "Insert or update rows in a table4",
       "credentials": {
         "postgres": {
-          "id": "58nCO7NSTnWRyNrs",
-          "name": "Postgres account 2"
+          "id": "Eb14Mhsf3mSrkrpT",
+          "name": "Postgres account"
         }
       }
     },
@@ -966,15 +953,15 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        -1808,
-        -5184
+        1248,
+        608
       ],
-      "id": "d9da4c33-4750-4b5f-a3ef-607c67392755",
+      "id": "64e5e642-349d-4c60-aaa8-6b9da3b85e9e",
       "name": "Insert or update rows in a table5",
       "credentials": {
         "postgres": {
-          "id": "58nCO7NSTnWRyNrs",
-          "name": "Postgres account 2"
+          "id": "Eb14Mhsf3mSrkrpT",
+          "name": "Postgres account"
         }
       }
     },
@@ -1006,10 +993,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        -2640,
-        -4544
+        416,
+        1248
       ],
-      "id": "0084029e-a275-4792-af68-38f965db43c8",
+      "id": "299aa247-015e-4c9f-b083-5891bdbd005e",
       "name": "If3"
     },
     {
@@ -1026,15 +1013,15 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        -1616,
-        -4736
+        1440,
+        1056
       ],
-      "id": "870667f3-e1b5-47dd-8f5c-c0d864e19070",
+      "id": "b45ce847-d0da-4bc1-b49d-9db54047773e",
       "name": "HTTP Request9",
       "credentials": {
         "httpBearerAuth": {
-          "id": "snoBC8vQ8BaxhjQo",
-          "name": "Bearer Auth account 2"
+          "id": "Cetsv7yIMRLTkltZ",
+          "name": "Bearer Auth account"
         }
       }
     },
@@ -1045,10 +1032,10 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        -1392,
-        -4736
+        1664,
+        1056
       ],
-      "id": "9de68d83-60cc-429e-8be9-9ff8a6445b77",
+      "id": "e7bbc3ec-d92a-4c66-b6eb-dd30b5c598f2",
       "name": "Wait1",
       "webhookId": "5501a757-3be4-41ba-ab83-d09204d33f3f"
     },
@@ -1071,14 +1058,14 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        -1248,
-        -4736
+        1808,
+        1056
       ],
-      "id": "f63b5546-d956-4350-a7eb-ab42fa11ebb5",
+      "id": "148d784b-dd19-4b3a-9122-3d184be7151a",
       "name": "HTTP Request10",
       "credentials": {
         "httpBearerAuth": {
-          "id": "dxsdR6hADXOohESP",
+          "id": "Cetsv7yIMRLTkltZ",
           "name": "Bearer Auth account"
         }
       }
@@ -1111,10 +1098,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        -1120,
-        -4736
+        1936,
+        1056
       ],
-      "id": "e1d57b40-9b89-4b79-bfef-f5ae6ca1213e",
+      "id": "21f20498-29ae-4b38-a391-049d9cc8cff9",
       "name": "If4"
     },
     {
@@ -1125,10 +1112,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        -832,
-        -4752
+        2224,
+        1040
       ],
-      "id": "c0ff2119-083d-4398-8767-de11bb4863e3",
+      "id": "06200f16-35f2-4846-ad4f-aba9a760f3af",
       "name": "HTTP Request11"
     },
     {
@@ -1138,10 +1125,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        -2064,
-        -4736
+        992,
+        1056
       ],
-      "id": "658a928d-d6b7-4abd-bfd8-d32ad6541706",
+      "id": "42a70302-6230-4710-8f36-694f7b3ff1d1",
       "name": "AI Agent6",
       "retryOnFail": true,
       "waitBetweenTries": 3000
@@ -1161,14 +1148,14 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.3,
       "position": [
-        -2096,
-        -4544
+        960,
+        1248
       ],
-      "id": "bbcb238c-7cdd-48bb-a460-b22281dff108",
+      "id": "ab2e5f6e-8225-4c7a-818e-90a63e9271be",
       "name": "OpenAI Chat Model6",
       "credentials": {
         "openAiApi": {
-          "id": "OcgIdTpnAX0zmJz3",
+          "id": "wCXpkEOh6gKdzoB9",
           "name": "OpenAi account"
         }
       }
@@ -1180,38 +1167,38 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        -1984,
-        -4544
+        1072,
+        1248
       ],
-      "id": "2c0e4648-4948-4db9-94cb-f9ed3dc83e0b",
+      "id": "ee050202-7ec2-43f5-913e-39c739f4585a",
       "name": "Simple Memory6"
     },
     {
       "parameters": {
-        "endpointUrl": "https://24ac74b61b86.ngrok-free.app/sse",
+        "endpointUrl": "https://f938354b789f.ngrok-free.app/sse",
         "serverTransport": "sse",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
       "typeVersion": 1.2,
       "position": [
-        -1872,
-        -4544
+        1184,
+        1248
       ],
-      "id": "15a2a1b3-3038-49b7-84cc-e89b721f4a20",
+      "id": "2846f8ba-a2eb-49a9-92bb-f6ceb088b4f5",
       "name": "MCP Client6"
     },
     {
       "parameters": {
-        "jsCode": "\n\n// Sortie: 1 seul item n8n (donc array avec 1 élément)\nconst fs = require('fs');\n\nconst folder = $('Code in JavaScript14').first().json.data.address;\n\nfs.mkdirSync(`/data/shared/${folder}/assets`, { recursive: true });\n\nreturn [{\n  json: {\n    sessionId: $('Code in JavaScript14').first().json.sessionId,\n    chatInput: {\n      prompt: \"Use ONLY your generate_logo tool, even if you have other parameter !\",\n      data: $('Code in JavaScript14').first().json.data,\n    },\n  },\n}];\n"
+        "jsCode": "\n\n// Sortie: 1 seul item n8n (donc array avec 1 élément)\nconst fs = require('fs');\n\nconst folder = $('Code in JavaScript14').first().json.data.address;\nconst build_id = $('Select rows from a table').first().json.id;\n\nfs.mkdirSync(`/data/shared/${folder}/${build_id}/assets`, { recursive: true });\n\nreturn [{\n  json: {\n    sessionId: $('Code in JavaScript14').first().json.sessionId,\n    chatInput: {\n      prompt: \"Use ONLY your generate_logo tool, even if you have other parameter !\",\n      data: $('Code in JavaScript14').first().json.data,\n    },\n  },\n}];\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -2272,
-        -4560
+        784,
+        1232
       ],
-      "id": "5b6f295a-44cc-4da7-8c95-0d213e9aaaae",
+      "id": "ccdfee7c-d8f5-4cb6-b18e-2ece2fb4ff2b",
       "name": "Code in JavaScript22"
     },
     {
@@ -1306,15 +1293,15 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        -2064,
-        -4896
+        992,
+        896
       ],
-      "id": "5da2048d-8940-4bfc-84bc-e4635e0bad73",
+      "id": "f04a5bda-3506-41ff-8814-edbda0129346",
       "name": "Update rows in a table",
       "credentials": {
         "postgres": {
-          "id": "58nCO7NSTnWRyNrs",
-          "name": "Postgres account 2"
+          "id": "Eb14Mhsf3mSrkrpT",
+          "name": "Postgres account"
         }
       }
     },
@@ -1357,10 +1344,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        -2208,
-        -4000
+        848,
+        1792
       ],
-      "id": "efddce54-99ee-49c8-8ce8-d1bf14818c73",
+      "id": "72fa3626-4379-42ef-806c-efdb259cb463",
       "name": "If5"
     },
     {
@@ -1387,15 +1374,15 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        -1280,
-        -4192
+        1776,
+        1600
       ],
-      "id": "2d2207fb-312d-4734-acf1-b341b4566872",
+      "id": "e76500c1-70b6-4dc4-ae3a-8e8714f702f7",
       "name": "HTTP Request12",
       "credentials": {
         "httpBearerAuth": {
-          "id": "snoBC8vQ8BaxhjQo",
-          "name": "Bearer Auth account 2"
+          "id": "Cetsv7yIMRLTkltZ",
+          "name": "Bearer Auth account"
         }
       }
     },
@@ -1406,10 +1393,10 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        -1056,
-        -4192
+        2000,
+        1600
       ],
-      "id": "20bef76c-9941-42a8-85be-974ca76e6239",
+      "id": "4a274aa5-8786-4178-8299-2ecf3126d56b",
       "name": "Wait2",
       "webhookId": "5501a757-3be4-41ba-ab83-d09204d33f3f"
     },
@@ -1432,14 +1419,14 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        -912,
-        -4192
+        2144,
+        1600
       ],
-      "id": "33ae6e7b-d4b3-4164-b964-8841f1209434",
+      "id": "54ae1807-e046-4697-b85e-7fe0a94bfd0f",
       "name": "HTTP Request13",
       "credentials": {
         "httpBearerAuth": {
-          "id": "dxsdR6hADXOohESP",
+          "id": "Cetsv7yIMRLTkltZ",
           "name": "Bearer Auth account"
         }
       }
@@ -1472,10 +1459,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        -784,
-        -4192
+        2272,
+        1600
       ],
-      "id": "46f61f96-d5ae-4d4e-82a2-b111b8373baf",
+      "id": "5b363198-9252-496e-92fa-73e07f1f1334",
       "name": "If6"
     },
     {
@@ -1486,25 +1473,25 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        -560,
-        -4208
+        2496,
+        1584
       ],
-      "id": "c68db645-b05a-403c-a358-0683709a76b1",
+      "id": "efa10da3-995a-490e-a5ef-c309b134b4b4",
       "name": "HTTP Request14"
     },
     {
       "parameters": {
         "operation": "write",
-        "fileName": "=/data/shared/{{ $('Code in JavaScript14').first().json.data.address }}/assets/{{ $json.data.taskId }}.png",
+        "fileName": "=/data/shared/{{ $('Code in JavaScript14').first().json.data.address }}/{{ $('Select rows from a table').first().json.id }}/assets/{{ $json.data.taskId }}.png",
         "options": {}
       },
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1.1,
       "position": [
-        -544,
-        -4048
+        2512,
+        1744
       ],
-      "id": "917487f9-2897-4800-9705-7024e2f26889",
+      "id": "e4f3de30-4a60-48f6-9906-bab088d8435b",
       "name": "Read/Write Files from Disk6",
       "alwaysOutputData": false
     },
@@ -1515,10 +1502,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        -1728,
-        -4192
+        1328,
+        1600
       ],
-      "id": "a67046db-7754-4277-b506-f10477e374b5",
+      "id": "b8a80527-d044-4248-b81c-674fc5f2f620",
       "name": "AI Agent7",
       "retryOnFail": true,
       "waitBetweenTries": 3000
@@ -1536,14 +1523,14 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.3,
       "position": [
-        -1760,
-        -4000
+        1296,
+        1792
       ],
-      "id": "5338a886-a9ab-415f-bfb6-39ea71ba5a1e",
+      "id": "b275fcb4-7555-45f1-b723-c0c6ecd4b73d",
       "name": "OpenAI Chat Model7",
       "credentials": {
         "openAiApi": {
-          "id": "OcgIdTpnAX0zmJz3",
+          "id": "wCXpkEOh6gKdzoB9",
           "name": "OpenAi account"
         }
       }
@@ -1555,38 +1542,38 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        -1648,
-        -4000
+        1408,
+        1792
       ],
-      "id": "72fd7c6f-b541-4c04-adb1-7d787e6d961e",
+      "id": "5957ef43-f4db-4c13-8966-79441e6401fa",
       "name": "Simple Memory7"
     },
     {
       "parameters": {
-        "endpointUrl": "https://24ac74b61b86.ngrok-free.app/sse",
+        "endpointUrl": "https://f938354b789f.ngrok-free.app/sse",
         "serverTransport": "sse",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
       "typeVersion": 1.2,
       "position": [
-        -1536,
-        -4000
+        1520,
+        1792
       ],
-      "id": "4c831e86-ae28-401e-ae26-af9df89de816",
+      "id": "45868a21-3b51-4daa-a2f4-4d5243ad498b",
       "name": "MCP Client7"
     },
     {
       "parameters": {
-        "jsCode": "const fs = require('fs');\n\nconst folder = $('Code in JavaScript14').first().json.data.address;\n\nfs.mkdirSync(`/data/shared/${folder}/assets`, { recursive: true });\n\n// Sortie: 1 seul item n8n (donc array avec 1 élément)\nreturn [{\n  json: {\n    sessionId: $('Code in JavaScript14').first().json.sessionId,\n    chatInput: {\n      prompt:  \"Use ONLY your generate_banner mcp tool using this data\",\n      data: $('Code in JavaScript14').first().json.data,\n    },\n  },\n}];\n"
+        "jsCode": "const fs = require('fs');\n\nconst folder = $('Code in JavaScript14').first().json.data.address;\nconst build_id = $('Select rows from a table').first().json.id;\n\nfs.mkdirSync(`/data/shared/${folder}/${build_id}/assets`, { recursive: true });\n\n// Sortie: 1 seul item n8n (donc array avec 1 élément)\nreturn [{\n  json: {\n    sessionId: $('Code in JavaScript14').first().json.sessionId,\n    chatInput: {\n      prompt:  \"Use ONLY your generate_banner mcp tool using this data\",\n      data: $('Code in JavaScript14').first().json.data,\n    },\n  },\n}];\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1936,
-        -4016
+        1120,
+        1776
       ],
-      "id": "98d006b8-2924-4d0a-892c-a1824761b462",
+      "id": "d7ced0ec-b4dc-4218-b209-a54103632f75",
       "name": "Code in JavaScript26"
     },
     {
@@ -1609,7 +1596,7 @@
             "running": true,
             "address": "={{ $('Code in JavaScript14').first().json.data.address }}",
             "step": 2,
-            "substep": 0
+            "substep": 2
           },
           "matchingColumns": [
             "address"
@@ -1681,15 +1668,15 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        -1712,
-        -4352
+        1344,
+        1440
       ],
-      "id": "3a196325-3bbe-418d-827f-4c1b1408c14f",
+      "id": "d5309727-399b-43a2-9549-919ff8717d65",
       "name": "Update rows in a table4",
       "credentials": {
         "postgres": {
-          "id": "58nCO7NSTnWRyNrs",
-          "name": "Postgres account 2"
+          "id": "Eb14Mhsf3mSrkrpT",
+          "name": "Postgres account"
         }
       }
     },
@@ -1700,10 +1687,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1424,
-        -4192
+        1632,
+        1600
       ],
-      "id": "f8408cc7-6199-4da6-975c-c310a5d76298",
+      "id": "d9814761-a1bd-4b33-8152-478cac7bfcad",
       "name": "Code in JavaScript28"
     },
     {
@@ -1798,15 +1785,15 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        -656,
-        -4608
+        2400,
+        1184
       ],
-      "id": "527cd2be-96f1-45b9-879c-e20769aac5c2",
+      "id": "80a2574b-ae9a-4812-bcf0-112fd358d620",
       "name": "Update rows in a table5",
       "credentials": {
         "postgres": {
-          "id": "58nCO7NSTnWRyNrs",
-          "name": "Postgres account 2"
+          "id": "Eb14Mhsf3mSrkrpT",
+          "name": "Postgres account"
         }
       }
     },
@@ -1830,7 +1817,7 @@
             "running": true,
             "address": "={{ $('Code in JavaScript14').first().json.data.address }}",
             "step": 2,
-            "substep": 1
+            "substep": 3
           },
           "matchingColumns": [
             "address"
@@ -1902,15 +1889,15 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        -400,
-        -4048
+        2656,
+        1744
       ],
-      "id": "8eaa08fd-7823-41c2-ba30-468307d3f6e3",
+      "id": "5500a584-3d3f-458d-87c3-7e8348376f73",
       "name": "Update rows in a table6",
       "credentials": {
         "postgres": {
-          "id": "58nCO7NSTnWRyNrs",
-          "name": "Postgres account 2"
+          "id": "Eb14Mhsf3mSrkrpT",
+          "name": "Postgres account"
         }
       }
     },
@@ -1953,10 +1940,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        -1776,
-        -3424
+        1280,
+        2368
       ],
-      "id": "f0c19610-fc0f-4b65-b222-e19bfac3ca44",
+      "id": "deec1100-5b36-41f9-8213-ae62ccc020e6",
       "name": "If7"
     },
     {
@@ -1966,32 +1953,22 @@
         "authentication": "predefinedCredentialType",
         "nodeCredentialType": "httpBearerAuth",
         "sendBody": true,
-        "bodyParameters": {
-          "parameters": [
-            {
-              "name": "model",
-              "value": "nano-banana-pro"
-            },
-            {
-              "name": "input",
-              "value": "={\n  \"prompt\": \"{{ $json.prompt }}\",\n  \"aspect_ratio\": \"1:1\",\n  \"resolution\": \"1K\",\n  \"output_format\": \"png\"\n}"
-            }
-          ]
-        },
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"nano-banana-pro\",\n  \"input\": {\n    \"prompt\": \"{{ $json.content }}\",\n    \"aspect_ratio\": \"1:1\",\n    \"resolution\": \"1K\",\n    \"output_format\": \"png\"\n  }\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        -864,
-        -3616
+        2192,
+        2176
       ],
-      "id": "3a9e90f7-e87d-46b3-b610-acf8ceb993fb",
+      "id": "db489471-65f5-4456-b0b1-a87767487fe0",
       "name": "HTTP Request15",
       "credentials": {
         "httpBearerAuth": {
-          "id": "snoBC8vQ8BaxhjQo",
-          "name": "Bearer Auth account 2"
+          "id": "Cetsv7yIMRLTkltZ",
+          "name": "Bearer Auth account"
         }
       }
     },
@@ -2002,10 +1979,10 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        -624,
-        -3616
+        2432,
+        2176
       ],
-      "id": "0c394e36-192e-4b72-b789-9b957eb17cab",
+      "id": "88b32938-9603-40e4-8165-8876dc9f0513",
       "name": "Wait3",
       "webhookId": "5501a757-3be4-41ba-ab83-d09204d33f3f"
     },
@@ -2028,14 +2005,14 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        -416,
-        -3616
+        2640,
+        2176
       ],
-      "id": "207adc66-85e4-4c6e-8261-e2cced8bc8ac",
+      "id": "8b73213a-8d43-4c36-8cd4-dcfc0296e44a",
       "name": "HTTP Request16",
       "credentials": {
         "httpBearerAuth": {
-          "id": "dxsdR6hADXOohESP",
+          "id": "Cetsv7yIMRLTkltZ",
           "name": "Bearer Auth account"
         }
       }
@@ -2068,10 +2045,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        -208,
-        -3616
+        2848,
+        2176
       ],
-      "id": "10dcf4ed-6bfb-47d2-821c-79654414b029",
+      "id": "ab92ceaa-0a3d-47a4-bf76-04c929c2995c",
       "name": "If8"
     },
     {
@@ -2082,25 +2059,25 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        0,
-        -3632
+        3056,
+        2160
       ],
-      "id": "8edbffb2-b5b4-4e9a-b779-5140fdfc1277",
+      "id": "328adc52-6c66-498b-a5ac-581769c452d5",
       "name": "HTTP Request17"
     },
     {
       "parameters": {
         "operation": "write",
-        "fileName": "=/data/shared/{{ $('HTTP Request16').item.json.data.taskId }}.png",
+        "fileName": "=/data/shared/{{ $('Code in JavaScript14').first().json.data.address }}/{{ $('Select rows from a table').first().json.id }}/assets/{{ $('HTTP Request16').item.json.data.taskId }}.png",
         "options": {}
       },
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1.1,
       "position": [
-        16,
-        -3472
+        3072,
+        2320
       ],
-      "id": "c6c2cf36-1e8e-4d0f-9143-33e40d382420",
+      "id": "362ecfe6-f0ea-4b48-b1c3-2957beaa4631",
       "name": "Read/Write Files from Disk7",
       "alwaysOutputData": false
     },
@@ -2111,10 +2088,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        -1296,
-        -3616
+        1760,
+        2176
       ],
-      "id": "11d976b1-d41a-4f4f-8062-733c2cf02490",
+      "id": "383e03e5-84d2-4aec-b306-4eef0881656d",
       "name": "AI Agent8",
       "retryOnFail": true,
       "waitBetweenTries": 3000
@@ -2132,14 +2109,14 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.3,
       "position": [
-        -1328,
-        -3424
+        1728,
+        2368
       ],
-      "id": "64825ff1-c5ec-412b-a376-3576ba3d18ef",
+      "id": "dd40ce73-bde0-4f19-9d25-fe94136a7943",
       "name": "OpenAI Chat Model8",
       "credentials": {
         "openAiApi": {
-          "id": "OcgIdTpnAX0zmJz3",
+          "id": "wCXpkEOh6gKdzoB9",
           "name": "OpenAi account"
         }
       }
@@ -2151,38 +2128,38 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        -1216,
-        -3424
+        1840,
+        2368
       ],
-      "id": "a0208313-12d1-4186-9ec5-1f4c18bacf11",
+      "id": "f6cd5e0c-dec0-41c0-872d-283f94b047aa",
       "name": "Simple Memory8"
     },
     {
       "parameters": {
-        "endpointUrl": "https://24ac74b61b86.ngrok-free.app/sse",
+        "endpointUrl": "https://f938354b789f.ngrok-free.app/sse",
         "serverTransport": "sse",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
       "typeVersion": 1.2,
       "position": [
-        -1104,
-        -3424
+        1952,
+        2368
       ],
-      "id": "40c39c80-76e8-40e9-9c81-56cb7397a2eb",
+      "id": "820aa199-781d-4a2d-9ea4-87fe1ca6a8a9",
       "name": "MCP Client8"
     },
     {
       "parameters": {
-        "jsCode": "const fs = require('fs');\n\nconst folder = $('Code in JavaScript14').first().json.data.address;\n\nfs.mkdirSync(`/data/shared/${folder}/assets`, { recursive: true });\n\n// Sortie: 1 seul item n8n (donc array avec 1 élément)\nreturn [{\n  json: {\n    sessionId: $('Code in JavaScript14').first().json.sessionId,\n    chatInput: {\n      prompt:  \"Use ONLY your generate_x_assets mcp tool using this data\",\n      data: $('Code in JavaScript14').first().json.data,\n    },\n  },\n}];\n"
+        "jsCode": "const fs = require('fs');\n\nconst folder = $('Code in JavaScript14').first().json.data.address;\nconst build_id = $('Select rows from a table').first().json.id;\n\nfs.mkdirSync(`/data/shared/${folder}/${build_id}/assets`, { recursive: true });\n\n// Sortie: 1 seul item n8n (donc array avec 1 élément)\nreturn [{\n  json: {\n    sessionId: $('Code in JavaScript14').first().json.sessionId,\n    chatInput: {\n      prompt:  \"Use ONLY your generate_x_assets tool\",\n      data: $('Code in JavaScript14').first().json.data,\n    },\n  },\n}];\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1504,
-        -3440
+        1552,
+        2352
       ],
-      "id": "747bbbf1-d5df-4bd9-89d3-19f9a93cd44d",
+      "id": "9db12ae2-0b47-4fc1-9768-d0afeee933a8",
       "name": "Code in JavaScript34"
     },
     {
@@ -2205,7 +2182,7 @@
             "running": true,
             "address": "={{ $('Code in JavaScript14').first().json.data.address }}",
             "step": 2,
-            "substep": 0
+            "substep": 4
           },
           "matchingColumns": [
             "address"
@@ -2277,29 +2254,29 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        -1296,
-        -3776
+        1760,
+        2016
       ],
-      "id": "b296b544-3c29-4246-8ffb-9f1cc629f2cb",
+      "id": "011fb425-eb5f-4143-ba88-a0170e4d8339",
       "name": "Update rows in a table7",
       "credentials": {
         "postgres": {
-          "id": "58nCO7NSTnWRyNrs",
-          "name": "Postgres account 2"
+          "id": "Eb14Mhsf3mSrkrpT",
+          "name": "Postgres account"
         }
       }
     },
     {
       "parameters": {
-        "jsCode": "// Ton input = [{ output: \"JSON_STRING\" }]\n\nconst raw = items[0].json.output;\n\n// Parse la string JSON\n\nconst fs = require('fs');\n\nconst folder = $('Code in JavaScript14').first().json.sessionId;\n\nfs.mkdirSync(`/data/shared/${folder}/assets`, { recursive: true });\n\n// Retourne 1 item par fichier\nreturn {\n    path: \"/data/shared/${folder}/assets/\",\n    content: JSON.parse($input.first().json.output)\n  };\n"
+        "jsCode": "// Retourne 1 item par fichier\nreturn {\n    content: JSON.parse($input.first().json.output)\n  };\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -992,
-        -3616
+        2064,
+        2176
       ],
-      "id": "46218e31-3ecd-4389-981c-34229d80f8cc",
+      "id": "c917043e-70af-42eb-bc68-2343f0aabdbe",
       "name": "Code in JavaScript36"
     },
     {
@@ -2319,10 +2296,10 @@
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
-            "running": true,
+            "running": false,
             "address": "={{ $('Code in JavaScript14').first().json.data.address }}",
             "step": 2,
-            "substep": 1
+            "substep": 5
           },
           "matchingColumns": [
             "address"
@@ -2394,30 +2371,17 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        192,
-        -3472
+        3248,
+        2320
       ],
-      "id": "cd8b25f9-2c30-423b-9707-44679e1f2256",
+      "id": "f5e6880d-23f1-4425-ae7c-e9ecd66fbcb9",
       "name": "Update rows in a table8",
       "credentials": {
         "postgres": {
-          "id": "58nCO7NSTnWRyNrs",
-          "name": "Postgres account 2"
+          "id": "Eb14Mhsf3mSrkrpT",
+          "name": "Postgres account"
         }
       }
-    },
-    {
-      "parameters": {
-        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        -3920,
-        -4768
-      ],
-      "id": "6fa4bc4c-17e7-4337-bd73-6598182c50d4",
-      "name": "Code in JavaScript30"
     },
     {
       "parameters": {
@@ -2426,10 +2390,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -2256,
-        -5184
+        800,
+        608
       ],
-      "id": "0cb2326c-a10f-4737-a4e1-36bd42f715ca",
+      "id": "91ef2aff-97ac-4ea4-a44e-c8b0f1decca3",
       "name": "Code in JavaScript20"
     },
     {
@@ -2439,27 +2403,111 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1728,
-        -4736
+        1328,
+        1056
       ],
-      "id": "880eeaeb-cccc-4e74-8f2d-7a5ab150d130",
+      "id": "ecf93021-49ff-4ca1-99f4-3961ec4ad8b8",
       "name": "Code in JavaScript21"
     },
     {
       "parameters": {
         "operation": "write",
-        "fileName": "=/data/shared/{{ $('Code in JavaScript14').first().json.data.address }}/assets/{{ $('HTTP Request9').item.json.data.taskId }}.png",
+        "fileName": "=/data/shared/{{ $('Code in JavaScript14').first().json.data.address }}/{{ $('Select rows from a table').first().json.id }}/assets/{{ $('HTTP Request9').item.json.data.taskId }}.png",
         "options": {}
       },
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1.1,
       "position": [
-        -800,
-        -4608
+        2256,
+        1184
       ],
-      "id": "a899e704-49f2-4b93-a712-f632dfd22e59",
+      "id": "affdd025-7d4d-42d9-8540-93d9b731a010",
       "name": "Read/Write Files from Disk1",
       "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "value": "public",
+          "mode": "list",
+          "cachedResultName": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "build",
+          "mode": "list",
+          "cachedResultName": "build"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "ownerAddress",
+              "value": "={{ $('Code in JavaScript14').first().json.data.address }}"
+            }
+          ]
+        },
+        "sort": {
+          "values": [
+            {
+              "column": "createdAt",
+              "direction": "DESC"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -784,
+        112
+      ],
+      "id": "f9be23e1-7308-456f-863b-b64cc0aa8d96",
+      "name": "Select rows from a table",
+      "credentials": {
+        "postgres": {
+          "id": "Eb14Mhsf3mSrkrpT",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "95865c08-8c32-4b27-86b9-39ac2f27b5c0",
+              "leftValue": false,
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.3,
+      "position": [
+        -656,
+        112
+      ],
+      "id": "a62bbae6-060d-4f13-87ac-56c3e1d5805c",
+      "name": "Filter"
     }
   ],
   "connections": {
@@ -2483,12 +2531,7 @@
             "index": 0
           },
           {
-            "node": "Code in JavaScript16",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Code in JavaScript30",
+            "node": "Insert or update rows in a table1",
             "type": "main",
             "index": 0
           }
@@ -2550,11 +2593,11 @@
         ]
       ]
     },
-    "Code in JavaScript16": {
+    "Insert or update rows in a table1": {
       "main": [
         [
           {
-            "node": "Insert or update rows in a table1",
+            "node": "Select rows from a table",
             "type": "main",
             "index": 0
           }
@@ -2814,13 +2857,7 @@
     },
     "HTTP Request9": {
       "main": [
-        [
-          {
-            "node": "Wait1",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Wait1": {
@@ -3126,7 +3163,8 @@
             "type": "main",
             "index": 0
           }
-        ]
+        ],
+        []
       ]
     },
     "HTTP Request15": {
@@ -3273,16 +3311,6 @@
         ]
       ]
     },
-    "Update rows in a table8": {
-      "main": [
-        []
-      ]
-    },
-    "Code in JavaScript30": {
-      "main": [
-        []
-      ]
-    },
     "Code in JavaScript20": {
       "main": [
         [
@@ -3315,11 +3343,33 @@
           }
         ]
       ]
+    },
+    "Select rows from a table": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "pinData": {},
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "687525e662e08c5ad52e2a0b8e9a9a8f0fca252f661bd30873173d3eba1f0987"
+    "instanceId": "be21a035e50b2bffdd49709ff7d39b3d807f99e0ebccfc0c7e06eba3ba750b87"
   }
 }

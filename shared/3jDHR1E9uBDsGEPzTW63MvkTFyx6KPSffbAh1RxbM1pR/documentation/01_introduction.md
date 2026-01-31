@@ -1,24 +1,21 @@
-# Introduction to MCP
+# Introduction to OrbitDAO
 
-## What is MCP?
-MCP is a powerful Web3 tool designed to streamline the creation of project assets with just a single click. It integrates the generation of websites, tweet content, and visual assets into one seamless platform, enabling project teams and communities to focus on strategic growth and engagement instead of managing multiple complex tools.
+## What is OrbitDAO?
+
+OrbitDAO is a community-owned decentralized finance (DeFi) protocol designed to empower DAOs with secure, transparent, and unified treasury management and governance across multiple blockchains. By operating through a custodian-free interface, OrbitDAO provides a seamless experience for voting, fund allocation, and decentralized decision-making. 
 
 ## Key Features
-- **One-Click Asset Generation:** Build professional websites, authority tweets, and visually compelling graphics with an effortless single action.
-- **Unified Workflow:** Consolidate asset creation processes to maximize efficiency and maintain brand consistency.
-- **Designed for Communities:** Tools tailored to accelerate community building and engagement in the Web3 ecosystem.
-- **Reliable and Consistent Outputs:** Ensure high-quality, repeatable asset production that supports rapid project scaling.
-- **Mascot Driven:** Bolt, MCP's mascot, embodies speed and precision, assisting users visually and contextually.
 
-## Why MCP Matters
-In the ever-evolving and fast-paced blockchain space, projects must move quickly and communicate effectively to stand out. Traditional workflows often involve juggling many platforms, causing delays, inconsistencies, and technical headaches. MCP addresses these pain points by offering a single, cohesive solution that reduces friction, boosts productivity, and ensures every project asset aligns with the overall vision and mission.
+- **Multi-chain Treasury Management:** Manage and allocate funds from various blockchains in a single dashboard.
+- **Secure On-Chain Voting:** Permissionless and auditable voting mechanisms to ensure governance integrity.
+- **Automated Fund Allocation:** Trustless smart contracts automate budget distributions based on DAO decisions.
+- **Transparency & Auditing:** Full on-chain visibility of treasury movements and governance activities.
+- **Non-Custodial Architecture:** Users retain full control over their assets without reliance on third-party custodians.
+
+## Why OrbitDAO Matters
+
+DAOs today face fragmentation challenges with treasury and governance spread over multiple chains and lack of centralized control, often relying on risky custodians. This creates inefficiencies and potential single points of failure. OrbitDAO tackles these issues by providing a secured, transparent, and scalable platform that reunites treasury and governance control under a community-owned protocol. It fortifies DAO autonomy and builds trust in decentralized decision-making.
 
 ## Quick Start Overview
-Getting started with MCP is straightforward:
-1. Sign up and set up your project profile.
-2. Define your brand guidelines and asset preferences within the MCP dashboard.
-3. Use the one-click generation feature to instantly create your website, social media tweets, and visual content.
-4. Review, customize if needed, and publish or share the assets directly.
-5. Engage your community with consistent, high-quality communications powered by MCP.
 
-MCP makes building and scaling your Web3 project assets simple, efficient, and reliable from day one.
+Getting started with OrbitDAO requires your DAO to connect compatible wallets to the platform. Once integrated, DAO members can initiate governance proposals, vote securely, and automate treasury allocations seamlessly across linked blockchains. The dark-themed interface guides users through each step while ensuring cryptographic validation and trustlessness at every level.

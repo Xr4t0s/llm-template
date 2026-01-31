@@ -1141,7 +1141,9 @@ C) **Data visual:** Chart/graph element + humorous caption
 
 {style_guide if style_guide else ""}
 
-Generate the JSON now. Output ONLY the valid JSON structure above. No explanations, no additional text."""
+Generate the JSON now. Output ONLY the valid JSON structure above. No explanations, no additional text.
+DO NOT CALL ANOTHER TOOL !
+"""
 
     return prompt
 

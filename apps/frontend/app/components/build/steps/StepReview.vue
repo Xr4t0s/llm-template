@@ -186,7 +186,7 @@ async function launchBuild() {
   }
 
   try {
-    const res = await fetch('/api/v1/generate/doc', {
+    const res = await fetch('/api/v1/generate', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

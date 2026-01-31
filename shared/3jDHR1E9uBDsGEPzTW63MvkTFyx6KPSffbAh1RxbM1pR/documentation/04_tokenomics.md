@@ -1,22 +1,25 @@
-# MCP Tokenomics
+# Tokenomics of OrbitDAO
 
-> Note: MCP currently focuses on utility and platform growth. Tokenomics may be developed in future phases to incentivize participation and community engagement.
+## Overview
 
-## Project Utility and Economic Model
-MCP’s primary utility lies in its capacity to empower Web3 projects by saving time and resources through automated asset creation. The platform is designed for scalability and integration, with potential to introduce native tokens that fuel platform governance and incentivization programs.
+OrbitDAO’s tokenomics are carefully designed to incentivize community participation, secure governance, and sustainable growth of the platform. The native token plays a pivotal role in governance participation, relayer incentivization, and empowering DAO autonomy.
 
-## Distribution (If Applicable)
-When applicable, token distribution will prioritize community participation, contributor rewards, strategic partnerships, and platform development funds to ensure sustainable growth and decentralization.
+## Token Distribution
 
-## Utility/Incentives
-Tokens may be used to:
-- Access premium features and advanced customization tools
-- Participate in platform governance and decision-making
-- Earn rewards for contributing to community-building efforts
-- Unlock exclusive asset templates and partnership benefits
+- **Community and Ecosystem Growth:** 45% allocated towards community rewards, grants, and liquidity mining to foster active participation.
+- **Team and Founders:** 20% vested over a multi-year schedule to ensure alignment with long-term project success.
+- **Investors:** 15% allocated to strategic early supporters with vesting clauses.
+- **Reserve Fund:** 15% kept for future strategic initiatives, partnerships, and ecosystem scaling.
+- **Advisors:** 5% with vesting terms to align advisory contributions.
 
-## Supply or Participation Logic
-The total token supply will be fixed to prevent inflation and ensure lasting value. Participation mechanisms will encourage active usage and contributions, aligning incentives across developers, marketers, and community members.
+## Token Utility and Incentives
 
-## Future Considerations
-Tokenomics and economic models will evolve through decentralized governance driven by the MCP community, ensuring transparency and alignment with collective goals.
+- **Governance:** Token holders propose and vote on protocol upgrades, parameter changes, and funding allocations.
+- **Relayer Rewards:** Nodes facilitating cross-chain transaction proofs and automation earn token rewards.
+- **Staking:** Token staking strengthens governance security and unlocks participation rights.
+
+## Supply
+
+The total supply is capped to prevent inflationary dilution, encouraging long-term holding and active network participation. Dynamic fee structures within the protocol adjust incentives based on network conditions.
+
+OrbitDAO’s token model ensures a balanced, community-first approach that rewards contribution and fosters trustless governance.

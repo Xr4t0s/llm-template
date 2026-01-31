@@ -1,19 +1,24 @@
-# MCP Vision and Mission
+# Vision & Philosophy of OrbitDAO
 
 ## Vision Statement
-To revolutionize the Web3 landscape by providing a unified, powerful tool that empowers projects to rapidly create and manage all essential assets with unprecedented speed, precision, and reliability.
+
+OrbitDAO envisions a decentralized future where DAOs govern their treasuries and make decisions unfettered by centralized intermediaries, across all blockchain ecosystems. It aspires to be the foundation upon which autonomous, sovereign communities build sustainable decentralized governance.
 
 ## Core Philosophy
-MCP believes in simplifying complexity. We envision a future where building, communicating, and scaling blockchain projects is accessible and streamlined, fostering vibrant decentralized communities without overwhelming technical barriers.
 
-## Long-Term Mission
-Our long-term mission is to be the foundational platform for Web3 asset creation—an indispensable tool that every blockchain developer, marketer, and community leader relies on to drive project success, innovation, and sustainability.
+Decentralization means true ownership and transparency. OrbitDAO believes that governance and treasury management should be custodial-independent, immutable, and auditable. The protocol champions user sovereignty and community empowerment through cutting-edge cryptographic security and permissionless innovation.
+
+## Long-term Mission
+
+Our mission is to build a dark, futuristic platform that unites all DAOs under one governance roof. OrbitDAO will unify multi-chain management, eliminate central points of failure, and incentivize fearless autonomy. We seek to nurture thriving Web3 communities that self-govern with unwavering trust and scalable infrastructure.
 
 ## Community Values
-- **Empowerment:** Equip communities with intuitive tools to express their vision and grow organically.
-- **Integrity:** Deliver dependable solutions that prioritize quality and user trust.
-- **Innovation:** Continuously evolve to meet emerging Web3 trends and needs.
-- **Inclusivity:** Design tools that are accessible to both seasoned developers and newcomers.
 
-## What Makes MCP Unique
-MCP distinguishes itself through its comprehensive approach: by integrating websites, social media content, and visuals into one platform, MCP eliminates silos and accelerates time-to-market. Its mascot, Bolt, represents MCP’s commitment to speed and reliability, visually reinforcing the brand’s promise and ethos.
+- **Sovereignty:** Ensuring that every DAO member retains custodial freedom and absolute control.
+- **Transparency:** Open, auditable records promoting accountability.
+- **Security:** Cryptographic assurance preserving the integrity of all actions.
+- **Empowerment:** Fostering decentralized communities that make impactful collective decisions.
+
+## What Makes OrbitDAO Unique
+
+Unlike conventional DAO tooling that is single-chain dependent or heavily custodial, OrbitDAO pioneers a secure cross-chain governance protocol with a dark, immersive interface designed to demystify cryptography. By combining intuitive usability and military-grade security, OrbitDAO goes beyond mere multi-chain support to deliver a sovereignty-first ecosystem.

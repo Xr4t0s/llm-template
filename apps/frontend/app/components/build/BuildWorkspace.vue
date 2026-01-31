@@ -5,6 +5,7 @@ import { useBuildProtocol } from '~/stores/buildProtocol'
 import BuildSidebar from '~/components/build/BuildSidebar.vue'
 import BuildHeader from '~/components/build/BuildHeader.vue'
 import BuildFooter from '~/components/build/BuildFooter.vue'
+import BuildsList from '~/components/build/builds/BuildList.vue'
 
 import StepIdentity from '~/components/build/steps/StepIdentity.vue'
 import StepProject from '~/components/build/steps/StepProject.vue'
@@ -17,13 +18,21 @@ interface Props {
   mode: 'create' | 'view'
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
 defineEmits<{
   back: []
+  viewBuild: [buildId: number]
 }>()
 
 const buildStore = useBuildProtocol()
 const step = computed(() => buildStore.step)
+
+// Dynamic grid class based on mode
+const gridClass = computed(() => {
+  return props.mode === 'create' 
+    ? 'grid-cols-1 lg:grid-cols-[280px_1fr]' 
+    : 'grid-cols-1'  // Full width in view mode
+})
 </script>
 
 <template>
@@ -42,26 +51,26 @@ const step = computed(() => buildStore.step)
         </button>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-6 items-start">
-        <!-- Sidebar -->
+      <div :class="['grid gap-6 items-start', gridClass]">
+        <!-- Sidebar - only in create mode -->
         <aside v-if="mode === 'create'" class="lg:sticky lg:top-0 lg:h-[calc(100vh-120px)]">
           <BuildSidebar />
         </aside>
 
         <!-- Main Content -->
-        <main class="min-h-[calc(100vh-120px)] flex flex-col">
+        <main class="min-h-[calc(100vh-120px)] flex flex-col w-full">
           <!-- Header (only for create mode) -->
-		  <div v-if="mode === 'create'" class="mb-6">
-        	<button
-          	  @click="$emit('back')"
-          	  class="flex items-center gap-2 text-white/60 hover:text-white/80 transition-colors font-medium text-sm"
-        	>
-          	<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-          	</svg>
-          	  Back to home
-        	</button>
-      	  </div>
+          <div v-if="mode === 'create'" class="mb-6">
+            <button
+              @click="$emit('back')"
+              class="flex items-center gap-2 text-white/60 hover:text-white/80 transition-colors font-medium text-sm"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+              </svg>
+              Back to home
+            </button>
+          </div>
           <BuildHeader v-if="mode === 'create'" />
 
           <!-- Step Content -->
@@ -98,49 +107,13 @@ const step = computed(() => buildStore.step)
                 />
               </template>
 
-              <!-- View mode: show builds list (placeholder) -->
-              <div
+              <!-- View mode: show builds list -->
+              <BuildsList
                 v-else
                 key="view-builds"
-                class="w-full max-w-3xl space-y-8"
-              >
-                <!-- Header -->
-                <div class="space-y-3">
-                  <h2 class="text-3xl font-bold text-white">
-                    Your Builds
-                  </h2>
-                  <p class="text-white/60">
-                    Browse and manage all your generated projects
-                  </p>
-                </div>
-
-                <!-- Empty state -->
-                <div class="text-center py-20 space-y-6">
-                  <div class="text-6xl">📦</div>
-                  <div class="space-y-2">
-                    <p class="text-xl font-semibold text-white">
-                      No builds yet
-                    </p>
-                    <p class="text-white/60">
-                      Create your first build to see it here
-                    </p>
-                  </div>
-                  <button
-                    @click="$emit('back')"
-                    class="inline-block group relative px-8 py-3 rounded-xl font-semibold text-white overflow-hidden"
-                  >
-                    <!-- Gradient background -->
-                    <div class="absolute inset-0 bg-linear-to-r from-indigo-600 to-cyan-500 opacity-100 group-hover:opacity-90 transition-opacity" />
-                    <!-- Text -->
-                    <span class="relative flex items-center gap-2">
-                      Create your first build
-                      <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                      </svg>
-                    </span>
-                  </button>
-                </div>
-              </div>
+                @back="$emit('back')"
+                @viewBuild="$emit('viewBuild', $event)"
+              />
             </Transition>
           </div>
 

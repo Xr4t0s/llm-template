@@ -1,5 +1,5 @@
 <template>
-  <div class="space-y-4">
+  <div class="not-lg:hidden space-y-4">
     <!-- Title -->
     <div class="px-4 py-3 space-y-1">
       <p class="text-xs uppercase tracking-widest text-white/40 font-semibold">Build Steps</p>
